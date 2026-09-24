@@ -410,7 +410,7 @@ function saveDB() {
 loadDB();
 
 // ----------------------------------------------------
-// v1.1.2.7 SECURITY HARDENING ENGINE & SAFEGUARDS
+// v1.1.2.8 SECURITY HARDENING ENGINE & SAFEGUARDS
 // DISHA (Digital Information Security in Healthcare Act)
 // & DPDP Act 2023 Compliant Tele-Ophthalmology Security
 // ----------------------------------------------------
@@ -439,7 +439,7 @@ const securityAuditLog: SecurityAuditEvent[] = [
     timestamp: new Date().toISOString(),
     event: 'SECURITY_CHECK',
     severity: 'INFO',
-    details: 'DRishtii Security Hardening Engine v1.1.2.7 active. DISHA & DPDP rural telemedicine safeguards engaged.',
+    details: 'DRishtii Security Hardening Engine v1.1.2.8 active. DISHA & DPDP rural telemedicine safeguards engaged.',
     ip: '127.0.0.1'
   }
 ];
@@ -589,7 +589,7 @@ app.use((req, res, next) => {
     "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: http: https:; connect-src 'self' ws: wss: http: https:; font-src 'self' data: https://fonts.gstatic.com; media-src 'self' blob:; frame-ancestors 'self' https://*.google.com https://*.googleusercontent.com https://ai.studio https://*.run.app;"
   );
   // System Security & Version Markers
-  res.setHeader("X-DRishti-Version", "1.1.2.7");
+  res.setHeader("X-DRishti-Version", "1.1.2.8");
   res.setHeader("X-DRishti-Security-Standard", "DISHA-2026, DPDP-2023, ABDM-Ready");
 
   // Prevent caching of sensitive patient clinical records in public / proxy caches
@@ -921,7 +921,7 @@ app.post("/api/auth/login", authLimiter, (req, res) => {
       role: selectedRole,
       name: userDisplayName,
       expiresAt,
-      version: "1.1.2.7"
+      version: "1.1.2.8"
     });
   } else {
     logSecurityAudit({
@@ -941,7 +941,7 @@ app.post("/api/auth/login", authLimiter, (req, res) => {
 // Security Posture Status Endpoint
 app.get("/api/security/status", (req, res) => {
   res.json({
-    version: "1.1.2.7",
+    version: "1.1.2.8",
     status: "SECURE",
     framework: "DISHA & DPDP Compliant Tele-Ophthalmology Security",
     features: {
@@ -978,7 +978,7 @@ app.get("/api/security/status", (req, res) => {
 // Security Audit Log Endpoint
 app.get("/api/security/audit-log", (req, res) => {
   res.json({
-    version: "1.1.2.7",
+    version: "1.1.2.8",
     total: securityAuditLog.length,
     events: securityAuditLog.slice(0, 50)
   });
@@ -1900,17 +1900,17 @@ app.post("/api/advisor/chat", advisorLimiter, (req, res, next) => {
 
 // Health check endpoint for Cloud Run and monitoring
 app.get("/api/health", (req, res) => {
-  res.json({ status: "ok", version: "1.1.2.7", uptime: process.uptime() });
+  res.json({ status: "ok", version: "1.1.2.8", uptime: process.uptime() });
 });
 
 app.get("/api/version", (req, res) => {
-  res.json({ version: "1.1.2.7", app: "DRishtii AI Diagnostic System" });
+  res.json({ version: "1.1.2.8", app: "DRishtii AI Diagnostic System" });
 });
 
 // System Status endpoint (shows devices, engine, offline readiness)
 app.get("/api/system/status", async (req, res) => {
   res.json({
-    version: "1.1.2.7",
+    version: "1.1.2.8",
     activeScreens: sseClients.size,
     totalPatients: db.patients.length,
     totalScans: db.scans.length,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, Moon, Sun, Eye } from 'lucide-react';
+import { Menu, Moon, Sun, Eye, Search, HelpCircle, BookOpen, Clock, Activity, LogOut } from 'lucide-react';
 import { cn } from './lib/utils';
 import { Sidebar } from './components/Sidebar';
 import { Dashboard } from './components/Dashboard';
@@ -10,6 +10,9 @@ import { MathWorksPipeline } from './components/MathWorksPipeline';
 import { Login } from './components/Login';
 import { DrishtiLogo } from './components/DrishtiLogo';
 import { SettingsModal } from './components/SettingsModal';
+import { ClinicalGuideModal } from './components/ClinicalGuideModal';
+import { GlobalSearchModal } from './components/GlobalSearchModal';
+import { ConfirmationModal } from './components/ConfirmationModal';
 import { useKeyboardNavigation } from './lib/useKeyboardNavigation';
 import { Patient, Scan } from './types';
 
@@ -28,6 +31,10 @@ export default function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false); // Mini mode for desktop/tablet
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false); // Drawer mode for phone/mobile
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false); // System Settings & Shortcuts modal
+  const [isClinicalGuideOpen, setIsClinicalGuideOpen] = useState(false); // Clinical Guide & FAQ modal
+  const [isSearchOpen, setIsSearchOpen] = useState(false); // Global Ctrl+K Patient Search modal
+  const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false); // Confirmation modal for logout
+  const [currentTime, setCurrentTime] = useState<string>('');
 
   // Optical Theme and Contrast States
   const [darkMode, setDarkMode] = useState<boolean>(() => {
@@ -57,15 +64,44 @@ export default function App() {
       setIsMobileDrawerOpen(false);
     },
     onToggleSidebar: handleToggleSidebar,
-    isShortcutsModalOpen: isSettingsModalOpen,
+    isShortcutsModalOpen: isSettingsModalOpen || isClinicalGuideOpen || isSearchOpen,
     onToggleShortcutsModal: () => setIsSettingsModalOpen(prev => !prev),
     onCloseModals: () => {
       setIsSettingsModalOpen(false);
       setIsMobileDrawerOpen(false);
+      setIsClinicalGuideOpen(false);
+      setIsSearchOpen(false);
+      setIsLogoutConfirmOpen(false);
     },
     onOpenSettings: () => setIsSettingsModalOpen(true),
     enabled: isAuthenticated,
   });
+
+  // Global Ctrl+K / '/' listener for instant search
+  useEffect(() => {
+    const handleGlobalKeys = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setIsSearchOpen(prev => !prev);
+      } else if (e.key === '?' && !['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) {
+        e.preventDefault();
+        setIsClinicalGuideOpen(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleGlobalKeys);
+    return () => window.removeEventListener('keydown', handleGlobalKeys);
+  }, []);
+
+  // Live IST Clock updating every 10 seconds
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setCurrentTime(now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true }));
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 10000);
+    return () => clearInterval(interval);
+  }, []);
   
   // Backend state for Advisor
   const [backendPatients, setBackendPatients] = useState<Patient[]>([]);
@@ -243,23 +279,32 @@ export default function App() {
 
   return (
     <div className="flex flex-col h-screen bg-[#F8FAFC] overflow-hidden font-sans">
+      {/* Skip to Content Link (Accessibility Standard #12) */}
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-sky-600 focus:text-white focus:rounded-xl focus:shadow-xl focus:ring-2 focus:ring-sky-300 font-bold text-xs uppercase tracking-wider transition-all"
+      >
+        Skip to clinical workspace
+      </a>
+
       {/* Top Header Bar (YouTube Style - Always visible across PC, Tablet, Phone) */}
-      <header className="h-16 bg-white border-b border-slate-200 px-4 flex items-center justify-between shrink-0 z-30 shadow-2xs select-none">
-        <div className="flex items-center space-x-3">
+      <header className="h-16 bg-white border-b border-slate-200 px-3 sm:px-4 flex items-center justify-between shrink-0 z-30 shadow-2xs select-none sticky top-0">
+        <div className="flex items-center space-x-2 sm:space-x-3">
           <button 
             onClick={handleToggleSidebar} 
             title="Toggle Menu (3 Lines)"
             className="p-2.5 text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 rounded-full transition-colors cursor-pointer flex items-center justify-center"
+            aria-label="Toggle Navigation Menu"
           >
             <Menu className="w-5 h-5" />
           </button>
           <div 
-            className="flex items-center space-x-2.5 cursor-pointer hover:opacity-90 transition-opacity" 
+            className="flex items-center space-x-2 sm:space-x-2.5 cursor-pointer hover:opacity-90 transition-opacity" 
             onClick={() => setCurrentView('dashboard')}
           >
-            <DrishtiLogo size="custom" className="h-11 md:h-12 w-auto object-contain drop-shadow-xs" />
+            <DrishtiLogo size="custom" className="h-10 sm:h-11 md:h-12 w-auto object-contain drop-shadow-xs" />
             <div className="hidden sm:flex flex-col">
-              <span className="text-base font-black tracking-tight text-slate-900 leading-none">
+              <span className="text-sm sm:text-base font-black tracking-tight text-slate-900 leading-none">
                 DRishtii
               </span>
               <span className="text-[9px] font-bold uppercase tracking-wider text-sky-600 leading-tight">
@@ -269,9 +314,47 @@ export default function App() {
           </div>
         </div>
 
+        {/* Middle: Quick Patient Search Bar (#3) */}
+        <div className="flex-1 max-w-xs sm:max-w-sm md:max-w-md mx-2 sm:mx-4 hidden sm:block">
+          <button
+            type="button"
+            onClick={() => setIsSearchOpen(true)}
+            className="w-full bg-slate-100/80 hover:bg-slate-200/70 border border-slate-200 text-slate-500 rounded-xl px-3 py-1.5 text-xs flex items-center justify-between transition-all cursor-pointer shadow-2xs group"
+          >
+            <div className="flex items-center gap-2 truncate">
+              <Search className="w-3.5 h-3.5 text-slate-400 group-hover:text-sky-600" />
+              <span className="truncate">Search Patient (Name, ID, ABHA)...</span>
+            </div>
+            <kbd className="text-[10px] font-mono font-semibold bg-white text-slate-400 px-1.5 py-0.5 rounded border border-slate-300 shadow-2xs">
+              Ctrl+K
+            </kbd>
+          </button>
+        </div>
+
         {/* Right side header tools */}
-        <div className="flex items-center space-x-2 sm:space-x-3">
-          {/* Quick Dark Mode / Light Mode Toggle */}
+        <div className="flex items-center space-x-1.5 sm:space-x-2 md:space-x-3">
+          {/* Search Button for Mobile Screens */}
+          <button
+            type="button"
+            onClick={() => setIsSearchOpen(true)}
+            title="Search Patients (Ctrl+K)"
+            className="sm:hidden p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer"
+          >
+            <Search className="w-4 h-4" />
+          </button>
+
+          {/* Clinical Knowledge & FAQ Button (#19) */}
+          <button
+            type="button"
+            onClick={() => setIsClinicalGuideOpen(true)}
+            title="Clinical Guide & FAQ Protocol (?)"
+            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-semibold border bg-white hover:bg-slate-100 border-slate-300 text-slate-700 shadow-xs transition-all cursor-pointer select-none active:scale-95"
+          >
+            <BookOpen className="w-3.5 h-3.5 text-sky-600 shrink-0" />
+            <span className="hidden md:inline font-semibold">Clinical FAQ</span>
+          </button>
+
+          {/* Quick Dark Mode / Light Mode Toggle (#1) */}
           <button
             id="btn-header-theme-toggle"
             type="button"
@@ -279,7 +362,7 @@ export default function App() {
             title={darkMode ? "Switch to Day Light Mode" : "Switch to Low-Light Dark Room Mode (Dilated Pupil Clinic)"}
             aria-label="Toggle Optical Theme"
             className={cn(
-              "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer select-none active:scale-95",
+              "flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer select-none active:scale-95",
               darkMode
                 ? "bg-indigo-950 border-indigo-500 text-indigo-200 shadow-xs ring-1 ring-indigo-500/30 hover:bg-indigo-900"
                 : "bg-white hover:bg-slate-100 border-slate-300 text-slate-700 shadow-xs"
@@ -288,12 +371,12 @@ export default function App() {
             {darkMode ? (
               <>
                 <Moon className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
-                <span className="font-semibold">Dark Room</span>
+                <span className="font-semibold hidden sm:inline">Dark Room</span>
               </>
             ) : (
               <>
                 <Sun className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-                <span className="font-semibold">Light Mode</span>
+                <span className="font-semibold hidden sm:inline">Light</span>
               </>
             )}
           </button>
@@ -303,10 +386,10 @@ export default function App() {
             id="btn-header-outdoor-toggle"
             type="button"
             onClick={handleToggleHighContrast}
-            title={highContrast ? "Disable Outdoor Camp Contrast" : "Enable Outdoor Camp High-Contrast (Sunlight Glare Rejection & 2px Ink Borders)"}
+            title={highContrast ? "Disable Outdoor Camp Contrast" : "Enable Outdoor Camp High-Contrast (Sunlight Glare Rejection)"}
             aria-label="Toggle Outdoor Camp High-Contrast Mode"
             className={cn(
-              "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer select-none active:scale-95",
+              "hidden sm:flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer select-none active:scale-95",
               highContrast
                 ? "bg-amber-300 border-2 border-amber-800 text-amber-950 font-black shadow-xs ring-1 ring-amber-600/50"
                 : "bg-white hover:bg-slate-100 border-slate-300 text-slate-700 shadow-xs"
@@ -318,13 +401,18 @@ export default function App() {
             </span>
           </button>
 
-          <div className="hidden md:flex items-center gap-2 bg-emerald-50 text-emerald-800 border border-emerald-200/60 px-3 py-1 rounded-full text-xs font-mono">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>P2P Node Active</span>
-          </div>
-          <div className="flex items-center space-x-2 bg-slate-50 border border-slate-200/80 px-2.5 py-1.5 rounded-xl">
+          {/* Live Clock / Timestamp (#18) */}
+          {currentTime && (
+            <div className="hidden lg:flex items-center gap-1.5 bg-slate-50 border border-slate-200/80 px-2.5 py-1.5 rounded-xl text-slate-600 font-mono text-[11px]">
+              <Clock className="w-3 h-3 text-slate-400" />
+              <span>{currentTime}</span>
+            </div>
+          )}
+
+          {/* User Profile Badge */}
+          <div className="flex items-center space-x-2 bg-slate-50 border border-slate-200/80 px-2 sm:px-2.5 py-1.5 rounded-xl">
             <div className={cn("w-2 h-2 rounded-full", userRole === 'registration' ? "bg-emerald-500" : "bg-sky-500")} />
-            <span className="text-xs font-semibold text-slate-700 hidden sm:inline">
+            <span className="text-xs font-semibold text-slate-700 hidden md:inline">
               {userRole === 'registration' ? 'Staff Priya Verma' : 'Dr. Ananya Sharma'}
             </span>
             <span className="text-[10px] text-slate-500 bg-slate-200/60 px-1.5 py-0.5 rounded font-mono">
@@ -353,7 +441,7 @@ export default function App() {
 
       {/* Main Body below Top Header */}
       <div className="flex flex-1 overflow-hidden relative">
-        {/* Mobile / Tablet Drawer Backdrop Overlay */}
+        {/* Mobile / Tablet Drawer Backdrop Overlay (#5) */}
         {isMobileDrawerOpen && (
           <div 
             className="fixed inset-0 bg-slate-900/50 z-40 lg:hidden animate-in fade-in" 
@@ -361,7 +449,7 @@ export default function App() {
           />
         )}
 
-        {/* Mobile / Tablet Slide-over Drawer (<1024px) */}
+        {/* Mobile / Tablet Slide-over Drawer (<1024px) (#5) */}
         <div className={cn(
           "fixed inset-y-0 left-0 z-50 transform transition-transform duration-300 lg:hidden shadow-xl",
           isMobileDrawerOpen ? "translate-x-0" : "-translate-x-full"
@@ -373,7 +461,7 @@ export default function App() {
               setIsMobileDrawerOpen(false);
             }} 
             activeDevices={activeDevices}
-            onLogout={() => handleLogout()}
+            onLogout={() => setIsLogoutConfirmOpen(true)}
             onCloseMobile={() => setIsMobileDrawerOpen(false)}
             onOpenSettings={() => {
               setIsMobileDrawerOpen(false);
@@ -390,7 +478,7 @@ export default function App() {
             currentView={currentView} 
             onChangeView={setCurrentView} 
             activeDevices={activeDevices}
-            onLogout={() => handleLogout()}
+            onLogout={() => setIsLogoutConfirmOpen(true)}
             onOpenSettings={() => setIsSettingsModalOpen(true)}
             isCollapsed={isSidebarCollapsed}
             userRole={userRole}
@@ -398,7 +486,7 @@ export default function App() {
         </div>
 
         {/* Main View Container */}
-        <main className="flex-1 overflow-y-auto">
+        <main id="main-content" tabIndex={-1} className="flex-1 overflow-y-auto focus:outline-none">
           <div className="p-4 md:p-8 max-w-7xl mx-auto w-full min-h-full">
             {currentView === 'dashboard' && (
               <Dashboard 
@@ -435,6 +523,36 @@ export default function App() {
           </div>
         </main>
       </div>
+
+      {/* Global Patient Search Modal (Ctrl+K) (#3) */}
+      <GlobalSearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        onSelectPatient={(id, targetView) => {
+          setActivePatientId(id);
+          if (targetView) setCurrentView(targetView);
+        }}
+      />
+
+      {/* Clinical Guide & FAQ Modal (#19) */}
+      <ClinicalGuideModal
+        isOpen={isClinicalGuideOpen}
+        onClose={() => setIsClinicalGuideOpen(false)}
+      />
+
+      {/* Logout Confirmation Modal (#17) */}
+      <ConfirmationModal
+        isOpen={isLogoutConfirmOpen}
+        onClose={() => setIsLogoutConfirmOpen(false)}
+        onConfirm={() => {
+          setIsLogoutConfirmOpen(false);
+          handleLogout();
+        }}
+        title="End Clinical Workstation Session"
+        message="Are you sure you want to log out? Unsaved local input forms will be safely cleared in accordance with DISHA patient data guidelines."
+        confirmText="Log Out"
+        type="warning"
+      />
 
       {/* System Settings & Diagnostics Modal (houses Version, Shortcuts, & Controls) */}
       <SettingsModal 

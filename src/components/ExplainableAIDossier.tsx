@@ -22,7 +22,9 @@ import {
   Stethoscope, 
   User, 
   X,
-  Zap
+  Zap,
+  Copy,
+  Check
 } from 'lucide-react';
 import { Scan, Patient, XAIReport, XAIBiomarker, XAIQuadrantAnalysis, XAIDoItem, XAIDontItem } from '../types';
 import { cn } from '../lib/utils';
@@ -50,6 +52,7 @@ export function ExplainableAIDossier({
   const [activeTab, setActiveTab] = useState<'overview' | 'biomarkers' | 'quadrants' | 'dos_donts' | 'print'>('overview');
   const [hoveredLesion, setHoveredLesion] = useState<string | null>(null);
   const [imgLoadError, setImgLoadError] = useState<boolean>(false);
+  const [copiedSummary, setCopiedSummary] = useState<boolean>(false);
 
   const xai: XAIReport | undefined = scan.xai_report;
 
@@ -65,6 +68,22 @@ export function ExplainableAIDossier({
 
   const handlePrint = () => {
     window.print();
+  };
+
+  const handleCopySummary = () => {
+    const text = `DRISHTII CLINICAL DOSSIER SUMMARY
+Patient: ${patientName} (${patientAge}y/${patientGender})
+Village: ${village}
+Diabetic Retinopathy Grade: ${scan.grade.toFixed(1)} / 4.0 (${scan.risk_tier || 'Moderate'} Risk)
+Confidence: ${(scan.confidence || 96.2).toFixed(1)}%
+Diagnosis: ${scan.diagnosis}
+Clinical Action: ${scan.clinical_action || xai?.referralTimeline || 'Routine follow-up'}
+Vitals: Glucose ${sugar} mg/dL, HbA1c ${hba1c}%, BP ${sysBp}/${diaBp} mmHg
+Certified via DRishtii AI Diagnostic Network (SIH #26038)`;
+
+    navigator.clipboard.writeText(text);
+    setCopiedSummary(true);
+    setTimeout(() => setCopiedSummary(false), 2000);
   };
 
   const handleTriggerRefresh = async () => {
@@ -151,6 +170,24 @@ export function ExplainableAIDossier({
           </div>
 
           <div className="flex items-center gap-2 shrink-0 self-start md:self-center">
+            <button
+              onClick={handleCopySummary}
+              className="px-3 py-2 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-semibold transition-colors flex items-center gap-1.5 border border-white/15 cursor-pointer"
+              title="Copy clinical summary to clipboard"
+            >
+              {copiedSummary ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="text-emerald-300">Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5" />
+                  <span>Copy Summary</span>
+                </>
+              )}
+            </button>
+
             <button
               onClick={handleTriggerRefresh}
               disabled={isRefreshing}
