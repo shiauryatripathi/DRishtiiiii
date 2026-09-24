@@ -255,8 +255,8 @@ export function SettingsModal({
   // Export system diagnostics log
   const exportDiagnosticsLog = () => {
     const diagnostics = {
-      app: 'DRishti AI Diagnostic System',
-      version: '1.0.1',
+      app: 'DRishtii AI Diagnostic System',
+      version: '1.1.2.6',
       timestamp: new Date().toISOString(),
       nodeId: 'PHC-UNIT-004-BILASPUR',
       settings: {
@@ -720,7 +720,7 @@ export function SettingsModal({
                       </a>
 
                       <a
-                        href="https://github.com/shiauryatripathi/DRishtiI/releases/download/v1.0.2.5/drishti_resnet50_v1.0.2.5.onnx"
+                        href="https://github.com/shiauryatripathi/DRishtiiiii/releases/download/v1.0.2.5/drishti_resnet50_v1.0.2.5.onnx"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-100 rounded-xl text-xs font-bold transition-all shadow-md border border-slate-700 flex items-center justify-center gap-1.5 cursor-pointer"
@@ -827,7 +827,7 @@ export function SettingsModal({
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div className="text-xs text-slate-600 font-medium">
-                  Global shortcuts active across the entire DRishti application:
+                  Global shortcuts active across the entire DRishtii application:
                 </div>
                 <span className="text-[11px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
                   Smart Focus Protected
@@ -963,7 +963,7 @@ export function SettingsModal({
           <div className="flex items-center space-x-2 text-slate-500 text-xs">
             <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
             <span className="font-medium">
-              DRishti AI Diagnostic System • <strong className="text-slate-800 font-mono">v1.0.2.5</strong> <span className="text-[10px] text-emerald-600 font-bold ml-1 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/70">SECURED</span>
+              DRishtii AI Diagnostic System • <strong className="text-slate-800 font-mono">v1.1.2.6</strong> <span className="text-[10px] text-emerald-600 font-bold ml-1 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/70">SECURED</span>
             </span>
           </div>
 

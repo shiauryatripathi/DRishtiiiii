@@ -105,7 +105,7 @@ export function LongitudinalTimeline({
   const handleCopyProgressionNote = () => {
     if (!patient || !baselineScan || !latestScan) return;
 
-    const note = `DRishti Clinical Retinal Disease Progression Dossier
+    const note = `DRishtii Clinical Retinal Disease Progression Dossier
 =====================================================
 Patient: ${patient.name} (Age: ${patient.age}, Gender: ${patient.gender})
 Village/PHC: ${patient.village || 'Rural Health Sub-centre'}

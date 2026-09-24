@@ -267,6 +267,54 @@
       "medical_history": "",
       "created_at": "2026-09-21T15:57:17.955Z",
       "updated_at": "2026-09-21T15:57:17.962Z"
+    },
+    {
+      "id": 17,
+      "name": "Test Ramesh Kumar",
+      "age": 52,
+      "gender": "Male",
+      "aadhaar_no": "",
+      "dob": "",
+      "marital_status": "Unmarried",
+      "verification_method": "Manual",
+      "phone": "9876543210",
+      "village": "Rampur PHC",
+      "hba1c": 8.2,
+      "medical_history": "",
+      "created_at": "2026-09-24T14:10:34.247Z",
+      "updated_at": "2026-09-24T14:10:34.247Z"
+    },
+    {
+      "id": 18,
+      "name": "Test Ramesh Kumar",
+      "age": 52,
+      "gender": "Male",
+      "aadhaar_no": "",
+      "dob": "",
+      "marital_status": "Unmarried",
+      "verification_method": "Manual",
+      "phone": "9876543210",
+      "village": "Rampur PHC",
+      "hba1c": 8.2,
+      "medical_history": "",
+      "created_at": "2026-09-24T14:11:36.147Z",
+      "updated_at": "2026-09-24T14:11:36.147Z"
+    },
+    {
+      "id": 19,
+      "name": "Test Ramesh Kumar",
+      "age": 52,
+      "gender": "Male",
+      "aadhaar_no": "",
+      "dob": "",
+      "marital_status": "Unmarried",
+      "verification_method": "Manual",
+      "phone": "9876543210",
+      "village": "Rampur PHC",
+      "hba1c": 8.2,
+      "medical_history": "",
+      "created_at": "2026-09-24T14:12:16.565Z",
+      "updated_at": "2026-09-24T14:12:16.565Z"
     }
   ],
   "scans": [
@@ -5957,6 +6005,1316 @@
         "referralTimeline": "Annual routine dilated fundus screening in 12 months.",
         "generatedBy": "MathWorks MATLAB ResNet-50 & CLAHE Engine (SIH #26038)",
         "generatedAt": "2026-09-21T16:40:10.867Z"
+      }
+    },
+    {
+      "id": 231,
+      "patient_id": 1,
+      "patient_name": "Rameshwar Patel",
+      "patient_age": 58,
+      "patient_gender": "Male",
+      "scan_type": "UPLOAD",
+      "image_path": "uploads/fundus_1790257465543_967e712e692d746925d47775a6d77b10.jpg",
+      "preprocessed_path": "/uploads/prep_matlab_1790257465668.png",
+      "gradcam_path": "/uploads/gradcam_matlab_1790257465668.png",
+      "grade": 0.7,
+      "confidence": 94.5,
+      "diagnosis": "No Diabetic Retinopathy detected. Clear fovea, intact optic disc margins, and no visible microaneurysms.",
+      "explainability": "MathWorks Grad-CAM confirmed uniform vascular intensity across all retinal quadrants with zero abnormal activation spots.",
+      "clinical_action": "Schedule routine annual screening in 12 months. Maintain stable blood glucose and blood pressure.",
+      "risk_tier": "Low",
+      "engine": "MathWorks MATLAB ResNet-50 & CLAHE Engine",
+      "matlab_metrics": {
+        "vascularTreeDensity": 15.2,
+        "claheClipLimit": 0.02,
+        "claheDistribution": "Rayleigh",
+        "gaussianSmoothingSigma": 0.8,
+        "microaneurysmsCount": 0,
+        "hemorrhageAreaRatio": 0,
+        "hardExudateClusters": 0,
+        "cottonWoolSpots": 0,
+        "neovascularizationDetected": false,
+        "fovealAvascularZoneIntegrity": 95,
+        "macularEdemaRisk": "Low",
+        "quadrants": [
+          {
+            "quadrant": "Superior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 96,
+            "notes": "Vascular bed intact"
+          },
+          {
+            "quadrant": "Inferior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 94,
+            "notes": "No abnormal dilation"
+          },
+          {
+            "quadrant": "Superior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Peripapillary nerve fiber layer perfusion evaluated"
+          },
+          {
+            "quadrant": "Inferior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 96,
+            "notes": "Retinal pigment epithelium uniform"
+          },
+          {
+            "quadrant": "Macula / Fovea",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "FAZ margin sharply preserved"
+          },
+          {
+            "quadrant": "Optic Disc",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Physiologic cup-to-disc ratio normal"
+          }
+        ],
+        "biomarkers": [
+          {
+            "name": "Microaneurysms",
+            "countOrValue": "0 detected",
+            "attributionPercent": 8,
+            "quadrant": "Superior Temporal",
+            "severity": "None",
+            "description": "Focal capillary outpouchings localized by CLAHE green channel contrast"
+          },
+          {
+            "name": "Intraretinal Hemorrhages",
+            "countOrValue": "Absent",
+            "attributionPercent": 5,
+            "quadrant": "Arcades",
+            "severity": "None",
+            "description": "Deep intraretinal capillary leaks in inner nuclear layers"
+          },
+          {
+            "name": "Hard Lipid Exudates",
+            "countOrValue": "None detected",
+            "attributionPercent": 5,
+            "quadrant": "Macula",
+            "severity": "None",
+            "description": "Serum lipoprotein deposition from impaired inner blood-retinal barrier"
+          },
+          {
+            "name": "Optic Disc Margin",
+            "countOrValue": "Pink & Sharp",
+            "attributionPercent": 35,
+            "quadrant": "Optic Disc",
+            "severity": "None",
+            "description": "Evaluated via MathWorks Hough transform & luminance profiling"
+          }
+        ],
+        "mathworksToolbox": "Deep Learning Toolbox™ & Image Processing Toolbox™ R2024b",
+        "processingTimeMs": 159
+      },
+      "created_at": "2026-09-24T13:44:25.707Z",
+      "xai_report": {
+        "personalizedExplanation": "Individualized Evaluation for Rameshwar Patel (58y, Male, Rampur PHC (Block B)): Retinal imaging captured via high-resolution digital fundus photography displays preserved neuroretinal architecture consistent with Grade 0.7 (No DR). Despite 12 years with diabetes and a current random blood sugar of 215 mg/dL (HbA1c 8.6%), the optic nerve head demonstrates sharp margins, physiologic cup-to-disc ratio of 0.30, and zero detectable capillary microaneurysms across all four quadrants. The foveal avascular zone (FAZ) reflex is crisply defined without lipid leakage. Systemic blood pressure (142/88 mmHg) remains within manageable parameters, though continuous glycemic vigilance is vital to protect against future capillary pericyte apoptosis.",
+        "fovealEvaluation": "Macula is flat with healthy central foveal depression and distinct light reflex. No clinically significant macular edema (CSME) or hard exudates within 3000 µm of the foveal center.",
+        "vascularCalibreNotes": "Arteriolar-to-venular ratio (AVR) is normal at approximately 2:3. Vessel trajectories are uniform with smooth contours and no focal arteriolar narrowing or venous tortuosity.",
+        "biomarkers": [
+          {
+            "name": "Microaneurysms",
+            "countOrValue": "0 detected",
+            "attributionPercent": 8,
+            "quadrant": "Universal",
+            "severity": "None",
+            "description": "Capillary basement membranes intact with zero outpouchings"
+          },
+          {
+            "name": "Intraretinal Hemorrhages",
+            "countOrValue": "None",
+            "attributionPercent": 5,
+            "quadrant": "Universal",
+            "severity": "None",
+            "description": "Zero blot or flame-shaped extravasations observed"
+          },
+          {
+            "name": "Hard Lipid Exudates",
+            "countOrValue": "Absent",
+            "attributionPercent": 5,
+            "quadrant": "Macula",
+            "severity": "None",
+            "description": "No lipoprotein leakage through vascular barrier"
+          },
+          {
+            "name": "Cotton Wool Spots",
+            "countOrValue": "0 spots",
+            "attributionPercent": 4,
+            "quadrant": "Arcades",
+            "severity": "None",
+            "description": "Nerve fiber layer well-perfused without micro-infarctions"
+          },
+          {
+            "name": "Optic Disc Margins",
+            "countOrValue": "Sharp & Pink",
+            "attributionPercent": 40,
+            "quadrant": "Optic Disc",
+            "severity": "None",
+            "description": "Physiologic cup-to-disc ratio 0.30; no neovascularization"
+          },
+          {
+            "name": "Foveal Reflex",
+            "countOrValue": "Sharp & Intact",
+            "attributionPercent": 38,
+            "quadrant": "Macula / Fovea",
+            "severity": "None",
+            "description": "Intact central light reflex confirms zero edema"
+          }
+        ],
+        "quadrants": [
+          {
+            "quadrant": "Superior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "Arteriolar branches clean; no microaneurysms"
+          },
+          {
+            "quadrant": "Inferior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Smooth venous caliber without localized dilation"
+          },
+          {
+            "quadrant": "Superior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "Peripapillary nerve fiber layer healthy"
+          },
+          {
+            "quadrant": "Inferior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Background pigment epithelium uniform"
+          },
+          {
+            "quadrant": "Macula / Fovea",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Central foveal reflex preserved; zero lipid deposits"
+          },
+          {
+            "quadrant": "Optic Disc",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Healthy pink neural rim; cup-to-disc ratio 0.30"
+          }
+        ],
+        "dosAndDonts": {
+          "dos": [
+            {
+              "title": "Annual Dilated Screening",
+              "description": "Schedule your next dilated tele-retina examination in 12 months even if vision feels 100% normal.",
+              "priority": "Routine",
+              "category": "Clinical"
+            },
+            {
+              "title": "Maintain Glycemic Control",
+              "description": "Aim to bring HbA1c from 8.6% down towards < 7.0% and fasting sugar < 120 mg/dL through diet and regular walks.",
+              "priority": "High",
+              "category": "Medication"
+            },
+            {
+              "title": "Lutein & Zeaxanthin Dietary Intake",
+              "description": "Consume drumstick leaves (moringa), spinach (palak), and fresh amla weekly to strengthen macular pigment density.",
+              "priority": "Routine",
+              "category": "Diet"
+            },
+            {
+              "title": "The 20-20-20 Eye Ergonomics",
+              "description": "Every 20 minutes of close stitching or screen work, glance at an object 20 feet away for 20 seconds to prevent ciliary strain.",
+              "priority": "Routine",
+              "category": "Lifestyle"
+            }
+          ],
+          "donts": [
+            {
+              "title": "Do NOT Skip Prescribed Metformin/Medicine",
+              "description": "Never cease diabetes medications simply because vision is clear; microvascular damage occurs asymptomatically.",
+              "dangerLevel": "Warning",
+              "reason": "Prevents sudden endothelial micro-damage"
+            },
+            {
+              "title": "Do NOT Put Rose Water or Herbal Drops in Eyes",
+              "description": "Never instill unsterile desi remedies, lemon, honey, or rose water into the ocular surface.",
+              "dangerLevel": "Severe",
+              "reason": "Causes severe microbial corneal ulcers"
+            },
+            {
+              "title": "Do NOT Smoke or Use Gutkha/Tobacco",
+              "description": "Avoid bidi, gutkha, and tobacco chewing which cause intense retinal capillary vasoconstriction.",
+              "dangerLevel": "Severe",
+              "reason": "Deprives retina of vital microvascular oxygen"
+            }
+          ]
+        },
+        "referralTimeline": "Annual routine dilated fundus screening in 12 months.",
+        "generatedBy": "MathWorks MATLAB ResNet-50 & CLAHE Engine (SIH #26038)",
+        "generatedAt": "2026-09-24T13:44:25.707Z"
+      }
+    },
+    {
+      "id": 232,
+      "patient_id": 1,
+      "patient_name": "Rameshwar Patel",
+      "patient_age": 58,
+      "patient_gender": "Male",
+      "scan_type": "ADAPTIVE_LENS",
+      "image_path": "/samples/sample_fundus_npdr.jpg",
+      "preprocessed_path": "/uploads/prep_matlab_1790257608153.png",
+      "gradcam_path": "/uploads/gradcam_matlab_1790257608153.png",
+      "grade": 0.7,
+      "confidence": 94.5,
+      "diagnosis": "Adaptive Smartphone Lens Scan (Grade 0.7): 30-burst optical stabilization with MATLAB CLAHE enhancement. No Diabetic Retinopathy detected. Clear fovea, intact optic disc margins, and no visible microaneurysms.",
+      "explainability": "MathWorks Grad-CAM confirmed uniform vascular intensity across all retinal quadrants with zero abnormal activation spots.",
+      "clinical_action": "Schedule routine annual screening in 12 months. Maintain stable blood glucose and blood pressure.",
+      "risk_tier": "Low",
+      "engine": "MathWorks MATLAB ResNet-50 & CLAHE Engine",
+      "matlab_metrics": {
+        "vascularTreeDensity": 15.2,
+        "claheClipLimit": 0.02,
+        "claheDistribution": "Rayleigh",
+        "gaussianSmoothingSigma": 0.8,
+        "microaneurysmsCount": 0,
+        "hemorrhageAreaRatio": 0,
+        "hardExudateClusters": 0,
+        "cottonWoolSpots": 0,
+        "neovascularizationDetected": false,
+        "fovealAvascularZoneIntegrity": 95,
+        "macularEdemaRisk": "Low",
+        "quadrants": [
+          {
+            "quadrant": "Superior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 96,
+            "notes": "Vascular bed intact"
+          },
+          {
+            "quadrant": "Inferior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 94,
+            "notes": "No abnormal dilation"
+          },
+          {
+            "quadrant": "Superior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Peripapillary nerve fiber layer perfusion evaluated"
+          },
+          {
+            "quadrant": "Inferior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 96,
+            "notes": "Retinal pigment epithelium uniform"
+          },
+          {
+            "quadrant": "Macula / Fovea",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "FAZ margin sharply preserved"
+          },
+          {
+            "quadrant": "Optic Disc",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Physiologic cup-to-disc ratio normal"
+          }
+        ],
+        "biomarkers": [
+          {
+            "name": "Microaneurysms",
+            "countOrValue": "0 detected",
+            "attributionPercent": 8,
+            "quadrant": "Superior Temporal",
+            "severity": "None",
+            "description": "Focal capillary outpouchings localized by CLAHE green channel contrast"
+          },
+          {
+            "name": "Intraretinal Hemorrhages",
+            "countOrValue": "Absent",
+            "attributionPercent": 5,
+            "quadrant": "Arcades",
+            "severity": "None",
+            "description": "Deep intraretinal capillary leaks in inner nuclear layers"
+          },
+          {
+            "name": "Hard Lipid Exudates",
+            "countOrValue": "None detected",
+            "attributionPercent": 5,
+            "quadrant": "Macula",
+            "severity": "None",
+            "description": "Serum lipoprotein deposition from impaired inner blood-retinal barrier"
+          },
+          {
+            "name": "Optic Disc Margin",
+            "countOrValue": "Pink & Sharp",
+            "attributionPercent": 35,
+            "quadrant": "Optic Disc",
+            "severity": "None",
+            "description": "Evaluated via MathWorks Hough transform & luminance profiling"
+          }
+        ],
+        "mathworksToolbox": "Deep Learning Toolbox™ & Image Processing Toolbox™ R2024b",
+        "processingTimeMs": 178
+      },
+      "created_at": "2026-09-24T13:46:48.186Z",
+      "xai_report": {
+        "personalizedExplanation": "Individualized Evaluation for Rameshwar Patel (58y, Male, Rampur PHC (Block B)): Retinal imaging captured via 30-burst optical stabilization adaptive smartphone lens displays preserved neuroretinal architecture consistent with Grade 0.7 (No DR). Despite 12 years with diabetes and a current random blood sugar of 215 mg/dL (HbA1c 8.6%), the optic nerve head demonstrates sharp margins, physiologic cup-to-disc ratio of 0.30, and zero detectable capillary microaneurysms across all four quadrants. The foveal avascular zone (FAZ) reflex is crisply defined without lipid leakage. Systemic blood pressure (142/88 mmHg) remains within manageable parameters, though continuous glycemic vigilance is vital to protect against future capillary pericyte apoptosis.",
+        "fovealEvaluation": "Macula is flat with healthy central foveal depression and distinct light reflex. No clinically significant macular edema (CSME) or hard exudates within 3000 µm of the foveal center.",
+        "vascularCalibreNotes": "Arteriolar-to-venular ratio (AVR) is normal at approximately 2:3. Vessel trajectories are uniform with smooth contours and no focal arteriolar narrowing or venous tortuosity.",
+        "biomarkers": [
+          {
+            "name": "Microaneurysms",
+            "countOrValue": "0 detected",
+            "attributionPercent": 8,
+            "quadrant": "Universal",
+            "severity": "None",
+            "description": "Capillary basement membranes intact with zero outpouchings"
+          },
+          {
+            "name": "Intraretinal Hemorrhages",
+            "countOrValue": "None",
+            "attributionPercent": 5,
+            "quadrant": "Universal",
+            "severity": "None",
+            "description": "Zero blot or flame-shaped extravasations observed"
+          },
+          {
+            "name": "Hard Lipid Exudates",
+            "countOrValue": "Absent",
+            "attributionPercent": 5,
+            "quadrant": "Macula",
+            "severity": "None",
+            "description": "No lipoprotein leakage through vascular barrier"
+          },
+          {
+            "name": "Cotton Wool Spots",
+            "countOrValue": "0 spots",
+            "attributionPercent": 4,
+            "quadrant": "Arcades",
+            "severity": "None",
+            "description": "Nerve fiber layer well-perfused without micro-infarctions"
+          },
+          {
+            "name": "Optic Disc Margins",
+            "countOrValue": "Sharp & Pink",
+            "attributionPercent": 40,
+            "quadrant": "Optic Disc",
+            "severity": "None",
+            "description": "Physiologic cup-to-disc ratio 0.30; no neovascularization"
+          },
+          {
+            "name": "Foveal Reflex",
+            "countOrValue": "Sharp & Intact",
+            "attributionPercent": 38,
+            "quadrant": "Macula / Fovea",
+            "severity": "None",
+            "description": "Intact central light reflex confirms zero edema"
+          }
+        ],
+        "quadrants": [
+          {
+            "quadrant": "Superior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "Arteriolar branches clean; no microaneurysms"
+          },
+          {
+            "quadrant": "Inferior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Smooth venous caliber without localized dilation"
+          },
+          {
+            "quadrant": "Superior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "Peripapillary nerve fiber layer healthy"
+          },
+          {
+            "quadrant": "Inferior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Background pigment epithelium uniform"
+          },
+          {
+            "quadrant": "Macula / Fovea",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Central foveal reflex preserved; zero lipid deposits"
+          },
+          {
+            "quadrant": "Optic Disc",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Healthy pink neural rim; cup-to-disc ratio 0.30"
+          }
+        ],
+        "dosAndDonts": {
+          "dos": [
+            {
+              "title": "Annual Dilated Screening",
+              "description": "Schedule your next dilated tele-retina examination in 12 months even if vision feels 100% normal.",
+              "priority": "Routine",
+              "category": "Clinical"
+            },
+            {
+              "title": "Maintain Glycemic Control",
+              "description": "Aim to bring HbA1c from 8.6% down towards < 7.0% and fasting sugar < 120 mg/dL through diet and regular walks.",
+              "priority": "High",
+              "category": "Medication"
+            },
+            {
+              "title": "Lutein & Zeaxanthin Dietary Intake",
+              "description": "Consume drumstick leaves (moringa), spinach (palak), and fresh amla weekly to strengthen macular pigment density.",
+              "priority": "Routine",
+              "category": "Diet"
+            },
+            {
+              "title": "The 20-20-20 Eye Ergonomics",
+              "description": "Every 20 minutes of close stitching or screen work, glance at an object 20 feet away for 20 seconds to prevent ciliary strain.",
+              "priority": "Routine",
+              "category": "Lifestyle"
+            }
+          ],
+          "donts": [
+            {
+              "title": "Do NOT Skip Prescribed Metformin/Medicine",
+              "description": "Never cease diabetes medications simply because vision is clear; microvascular damage occurs asymptomatically.",
+              "dangerLevel": "Warning",
+              "reason": "Prevents sudden endothelial micro-damage"
+            },
+            {
+              "title": "Do NOT Put Rose Water or Herbal Drops in Eyes",
+              "description": "Never instill unsterile desi remedies, lemon, honey, or rose water into the ocular surface.",
+              "dangerLevel": "Severe",
+              "reason": "Causes severe microbial corneal ulcers"
+            },
+            {
+              "title": "Do NOT Smoke or Use Gutkha/Tobacco",
+              "description": "Avoid bidi, gutkha, and tobacco chewing which cause intense retinal capillary vasoconstriction.",
+              "dangerLevel": "Severe",
+              "reason": "Deprives retina of vital microvascular oxygen"
+            }
+          ]
+        },
+        "referralTimeline": "Annual routine dilated fundus screening in 12 months.",
+        "generatedBy": "MathWorks MATLAB ResNet-50 & CLAHE Engine (SIH #26038)",
+        "generatedAt": "2026-09-24T13:46:48.205Z"
+      }
+    },
+    {
+      "id": 233,
+      "patient_id": 17,
+      "patient_name": "Test Ramesh Kumar",
+      "patient_age": 52,
+      "patient_gender": "Male",
+      "scan_type": "ADAPTIVE_LENS",
+      "image_path": "/samples/sample_fundus_npdr.jpg",
+      "preprocessed_path": "/uploads/prep_matlab_1790259035160.png",
+      "gradcam_path": "/uploads/gradcam_matlab_1790259035160.png",
+      "grade": 0.2,
+      "confidence": 94.5,
+      "diagnosis": "Adaptive Smartphone Lens Scan (Grade 0.2): 30-burst optical stabilization with MATLAB CLAHE enhancement. No Diabetic Retinopathy detected. Clear fovea, intact optic disc margins, and no visible microaneurysms.",
+      "explainability": "MathWorks Grad-CAM confirmed uniform vascular intensity across all retinal quadrants with zero abnormal activation spots.",
+      "clinical_action": "Schedule routine annual screening in 12 months. Maintain stable blood glucose and blood pressure.",
+      "risk_tier": "Low",
+      "engine": "MathWorks MATLAB ResNet-50 & CLAHE Engine",
+      "matlab_metrics": {
+        "vascularTreeDensity": 15.2,
+        "claheClipLimit": 0.02,
+        "claheDistribution": "Rayleigh",
+        "gaussianSmoothingSigma": 0.8,
+        "microaneurysmsCount": 0,
+        "hemorrhageAreaRatio": 0,
+        "hardExudateClusters": 0,
+        "cottonWoolSpots": 0,
+        "neovascularizationDetected": false,
+        "fovealAvascularZoneIntegrity": 99,
+        "macularEdemaRisk": "Low",
+        "quadrants": [
+          {
+            "quadrant": "Superior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 96,
+            "notes": "Vascular bed intact"
+          },
+          {
+            "quadrant": "Inferior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 94,
+            "notes": "No abnormal dilation"
+          },
+          {
+            "quadrant": "Superior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Peripapillary nerve fiber layer perfusion evaluated"
+          },
+          {
+            "quadrant": "Inferior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 96,
+            "notes": "Retinal pigment epithelium uniform"
+          },
+          {
+            "quadrant": "Macula / Fovea",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "FAZ margin sharply preserved"
+          },
+          {
+            "quadrant": "Optic Disc",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Physiologic cup-to-disc ratio normal"
+          }
+        ],
+        "biomarkers": [
+          {
+            "name": "Microaneurysms",
+            "countOrValue": "0 detected",
+            "attributionPercent": 8,
+            "quadrant": "Superior Temporal",
+            "severity": "None",
+            "description": "Focal capillary outpouchings localized by CLAHE green channel contrast"
+          },
+          {
+            "name": "Intraretinal Hemorrhages",
+            "countOrValue": "Absent",
+            "attributionPercent": 5,
+            "quadrant": "Arcades",
+            "severity": "None",
+            "description": "Deep intraretinal capillary leaks in inner nuclear layers"
+          },
+          {
+            "name": "Hard Lipid Exudates",
+            "countOrValue": "None detected",
+            "attributionPercent": 5,
+            "quadrant": "Macula",
+            "severity": "None",
+            "description": "Serum lipoprotein deposition from impaired inner blood-retinal barrier"
+          },
+          {
+            "name": "Optic Disc Margin",
+            "countOrValue": "Pink & Sharp",
+            "attributionPercent": 35,
+            "quadrant": "Optic Disc",
+            "severity": "None",
+            "description": "Evaluated via MathWorks Hough transform & luminance profiling"
+          }
+        ],
+        "mathworksToolbox": "Deep Learning Toolbox™ & Image Processing Toolbox™ R2024b",
+        "processingTimeMs": 133
+      },
+      "created_at": "2026-09-24T14:10:35.192Z",
+      "xai_report": {
+        "personalizedExplanation": "Individualized Evaluation for Test Ramesh Kumar (52y, Male, Rampur PHC): Retinal imaging captured via 30-burst optical stabilization adaptive smartphone lens displays preserved neuroretinal architecture consistent with Grade 0.2 (No DR). Despite 7 years with diabetes and a current random blood sugar of 175 mg/dL (HbA1c 8.2%), the optic nerve head demonstrates sharp margins, physiologic cup-to-disc ratio of 0.30, and zero detectable capillary microaneurysms across all four quadrants. The foveal avascular zone (FAZ) reflex is crisply defined without lipid leakage. Systemic blood pressure (136/86 mmHg) remains within manageable parameters, though continuous glycemic vigilance is vital to protect against future capillary pericyte apoptosis.",
+        "fovealEvaluation": "Macula is flat with healthy central foveal depression and distinct light reflex. No clinically significant macular edema (CSME) or hard exudates within 3000 µm of the foveal center.",
+        "vascularCalibreNotes": "Arteriolar-to-venular ratio (AVR) is normal at approximately 2:3. Vessel trajectories are uniform with smooth contours and no focal arteriolar narrowing or venous tortuosity.",
+        "biomarkers": [
+          {
+            "name": "Microaneurysms",
+            "countOrValue": "0 detected",
+            "attributionPercent": 8,
+            "quadrant": "Universal",
+            "severity": "None",
+            "description": "Capillary basement membranes intact with zero outpouchings"
+          },
+          {
+            "name": "Intraretinal Hemorrhages",
+            "countOrValue": "None",
+            "attributionPercent": 5,
+            "quadrant": "Universal",
+            "severity": "None",
+            "description": "Zero blot or flame-shaped extravasations observed"
+          },
+          {
+            "name": "Hard Lipid Exudates",
+            "countOrValue": "Absent",
+            "attributionPercent": 5,
+            "quadrant": "Macula",
+            "severity": "None",
+            "description": "No lipoprotein leakage through vascular barrier"
+          },
+          {
+            "name": "Cotton Wool Spots",
+            "countOrValue": "0 spots",
+            "attributionPercent": 4,
+            "quadrant": "Arcades",
+            "severity": "None",
+            "description": "Nerve fiber layer well-perfused without micro-infarctions"
+          },
+          {
+            "name": "Optic Disc Margins",
+            "countOrValue": "Sharp & Pink",
+            "attributionPercent": 40,
+            "quadrant": "Optic Disc",
+            "severity": "None",
+            "description": "Physiologic cup-to-disc ratio 0.30; no neovascularization"
+          },
+          {
+            "name": "Foveal Reflex",
+            "countOrValue": "Sharp & Intact",
+            "attributionPercent": 38,
+            "quadrant": "Macula / Fovea",
+            "severity": "None",
+            "description": "Intact central light reflex confirms zero edema"
+          }
+        ],
+        "quadrants": [
+          {
+            "quadrant": "Superior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "Arteriolar branches clean; no microaneurysms"
+          },
+          {
+            "quadrant": "Inferior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Smooth venous caliber without localized dilation"
+          },
+          {
+            "quadrant": "Superior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "Peripapillary nerve fiber layer healthy"
+          },
+          {
+            "quadrant": "Inferior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Background pigment epithelium uniform"
+          },
+          {
+            "quadrant": "Macula / Fovea",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Central foveal reflex preserved; zero lipid deposits"
+          },
+          {
+            "quadrant": "Optic Disc",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Healthy pink neural rim; cup-to-disc ratio 0.30"
+          }
+        ],
+        "dosAndDonts": {
+          "dos": [
+            {
+              "title": "Annual Dilated Screening",
+              "description": "Schedule your next dilated tele-retina examination in 12 months even if vision feels 100% normal.",
+              "priority": "Routine",
+              "category": "Clinical"
+            },
+            {
+              "title": "Maintain Glycemic Control",
+              "description": "Aim to bring HbA1c from 8.2% down towards < 7.0% and fasting sugar < 120 mg/dL through diet and regular walks.",
+              "priority": "High",
+              "category": "Medication"
+            },
+            {
+              "title": "Lutein & Zeaxanthin Dietary Intake",
+              "description": "Consume drumstick leaves (moringa), spinach (palak), and fresh amla weekly to strengthen macular pigment density.",
+              "priority": "Routine",
+              "category": "Diet"
+            },
+            {
+              "title": "The 20-20-20 Eye Ergonomics",
+              "description": "Every 20 minutes of close stitching or screen work, glance at an object 20 feet away for 20 seconds to prevent ciliary strain.",
+              "priority": "Routine",
+              "category": "Lifestyle"
+            }
+          ],
+          "donts": [
+            {
+              "title": "Do NOT Skip Prescribed Metformin/Medicine",
+              "description": "Never cease diabetes medications simply because vision is clear; microvascular damage occurs asymptomatically.",
+              "dangerLevel": "Warning",
+              "reason": "Prevents sudden endothelial micro-damage"
+            },
+            {
+              "title": "Do NOT Put Rose Water or Herbal Drops in Eyes",
+              "description": "Never instill unsterile desi remedies, lemon, honey, or rose water into the ocular surface.",
+              "dangerLevel": "Severe",
+              "reason": "Causes severe microbial corneal ulcers"
+            },
+            {
+              "title": "Do NOT Smoke or Use Gutkha/Tobacco",
+              "description": "Avoid bidi, gutkha, and tobacco chewing which cause intense retinal capillary vasoconstriction.",
+              "dangerLevel": "Severe",
+              "reason": "Deprives retina of vital microvascular oxygen"
+            }
+          ]
+        },
+        "referralTimeline": "Annual routine dilated fundus screening in 12 months.",
+        "generatedBy": "MathWorks MATLAB ResNet-50 & CLAHE Engine (SIH #26038)",
+        "generatedAt": "2026-09-24T14:10:35.216Z"
+      }
+    },
+    {
+      "id": 234,
+      "patient_id": 18,
+      "patient_name": "Test Ramesh Kumar",
+      "patient_age": 52,
+      "patient_gender": "Male",
+      "scan_type": "ADAPTIVE_LENS",
+      "image_path": "/samples/sample_fundus_npdr.jpg",
+      "preprocessed_path": "/uploads/prep_matlab_1790259097074.png",
+      "gradcam_path": "/uploads/gradcam_matlab_1790259097074.png",
+      "grade": 0.2,
+      "confidence": 94.5,
+      "diagnosis": "Adaptive Smartphone Lens Scan (Grade 0.2): 30-burst optical stabilization with MATLAB CLAHE enhancement. No Diabetic Retinopathy detected. Clear fovea, intact optic disc margins, and no visible microaneurysms.",
+      "explainability": "MathWorks Grad-CAM confirmed uniform vascular intensity across all retinal quadrants with zero abnormal activation spots.",
+      "clinical_action": "Schedule routine annual screening in 12 months. Maintain stable blood glucose and blood pressure.",
+      "risk_tier": "Low",
+      "engine": "MathWorks MATLAB ResNet-50 & CLAHE Engine",
+      "matlab_metrics": {
+        "vascularTreeDensity": 15.2,
+        "claheClipLimit": 0.02,
+        "claheDistribution": "Rayleigh",
+        "gaussianSmoothingSigma": 0.8,
+        "microaneurysmsCount": 0,
+        "hemorrhageAreaRatio": 0,
+        "hardExudateClusters": 0,
+        "cottonWoolSpots": 0,
+        "neovascularizationDetected": false,
+        "fovealAvascularZoneIntegrity": 99,
+        "macularEdemaRisk": "Low",
+        "quadrants": [
+          {
+            "quadrant": "Superior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 96,
+            "notes": "Vascular bed intact"
+          },
+          {
+            "quadrant": "Inferior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 94,
+            "notes": "No abnormal dilation"
+          },
+          {
+            "quadrant": "Superior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Peripapillary nerve fiber layer perfusion evaluated"
+          },
+          {
+            "quadrant": "Inferior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 96,
+            "notes": "Retinal pigment epithelium uniform"
+          },
+          {
+            "quadrant": "Macula / Fovea",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "FAZ margin sharply preserved"
+          },
+          {
+            "quadrant": "Optic Disc",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Physiologic cup-to-disc ratio normal"
+          }
+        ],
+        "biomarkers": [
+          {
+            "name": "Microaneurysms",
+            "countOrValue": "0 detected",
+            "attributionPercent": 8,
+            "quadrant": "Superior Temporal",
+            "severity": "None",
+            "description": "Focal capillary outpouchings localized by CLAHE green channel contrast"
+          },
+          {
+            "name": "Intraretinal Hemorrhages",
+            "countOrValue": "Absent",
+            "attributionPercent": 5,
+            "quadrant": "Arcades",
+            "severity": "None",
+            "description": "Deep intraretinal capillary leaks in inner nuclear layers"
+          },
+          {
+            "name": "Hard Lipid Exudates",
+            "countOrValue": "None detected",
+            "attributionPercent": 5,
+            "quadrant": "Macula",
+            "severity": "None",
+            "description": "Serum lipoprotein deposition from impaired inner blood-retinal barrier"
+          },
+          {
+            "name": "Optic Disc Margin",
+            "countOrValue": "Pink & Sharp",
+            "attributionPercent": 35,
+            "quadrant": "Optic Disc",
+            "severity": "None",
+            "description": "Evaluated via MathWorks Hough transform & luminance profiling"
+          }
+        ],
+        "mathworksToolbox": "Deep Learning Toolbox™ & Image Processing Toolbox™ R2024b",
+        "processingTimeMs": 150
+      },
+      "created_at": "2026-09-24T14:11:37.113Z",
+      "xai_report": {
+        "personalizedExplanation": "Individualized Evaluation for Test Ramesh Kumar (52y, Male, Rampur PHC): Retinal imaging captured via 30-burst optical stabilization adaptive smartphone lens displays preserved neuroretinal architecture consistent with Grade 0.2 (No DR). Despite 7 years with diabetes and a current random blood sugar of 175 mg/dL (HbA1c 8.2%), the optic nerve head demonstrates sharp margins, physiologic cup-to-disc ratio of 0.30, and zero detectable capillary microaneurysms across all four quadrants. The foveal avascular zone (FAZ) reflex is crisply defined without lipid leakage. Systemic blood pressure (136/86 mmHg) remains within manageable parameters, though continuous glycemic vigilance is vital to protect against future capillary pericyte apoptosis.",
+        "fovealEvaluation": "Macula is flat with healthy central foveal depression and distinct light reflex. No clinically significant macular edema (CSME) or hard exudates within 3000 µm of the foveal center.",
+        "vascularCalibreNotes": "Arteriolar-to-venular ratio (AVR) is normal at approximately 2:3. Vessel trajectories are uniform with smooth contours and no focal arteriolar narrowing or venous tortuosity.",
+        "biomarkers": [
+          {
+            "name": "Microaneurysms",
+            "countOrValue": "0 detected",
+            "attributionPercent": 8,
+            "quadrant": "Universal",
+            "severity": "None",
+            "description": "Capillary basement membranes intact with zero outpouchings"
+          },
+          {
+            "name": "Intraretinal Hemorrhages",
+            "countOrValue": "None",
+            "attributionPercent": 5,
+            "quadrant": "Universal",
+            "severity": "None",
+            "description": "Zero blot or flame-shaped extravasations observed"
+          },
+          {
+            "name": "Hard Lipid Exudates",
+            "countOrValue": "Absent",
+            "attributionPercent": 5,
+            "quadrant": "Macula",
+            "severity": "None",
+            "description": "No lipoprotein leakage through vascular barrier"
+          },
+          {
+            "name": "Cotton Wool Spots",
+            "countOrValue": "0 spots",
+            "attributionPercent": 4,
+            "quadrant": "Arcades",
+            "severity": "None",
+            "description": "Nerve fiber layer well-perfused without micro-infarctions"
+          },
+          {
+            "name": "Optic Disc Margins",
+            "countOrValue": "Sharp & Pink",
+            "attributionPercent": 40,
+            "quadrant": "Optic Disc",
+            "severity": "None",
+            "description": "Physiologic cup-to-disc ratio 0.30; no neovascularization"
+          },
+          {
+            "name": "Foveal Reflex",
+            "countOrValue": "Sharp & Intact",
+            "attributionPercent": 38,
+            "quadrant": "Macula / Fovea",
+            "severity": "None",
+            "description": "Intact central light reflex confirms zero edema"
+          }
+        ],
+        "quadrants": [
+          {
+            "quadrant": "Superior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "Arteriolar branches clean; no microaneurysms"
+          },
+          {
+            "quadrant": "Inferior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Smooth venous caliber without localized dilation"
+          },
+          {
+            "quadrant": "Superior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "Peripapillary nerve fiber layer healthy"
+          },
+          {
+            "quadrant": "Inferior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Background pigment epithelium uniform"
+          },
+          {
+            "quadrant": "Macula / Fovea",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Central foveal reflex preserved; zero lipid deposits"
+          },
+          {
+            "quadrant": "Optic Disc",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Healthy pink neural rim; cup-to-disc ratio 0.30"
+          }
+        ],
+        "dosAndDonts": {
+          "dos": [
+            {
+              "title": "Annual Dilated Screening",
+              "description": "Schedule your next dilated tele-retina examination in 12 months even if vision feels 100% normal.",
+              "priority": "Routine",
+              "category": "Clinical"
+            },
+            {
+              "title": "Maintain Glycemic Control",
+              "description": "Aim to bring HbA1c from 8.2% down towards < 7.0% and fasting sugar < 120 mg/dL through diet and regular walks.",
+              "priority": "High",
+              "category": "Medication"
+            },
+            {
+              "title": "Lutein & Zeaxanthin Dietary Intake",
+              "description": "Consume drumstick leaves (moringa), spinach (palak), and fresh amla weekly to strengthen macular pigment density.",
+              "priority": "Routine",
+              "category": "Diet"
+            },
+            {
+              "title": "The 20-20-20 Eye Ergonomics",
+              "description": "Every 20 minutes of close stitching or screen work, glance at an object 20 feet away for 20 seconds to prevent ciliary strain.",
+              "priority": "Routine",
+              "category": "Lifestyle"
+            }
+          ],
+          "donts": [
+            {
+              "title": "Do NOT Skip Prescribed Metformin/Medicine",
+              "description": "Never cease diabetes medications simply because vision is clear; microvascular damage occurs asymptomatically.",
+              "dangerLevel": "Warning",
+              "reason": "Prevents sudden endothelial micro-damage"
+            },
+            {
+              "title": "Do NOT Put Rose Water or Herbal Drops in Eyes",
+              "description": "Never instill unsterile desi remedies, lemon, honey, or rose water into the ocular surface.",
+              "dangerLevel": "Severe",
+              "reason": "Causes severe microbial corneal ulcers"
+            },
+            {
+              "title": "Do NOT Smoke or Use Gutkha/Tobacco",
+              "description": "Avoid bidi, gutkha, and tobacco chewing which cause intense retinal capillary vasoconstriction.",
+              "dangerLevel": "Severe",
+              "reason": "Deprives retina of vital microvascular oxygen"
+            }
+          ]
+        },
+        "referralTimeline": "Annual routine dilated fundus screening in 12 months.",
+        "generatedBy": "MathWorks MATLAB ResNet-50 & CLAHE Engine (SIH #26038)",
+        "generatedAt": "2026-09-24T14:11:37.159Z"
+      }
+    },
+    {
+      "id": 235,
+      "patient_id": 19,
+      "patient_name": "Test Ramesh Kumar",
+      "patient_age": 52,
+      "patient_gender": "Male",
+      "scan_type": "ADAPTIVE_LENS",
+      "image_path": "/samples/sample_fundus_npdr.jpg",
+      "preprocessed_path": "/uploads/prep_matlab_1790259137496.png",
+      "gradcam_path": "/uploads/gradcam_matlab_1790259137496.png",
+      "grade": 0.2,
+      "confidence": 94.5,
+      "diagnosis": "Adaptive Smartphone Lens Scan (Grade 0.2): 30-burst optical stabilization with MATLAB CLAHE enhancement. No Diabetic Retinopathy detected. Clear fovea, intact optic disc margins, and no visible microaneurysms.",
+      "explainability": "MathWorks Grad-CAM confirmed uniform vascular intensity across all retinal quadrants with zero abnormal activation spots.",
+      "clinical_action": "Schedule routine annual screening in 12 months. Maintain stable blood glucose and blood pressure.",
+      "risk_tier": "Low",
+      "engine": "MathWorks MATLAB ResNet-50 & CLAHE Engine",
+      "matlab_metrics": {
+        "vascularTreeDensity": 15.2,
+        "claheClipLimit": 0.02,
+        "claheDistribution": "Rayleigh",
+        "gaussianSmoothingSigma": 0.8,
+        "microaneurysmsCount": 0,
+        "hemorrhageAreaRatio": 0,
+        "hardExudateClusters": 0,
+        "cottonWoolSpots": 0,
+        "neovascularizationDetected": false,
+        "fovealAvascularZoneIntegrity": 99,
+        "macularEdemaRisk": "Low",
+        "quadrants": [
+          {
+            "quadrant": "Superior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 96,
+            "notes": "Vascular bed intact"
+          },
+          {
+            "quadrant": "Inferior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 94,
+            "notes": "No abnormal dilation"
+          },
+          {
+            "quadrant": "Superior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Peripapillary nerve fiber layer perfusion evaluated"
+          },
+          {
+            "quadrant": "Inferior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 96,
+            "notes": "Retinal pigment epithelium uniform"
+          },
+          {
+            "quadrant": "Macula / Fovea",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "FAZ margin sharply preserved"
+          },
+          {
+            "quadrant": "Optic Disc",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Physiologic cup-to-disc ratio normal"
+          }
+        ],
+        "biomarkers": [
+          {
+            "name": "Microaneurysms",
+            "countOrValue": "0 detected",
+            "attributionPercent": 8,
+            "quadrant": "Superior Temporal",
+            "severity": "None",
+            "description": "Focal capillary outpouchings localized by CLAHE green channel contrast"
+          },
+          {
+            "name": "Intraretinal Hemorrhages",
+            "countOrValue": "Absent",
+            "attributionPercent": 5,
+            "quadrant": "Arcades",
+            "severity": "None",
+            "description": "Deep intraretinal capillary leaks in inner nuclear layers"
+          },
+          {
+            "name": "Hard Lipid Exudates",
+            "countOrValue": "None detected",
+            "attributionPercent": 5,
+            "quadrant": "Macula",
+            "severity": "None",
+            "description": "Serum lipoprotein deposition from impaired inner blood-retinal barrier"
+          },
+          {
+            "name": "Optic Disc Margin",
+            "countOrValue": "Pink & Sharp",
+            "attributionPercent": 35,
+            "quadrant": "Optic Disc",
+            "severity": "None",
+            "description": "Evaluated via MathWorks Hough transform & luminance profiling"
+          }
+        ],
+        "mathworksToolbox": "Deep Learning Toolbox™ & Image Processing Toolbox™ R2024b",
+        "processingTimeMs": 147
+      },
+      "created_at": "2026-09-24T14:12:17.528Z",
+      "xai_report": {
+        "personalizedExplanation": "Individualized Evaluation for Test Ramesh Kumar (52y, Male, Rampur PHC): Retinal imaging captured via 30-burst optical stabilization adaptive smartphone lens displays preserved neuroretinal architecture consistent with Grade 0.2 (No DR). Despite 7 years with diabetes and a current random blood sugar of 175 mg/dL (HbA1c 8.2%), the optic nerve head demonstrates sharp margins, physiologic cup-to-disc ratio of 0.30, and zero detectable capillary microaneurysms across all four quadrants. The foveal avascular zone (FAZ) reflex is crisply defined without lipid leakage. Systemic blood pressure (136/86 mmHg) remains within manageable parameters, though continuous glycemic vigilance is vital to protect against future capillary pericyte apoptosis.",
+        "fovealEvaluation": "Macula is flat with healthy central foveal depression and distinct light reflex. No clinically significant macular edema (CSME) or hard exudates within 3000 µm of the foveal center.",
+        "vascularCalibreNotes": "Arteriolar-to-venular ratio (AVR) is normal at approximately 2:3. Vessel trajectories are uniform with smooth contours and no focal arteriolar narrowing or venous tortuosity.",
+        "biomarkers": [
+          {
+            "name": "Microaneurysms",
+            "countOrValue": "0 detected",
+            "attributionPercent": 8,
+            "quadrant": "Universal",
+            "severity": "None",
+            "description": "Capillary basement membranes intact with zero outpouchings"
+          },
+          {
+            "name": "Intraretinal Hemorrhages",
+            "countOrValue": "None",
+            "attributionPercent": 5,
+            "quadrant": "Universal",
+            "severity": "None",
+            "description": "Zero blot or flame-shaped extravasations observed"
+          },
+          {
+            "name": "Hard Lipid Exudates",
+            "countOrValue": "Absent",
+            "attributionPercent": 5,
+            "quadrant": "Macula",
+            "severity": "None",
+            "description": "No lipoprotein leakage through vascular barrier"
+          },
+          {
+            "name": "Cotton Wool Spots",
+            "countOrValue": "0 spots",
+            "attributionPercent": 4,
+            "quadrant": "Arcades",
+            "severity": "None",
+            "description": "Nerve fiber layer well-perfused without micro-infarctions"
+          },
+          {
+            "name": "Optic Disc Margins",
+            "countOrValue": "Sharp & Pink",
+            "attributionPercent": 40,
+            "quadrant": "Optic Disc",
+            "severity": "None",
+            "description": "Physiologic cup-to-disc ratio 0.30; no neovascularization"
+          },
+          {
+            "name": "Foveal Reflex",
+            "countOrValue": "Sharp & Intact",
+            "attributionPercent": 38,
+            "quadrant": "Macula / Fovea",
+            "severity": "None",
+            "description": "Intact central light reflex confirms zero edema"
+          }
+        ],
+        "quadrants": [
+          {
+            "quadrant": "Superior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "Arteriolar branches clean; no microaneurysms"
+          },
+          {
+            "quadrant": "Inferior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Smooth venous caliber without localized dilation"
+          },
+          {
+            "quadrant": "Superior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "Peripapillary nerve fiber layer healthy"
+          },
+          {
+            "quadrant": "Inferior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Background pigment epithelium uniform"
+          },
+          {
+            "quadrant": "Macula / Fovea",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Central foveal reflex preserved; zero lipid deposits"
+          },
+          {
+            "quadrant": "Optic Disc",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Healthy pink neural rim; cup-to-disc ratio 0.30"
+          }
+        ],
+        "dosAndDonts": {
+          "dos": [
+            {
+              "title": "Annual Dilated Screening",
+              "description": "Schedule your next dilated tele-retina examination in 12 months even if vision feels 100% normal.",
+              "priority": "Routine",
+              "category": "Clinical"
+            },
+            {
+              "title": "Maintain Glycemic Control",
+              "description": "Aim to bring HbA1c from 8.2% down towards < 7.0% and fasting sugar < 120 mg/dL through diet and regular walks.",
+              "priority": "High",
+              "category": "Medication"
+            },
+            {
+              "title": "Lutein & Zeaxanthin Dietary Intake",
+              "description": "Consume drumstick leaves (moringa), spinach (palak), and fresh amla weekly to strengthen macular pigment density.",
+              "priority": "Routine",
+              "category": "Diet"
+            },
+            {
+              "title": "The 20-20-20 Eye Ergonomics",
+              "description": "Every 20 minutes of close stitching or screen work, glance at an object 20 feet away for 20 seconds to prevent ciliary strain.",
+              "priority": "Routine",
+              "category": "Lifestyle"
+            }
+          ],
+          "donts": [
+            {
+              "title": "Do NOT Skip Prescribed Metformin/Medicine",
+              "description": "Never cease diabetes medications simply because vision is clear; microvascular damage occurs asymptomatically.",
+              "dangerLevel": "Warning",
+              "reason": "Prevents sudden endothelial micro-damage"
+            },
+            {
+              "title": "Do NOT Put Rose Water or Herbal Drops in Eyes",
+              "description": "Never instill unsterile desi remedies, lemon, honey, or rose water into the ocular surface.",
+              "dangerLevel": "Severe",
+              "reason": "Causes severe microbial corneal ulcers"
+            },
+            {
+              "title": "Do NOT Smoke or Use Gutkha/Tobacco",
+              "description": "Avoid bidi, gutkha, and tobacco chewing which cause intense retinal capillary vasoconstriction.",
+              "dangerLevel": "Severe",
+              "reason": "Deprives retina of vital microvascular oxygen"
+            }
+          ]
+        },
+        "referralTimeline": "Annual routine dilated fundus screening in 12 months.",
+        "generatedBy": "MathWorks MATLAB ResNet-50 & CLAHE Engine (SIH #26038)",
+        "generatedAt": "2026-09-24T14:12:17.543Z"
       }
     }
   ]

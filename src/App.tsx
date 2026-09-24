@@ -260,7 +260,7 @@ export default function App() {
             <DrishtiLogo size="custom" className="h-11 md:h-12 w-auto object-contain drop-shadow-xs" />
             <div className="hidden sm:flex flex-col">
               <span className="text-base font-black tracking-tight text-slate-900 leading-none">
-                DRishti
+                DRishtii
               </span>
               <span className="text-[9px] font-bold uppercase tracking-wider text-sky-600 leading-tight">
                 Tele-Ophthalmology AI

@@ -11,24 +11,21 @@ interface DrishtiLogoProps {
 // Checks high-res PNG, vector SVG, and JPG uploaded by user.
 const PUBLIC_LOGO_CANDIDATES = [
   '/Logo.png',
-  '/logo.png',
   '/Logo.svg',
-  '/logo.svg',
   '/Logo.jpg',
-  '/logo.jpg',
   '/favicon.png',
   '/favicon.ico',
 ];
 
 /**
- * Universal DRishti Brand Logo
+ * Universal DRishtii Brand Logo
  * Guarantees that logo assets are ALWAYS loaded from the /public directory.
  * Generous sizing across all screens per user specifications.
  */
 export function DrishtiLogo({
   className = '',
   size = 'md',
-  alt = 'DRishti Tele-Ophthalmology AI Diagnostic Logo',
+  alt = 'DRishtii Tele-Ophthalmology AI Diagnostic Logo',
 }: DrishtiLogoProps) {
   const [candidateIndex, setCandidateIndex] = useState<number>(0);
   const [hasError, setHasError] = useState<boolean>(false);
@@ -55,7 +52,7 @@ export function DrishtiLogo({
     return (
       <div className={`flex items-center gap-2.5 font-black text-slate-800 tracking-tight select-none ${size !== 'custom' ? sizeStyles[size] || sizeStyles.md : ''} ${className}`}>
         <span className="text-sky-600 text-2xl">👁️</span>
-        <span className="font-extrabold text-xl tracking-tight text-slate-900">DRishti</span>
+        <span className="font-extrabold text-xl tracking-tight text-slate-900">DRishtii</span>
       </div>
     );
   }

@@ -116,7 +116,7 @@ export function Login({ onLogin }: LoginProps) {
             </span>
             <span className="text-[10px] uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200/70 font-mono font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1">
               <ShieldCheck className="w-3 h-3" />
-              v1.0.2.5 Secure
+              v1.1.2.6 Secure
             </span>
           </div>
         </div>

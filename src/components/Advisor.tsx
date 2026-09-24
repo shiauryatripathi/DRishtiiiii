@@ -143,7 +143,7 @@ export function Advisor({
           id: '1',
           role: 'assistant',
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          content: `Namaste! I am the **DRishti Clinical Care & Glycemic Advisor**.
+          content: `Namaste! I am the **DRishtii Clinical Care & Glycemic Advisor**.
 
 I provide **evidence-based Indian dietary guidance, safe glycemic remedies, exercise prescriptions, and longitudinal disease progression analysis** tailored to your patient's Diabetic Retinopathy severity grade.
 

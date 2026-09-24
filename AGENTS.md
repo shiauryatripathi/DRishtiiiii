@@ -1,8 +1,8 @@
 # DRishti AI Diagnostic System - Project Rules & Memory
 
-## Version Control Checkpoint: v1.0.2.5 (Offline MathWorks MATLAB ResNet-50 & Hardened Security Release)
-- **Current Version:** `1.0.2.5` (Offline MathWorks MATLAB ResNet-50 Diagnostic Engine & Hardened Security)
-- **MathWorks MATLAB Offline Diagnostic Engine Verified in v1.0.2.5:**
+## Version Control Checkpoint: v1.0.2.6 (Refined Stability, Brand Assets & Verified Endpoints Release)
+- **Current Version:** `1.0.2.6` (Refined Stability, Cleaned Assets & Hardened Security)
+- **MathWorks MATLAB Offline Diagnostic Engine Verified in v1.0.2.6:**
   - **100% Offline Diagnostic Pipeline**: Complete elimination of external cloud AI dependencies and Gemini APIs.
   - **MathWorks Optical Preprocessing**: Contrast-Limited Adaptive Histogram Equalization (CLAHE) with Rayleigh distribution (`clipLimit: 0.02`, 8x8 tiles), green channel isolation, and Gaussian smoothing (`sigma: 0.8`).
   - **Authentic Grad-CAM Feature Attribution**: Local generation of MathWorks `JET` thermal colormap overlays with 60% fundus / 40% heatmap blending saved to `/uploads`.

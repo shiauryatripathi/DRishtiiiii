@@ -410,7 +410,7 @@ function saveDB() {
 loadDB();
 
 // ----------------------------------------------------
-// v1.0.2.5 SECURITY HARDENING ENGINE & SAFEGUARDS
+// v1.1.2.6 SECURITY HARDENING ENGINE & SAFEGUARDS
 // DISHA (Digital Information Security in Healthcare Act)
 // & DPDP Act 2023 Compliant Tele-Ophthalmology Security
 // ----------------------------------------------------
@@ -439,7 +439,7 @@ const securityAuditLog: SecurityAuditEvent[] = [
     timestamp: new Date().toISOString(),
     event: 'SECURITY_CHECK',
     severity: 'INFO',
-    details: 'DRishti Security Hardening Engine v1.0.2.5 active. DISHA & DPDP rural telemedicine safeguards engaged.',
+    details: 'DRishtii Security Hardening Engine v1.1.2.6 active. DISHA & DPDP rural telemedicine safeguards engaged.',
     ip: '127.0.0.1'
   }
 ];
@@ -589,7 +589,7 @@ app.use((req, res, next) => {
     "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: http: https:; connect-src 'self' ws: wss: http: https:; font-src 'self' data: https://fonts.gstatic.com; media-src 'self' blob:; frame-ancestors 'self' https://*.google.com https://*.googleusercontent.com https://ai.studio https://*.run.app;"
   );
   // System Security & Version Markers
-  res.setHeader("X-DRishti-Version", "1.0.2.5");
+  res.setHeader("X-DRishti-Version", "1.1.2.6");
   res.setHeader("X-DRishti-Security-Standard", "DISHA-2026, DPDP-2023, ABDM-Ready");
 
   // Prevent caching of sensitive patient clinical records in public / proxy caches
@@ -660,7 +660,7 @@ app.get(["/download-onnx", "/download-model"], (req, res) => {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Download DRishti ResNet-50 v1.0.2.5 ONNX Model</title>
+  <title>Download DRishtii ResNet-50 v1.0.2.5 ONNX Model</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -777,7 +777,7 @@ app.get(["/download-onnx", "/download-model"], (req, res) => {
 <body>
   <div class="card">
     <h1>
-      <span>DRishti ResNet-50</span>
+      <span>DRishtii ResNet-50</span>
       <span class="badge">v1.0.2.5</span>
       <span class="badge" style="background: #10b981;">ONNX v18</span>
     </h1>
@@ -795,7 +795,7 @@ app.get(["/download-onnx", "/download-model"], (req, res) => {
       ⬇️ Click to Start Download (${sizeMB} MB)
     </a>
 
-    <a href="https://github.com/shiauryatripathi/DRishtiI/releases/download/v1.0.2.5/drishti_resnet50_v1.0.2.5.onnx" class="btn-secondary" style="display: block; text-align: center; text-decoration: none;" target="_blank" rel="noopener noreferrer">
+    <a href="https://github.com/shiauryatripathi/DRishtiiiii/releases/download/v1.0.2.5/drishti_resnet50_v1.0.2.5.onnx" class="btn-secondary" style="display: block; text-align: center; text-decoration: none;" target="_blank" rel="noopener noreferrer">
       🐙 Download from GitHub Releases Mirror (CDN)
     </a>
 
@@ -853,8 +853,8 @@ app.get("/api/models/info", (req, res) => {
     fileSizeBytes: sizeBytes,
     fileSizeMB: (sizeBytes / (1024 * 1024)).toFixed(2) + " MB",
     sha256: "affbe0818dd4a8d392e7abd5831c46f365d947618d827b0548b50df4ff3c53e1",
-    githubReleaseUrl: "https://github.com/shiauryatripathi/DRishtiI/releases/tag/v1.0.2.5",
-    githubAssetUrl: "https://github.com/shiauryatripathi/DRishtiI/releases/download/v1.0.2.5/drishti_resnet50_v1.0.2.5.onnx",
+    githubReleaseUrl: "https://github.com/shiauryatripathi/DRishtiiiii/releases/tag/v1.0.2.5",
+    githubAssetUrl: "https://github.com/shiauryatripathi/DRishtiiiii/releases/download/v1.0.2.5/drishti_resnet50_v1.0.2.5.onnx",
     downloadUrl: "/api/models/download/onnx",
     directUrl: "/models/drishti_resnet50_v1.0.2.5.onnx",
     inputs: [
@@ -865,9 +865,18 @@ app.get("/api/models/info", (req, res) => {
       { name: "gradcam_features", shape: [1, 2048, 7, 7], type: "float32", description: "ResNet-50 res5c bottleneck feature map for Real-Time Grad-CAM" }
     ],
     classes: ["No DR", "Mild NPDR", "Moderate NPDR", "Severe NPDR", "Proliferative DR"],
-    producer: "DRishti MathWorks MATLAB & Deep Learning Pipeline",
+    producer: "DRishtii MathWorks MATLAB & Deep Learning Pipeline",
     compliance: "SIH-2026-MathWorks-26038"
   });
+});
+
+// Alias /api/models/status to /api/models/info
+app.get("/api/models/status", (req, res, next) => {
+  const infoHandler = app._router.stack.find((r: any) => r.route && r.route.path === '/api/models/info');
+  if (infoHandler) {
+    return infoHandler.route.stack[infoHandler.route.stack.length - 1].handle(req, res, next);
+  }
+  res.redirect(307, "/api/models/info");
 });
 
 // ----------------------------------------------------
@@ -912,7 +921,7 @@ app.post("/api/auth/login", authLimiter, (req, res) => {
       role: selectedRole,
       name: userDisplayName,
       expiresAt,
-      version: "1.0.2.5"
+      version: "1.1.2.6"
     });
   } else {
     logSecurityAudit({
@@ -932,7 +941,7 @@ app.post("/api/auth/login", authLimiter, (req, res) => {
 // Security Posture Status Endpoint
 app.get("/api/security/status", (req, res) => {
   res.json({
-    version: "1.0.2.5",
+    version: "1.1.2.6",
     status: "SECURE",
     framework: "DISHA & DPDP Compliant Tele-Ophthalmology Security",
     features: {
@@ -969,7 +978,7 @@ app.get("/api/security/status", (req, res) => {
 // Security Audit Log Endpoint
 app.get("/api/security/audit-log", (req, res) => {
   res.json({
-    version: "1.0.2.5",
+    version: "1.1.2.6",
     total: securityAuditLog.length,
     events: securityAuditLog.slice(0, 50)
   });
@@ -1859,7 +1868,7 @@ Retinopathy is directly driven by microvascular damage from blood glucose and bl
 3. **Lipid Profile (Cholesterol):**
    - Keep LDL cholesterol low; high circulating triglycerides accelerate hard lipid exudate deposition in the macular region.`;
   } else {
-    reply = `🩺 **DRishti Clinical Advisor Consultation (Patient Severity: Grade ${grade.toFixed(1)}):**
+    reply = `🩺 **DRishtii Clinical Advisor Consultation (Patient Severity: Grade ${grade.toFixed(1)}):**
 
 Regarding your query: *"**${lastUserMessage}**"*
 
@@ -1871,26 +1880,36 @@ Regarding your query: *"**${lastUserMessage}**"*
   }
 
   res.json({
-    source: "DRishti Clinical Knowledge Engine (Offline Edge)",
+    source: "DRishtii Clinical Knowledge Engine (Offline Edge)",
     reply,
     grade,
     urgent_referral: grade >= 3
   });
 });
 
+// Alias for advisor endpoint
+app.post("/api/advisor/chat", advisorLimiter, (req, res, next) => {
+  // Delegate to chat advisor handler
+  const advisorHandler = app._router.stack.find((r: any) => r.route && r.route.path === '/api/chat/advisor');
+  if (advisorHandler) {
+    return advisorHandler.route.stack[advisorHandler.route.stack.length - 1].handle(req, res, next);
+  }
+  res.redirect(307, "/api/chat/advisor");
+});
+
 // Health check endpoint for Cloud Run and monitoring
 app.get("/api/health", (req, res) => {
-  res.json({ status: "ok", version: "1.0.2.5", uptime: process.uptime() });
+  res.json({ status: "ok", version: "1.1.2.6", uptime: process.uptime() });
 });
 
 app.get("/api/version", (req, res) => {
-  res.json({ version: "1.0.2.5", app: "DRishti AI Diagnostic System" });
+  res.json({ version: "1.1.2.6", app: "DRishtii AI Diagnostic System" });
 });
 
 // System Status endpoint (shows devices, engine, offline readiness)
 app.get("/api/system/status", async (req, res) => {
   res.json({
-    version: "1.0.2.5",
+    version: "1.1.2.6",
     activeScreens: sseClients.size,
     totalPatients: db.patients.length,
     totalScans: db.scans.length,
@@ -1961,7 +1980,7 @@ async function startServer() {
 
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`\n  ======================================================`);
-    console.log(`  👁️  DRishti SIH 2026 Server Ready!`);
+    console.log(`  👁️  DRishtii SIH 2026 Server Ready!`);
     console.log(`  > Local:   http://localhost:${PORT}`);
     console.log(`  > IP:      http://127.0.0.1:${PORT}`);
     console.log(`  (Do NOT type 0.0.0.0 into Chrome, use localhost:3000)`);

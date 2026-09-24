@@ -1,8 +1,8 @@
-# 👁️ DRishti - AI-Driven Tele-Ophthalmology Diagnostic System
+# 👁️ DRishtii - AI-Driven Tele-Ophthalmology Diagnostic System
 **Smart India Hackathon 2026 • Problem Statement #26038**  
 *Next-Gen Smartphone Fundus Retinal Screening for Rural Primary Health Centres (PHCs) and Mobile Camps*
 
-[![Version](https://img.shields.io/badge/Version-v1.0.2.5-0284c7.svg)](package.json)
+[![Version](https://img.shields.io/badge/Version-v1.1.2.6-0284c7.svg)](package.json)
 [![MathWorks MATLAB](https://img.shields.io/badge/MathWorks-MATLAB%20ResNet--50-ed8b00.svg)](https://www.mathworks.com)
 [![ONNX](https://img.shields.io/badge/ONNX-Opset%2018%20(89.7MB)-005CED.svg)](public/models/drishti_resnet50_v1.0.2.5.onnx)
 [![Compliance](https://img.shields.io/badge/Compliance-DISHA--2026%20%7C%20DPDP--2023-10b981.svg)](#security--regulatory-compliance)
@@ -12,11 +12,11 @@
 
 ## 📌 Executive Summary
 
-**DRishti** is an offline-first, edge-deployable clinical screening platform built for **SIH Problem Statement #26038**. It enables community health workers (ASHAs) at rural Primary Health Centres (PHCs) to capture retinal fundus images using a 20D/28D smartphone lens attachment, screen for **Diabetic Retinopathy (DR)** in under 2 seconds, localize microaneurysms using authentic **MathWorks Grad-CAM**, and instantly sync patient records to a physician's desktop over local P2P networks—with **zero reliance on cloud AI or external internet**.
+**DRishtii** is an offline-first, edge-deployable clinical screening platform built for **SIH Problem Statement #26038**. It enables community health workers (ASHAs) at rural Primary Health Centres (PHCs) to capture retinal fundus images using a 20D/28D smartphone lens attachment, screen for **Diabetic Retinopathy (DR)** in under 2 seconds, localize microaneurysms using authentic **MathWorks Grad-CAM**, and instantly sync patient records to a physician's desktop over local P2P networks—with **zero reliance on cloud AI or external internet**.
 
 ---
 
-## 🔬 Core Features & Architectural Highlights (v1.0.2.5)
+## 🔬 Core Features & Architectural Highlights (v1.1.2.6)
 
 ### 1. 100% Offline MathWorks MATLAB ResNet-50 Diagnostic Engine
 - **No Cloud AI / No External APIs**: Fully isolated edge inference pipeline operating without external telemetry.
@@ -224,7 +224,7 @@ drishti-teleophthalmology/
 ├── public/
 │   ├── models/
 │   │   └── drishti_resnet50_v1.0.2.5.onnx  # 89.7 MB Exported ONNX Model
-│   ├── logo.svg                            # Official DRishti SVG Vector Logo
+│   ├── Logo.svg                            # Official DRishtii SVG Vector Logo
 │   ├── logo.png                            # PNG Clinical Logo Asset
 │   └── samples/                            # Validated Fundus Benchmark Images
 ├── scripts/

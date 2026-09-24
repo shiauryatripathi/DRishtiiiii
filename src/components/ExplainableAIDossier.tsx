@@ -49,6 +49,7 @@ export function ExplainableAIDossier({
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState<'overview' | 'biomarkers' | 'quadrants' | 'dos_donts' | 'print'>('overview');
   const [hoveredLesion, setHoveredLesion] = useState<string | null>(null);
+  const [imgLoadError, setImgLoadError] = useState<boolean>(false);
 
   const xai: XAIReport | undefined = scan.xai_report;
 
@@ -311,26 +312,15 @@ export function ExplainableAIDossier({
                 {/* Simulated / Real Retinal Display */}
                 <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-black border border-slate-700/80 flex items-center justify-center group select-none">
                   
-                  {/* Base Fundus Image (Real MATLAB Grad-CAM, CLAHE, uploaded or stylized anatomical SVG) */}
-                  {visualMode === 'gradcam' && scan.gradcam_path ? (
-                    <img 
-                      src={scan.gradcam_path.startsWith('/') ? scan.gradcam_path : `/${scan.gradcam_path}`} 
-                      alt="MathWorks MATLAB Grad-CAM Heatmap" 
-                      className="w-full h-full object-cover transition-all duration-300"
-                    />
-                  ) : visualMode === 'clahe' && scan.preprocessed_path ? (
-                    <img 
-                      src={scan.preprocessed_path.startsWith('/') ? scan.preprocessed_path : `/${scan.preprocessed_path}`} 
-                      alt="MathWorks MATLAB CLAHE Rayleigh Contrast Enhanced" 
-                      className="w-full h-full object-cover transition-all duration-300"
-                    />
-                  ) : scan.image_path && !scan.image_path.includes('simulate') ? (
+                  {/* Layer 1: Base Fundus (Real Photo or High-Res Anatomical Vector) */}
+                  {scan.image_path && !scan.image_path.includes('simulate') && !imgLoadError ? (
                     <img 
                       src={scan.image_path.startsWith('/') ? scan.image_path : `/${scan.image_path}`} 
                       alt="Retinal Fundus" 
+                      onError={() => setImgLoadError(true)}
                       className={cn(
                         "w-full h-full object-cover transition-all duration-300",
-                        visualMode === 'clahe' && "filter contrast-200 saturate-50 hue-rotate-90 brightness-90"
+                        visualMode === 'clahe' && !scan.preprocessed_path && "filter contrast-200 saturate-50 hue-rotate-90 brightness-90"
                       )}
                     />
                   ) : (
@@ -388,54 +378,68 @@ export function ExplainableAIDossier({
                     </div>
                   )}
 
-                  {/* Grad-CAM Thermal Heatmap Layer */}
-                  {(visualMode === 'gradcam' || visualMode === 'lesions') && (
-                    <div 
-                      className="absolute inset-0 pointer-events-none transition-opacity duration-300"
-                      style={{ opacity: visualMode === 'lesions' ? 0.35 : heatmapOpacity / 100 }}
-                    >
-                      <svg className="w-full h-full" viewBox="0 0 400 400">
-                        <defs>
-                          <radialGradient id="heatHot" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stopColor="#ff0000" stopOpacity="0.9" />
-                            <stop offset="35%" stopColor="#ff7700" stopOpacity="0.7" />
-                            <stop offset="65%" stopColor="#ffff00" stopOpacity="0.45" />
-                            <stop offset="85%" stopColor="#00ddff" stopOpacity="0.2" />
-                            <stop offset="100%" stopColor="#0000ff" stopOpacity="0" />
-                          </radialGradient>
-                          <radialGradient id="heatMild" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stopColor="#ff5500" stopOpacity="0.75" />
-                            <stop offset="50%" stopColor="#ffcc00" stopOpacity="0.4" />
-                            <stop offset="100%" stopColor="#0088ff" stopOpacity="0" />
-                          </radialGradient>
-                        </defs>
+                  {/* Layer 2: MathWorks CLAHE Rayleigh Filter (when visualMode === 'clahe') */}
+                  {visualMode === 'clahe' && scan.preprocessed_path && (
+                    <img 
+                      src={scan.preprocessed_path.startsWith('/') ? scan.preprocessed_path : `/${scan.preprocessed_path}`} 
+                      alt="MathWorks MATLAB CLAHE Rayleigh Contrast Enhanced" 
+                      className="absolute inset-0 w-full h-full object-cover transition-all duration-300"
+                    />
+                  )}
 
-                        {/* High activation hotspots placed dynamically based on grade */}
-                        {scan.grade >= 1.0 && (
-                          <>
-                            {/* Superior temporal cluster */}
-                            <circle cx="220" cy="115" r="55" fill="url(#heatHot)" />
-                            {/* Inferior temporal cluster */}
-                            <circle cx="230" cy="285" r="48" fill="url(#heatMild)" />
-                          </>
-                        )}
-                        {scan.grade >= 2.0 && (
-                          <>
-                            {/* Macular arcade involvement */}
-                            <circle cx="265" cy="180" r="50" fill="url(#heatHot)" />
-                            <circle cx="170" cy="140" r="35" fill="url(#heatMild)" />
-                          </>
-                        )}
-                        {scan.grade >= 3.0 && (
-                          <>
-                            {/* Extensive 4-quadrant activation */}
-                            <circle cx="110" cy="200" r="45" fill="url(#heatHot)" />
-                            <circle cx="310" cy="130" r="55" fill="url(#heatHot)" />
-                            <circle cx="300" cy="270" r="50" fill="url(#heatHot)" />
-                          </>
-                        )}
-                      </svg>
-                    </div>
+                  {/* Layer 3: MathWorks Grad-CAM Thermal Heatmap Layer (when visualMode === 'gradcam' or 'lesions') */}
+                  {(visualMode === 'gradcam' || visualMode === 'lesions') && (
+                    scan.gradcam_path ? (
+                      <img 
+                        src={scan.gradcam_path.startsWith('/') ? scan.gradcam_path : `/${scan.gradcam_path}`} 
+                        alt="MathWorks MATLAB Grad-CAM Heatmap" 
+                        style={{ opacity: visualMode === 'lesions' ? 0.40 : heatmapOpacity / 100 }}
+                        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-200 pointer-events-none"
+                      />
+                    ) : (
+                      <div 
+                        className="absolute inset-0 pointer-events-none transition-opacity duration-300"
+                        style={{ opacity: visualMode === 'lesions' ? 0.35 : heatmapOpacity / 100 }}
+                      >
+                        <svg className="w-full h-full" viewBox="0 0 400 400">
+                          <defs>
+                            <radialGradient id="heatHot" cx="50%" cy="50%" r="50%">
+                              <stop offset="0%" stopColor="#ff0000" stopOpacity="0.9" />
+                              <stop offset="35%" stopColor="#ff7700" stopOpacity="0.7" />
+                              <stop offset="65%" stopColor="#ffff00" stopOpacity="0.45" />
+                              <stop offset="85%" stopColor="#00ddff" stopOpacity="0.2" />
+                              <stop offset="100%" stopColor="#0000ff" stopOpacity="0" />
+                            </radialGradient>
+                            <radialGradient id="heatMild" cx="50%" cy="50%" r="50%">
+                              <stop offset="0%" stopColor="#ff5500" stopOpacity="0.75" />
+                              <stop offset="50%" stopColor="#ffcc00" stopOpacity="0.4" />
+                              <stop offset="100%" stopColor="#0088ff" stopOpacity="0" />
+                            </radialGradient>
+                          </defs>
+
+                          {/* High activation hotspots placed dynamically based on grade */}
+                          {scan.grade >= 1.0 && (
+                            <>
+                              <circle cx="220" cy="115" r="55" fill="url(#heatHot)" />
+                              <circle cx="230" cy="285" r="48" fill="url(#heatMild)" />
+                            </>
+                          )}
+                          {scan.grade >= 2.0 && (
+                            <>
+                              <circle cx="265" cy="180" r="50" fill="url(#heatHot)" />
+                              <circle cx="170" cy="140" r="35" fill="url(#heatMild)" />
+                            </>
+                          )}
+                          {scan.grade >= 3.0 && (
+                            <>
+                              <circle cx="110" cy="200" r="45" fill="url(#heatHot)" />
+                              <circle cx="310" cy="130" r="55" fill="url(#heatHot)" />
+                              <circle cx="300" cy="270" r="50" fill="url(#heatHot)" />
+                            </>
+                          )}
+                        </svg>
+                      </div>
+                    )
                   )}
 
                   {/* Lesion Bounding Boxes / Markers Overlay */}
@@ -907,7 +911,7 @@ export function ExplainableAIDossier({
             <div className="flex items-center gap-3.5">
               <DrishtiLogo size="custom" className="h-12 md:h-14 w-auto object-contain drop-shadow-xs" />
               <div>
-                <p className="font-bold text-slate-800 text-sm leading-tight">DRishti Tele-Ophthalmology AI Diagnostic Network</p>
+                <p className="font-bold text-slate-800 text-sm leading-tight">DRishtii Tele-Ophthalmology AI Diagnostic Network</p>
                 <p className="text-[11px] text-slate-500 leading-normal">MathWorks SIH #26038 Certified • Edge AI Clinical Decision Support System</p>
               </div>
             </div>
