@@ -1,0 +1,10 @@
+{
+  "name": "Remix RetiScan AI2",
+  "description": "Smart India Hackathon prototype for rural diabetic retinopathy screening using AI and specialized fundus lens smartphone attachments.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,37 @@
+# DRishti AI Diagnostic System - Project Rules & Memory
+
+## Version Control Checkpoint: v1.0.2.5 (Offline MathWorks MATLAB ResNet-50 & Hardened Security Release)
+- **Current Version:** `1.0.2.5` (Offline MathWorks MATLAB ResNet-50 Diagnostic Engine & Hardened Security)
+- **MathWorks MATLAB Offline Diagnostic Engine Verified in v1.0.2.5:**
+  - **100% Offline Diagnostic Pipeline**: Complete elimination of external cloud AI dependencies and Gemini APIs.
+  - **MathWorks Optical Preprocessing**: Contrast-Limited Adaptive Histogram Equalization (CLAHE) with Rayleigh distribution (`clipLimit: 0.02`, 8x8 tiles), green channel isolation, and Gaussian smoothing (`sigma: 0.8`).
+  - **Authentic Grad-CAM Feature Attribution**: Local generation of MathWorks `JET` thermal colormap overlays with 60% fundus / 40% heatmap blending saved to `/uploads`.
+  - **Multi-Tier Execution Hierarchy**: Auto-detection of local Python `matlab.engine` HTTP bridge, headless `matlab -batch` CLI runner, and high-fidelity native MathWorks computational engine for isolated clinic devices.
+  - **SIH Problem Statement #26038 Compliance**: Validated against published benchmarks (APTOS 2019, IDRiD, Messidor-2, DRIVE).
+- **Security Protections Verified in v1.0.2.5:**
+  - **Comprehensive Security Response Headers**:
+    - `Content-Security-Policy`: Restricts unauthorized scripts, enforces safe data and image channels.
+    - `X-Content-Type-Options: nosniff`: Prevents browser MIME-type sniffing.
+    - `X-Frame-Options: SAMEORIGIN`: Protects embedded iFrames while eliminating clickjacking vectors.
+    - `Permissions-Policy: camera=(self), microphone=(), geolocation=()`: Grants camera strictly for local fundus capture, blocks unneeded device sensors.
+    - `Cache-Control: private, no-cache, no-store, must-revalidate`: Enforced across all `/api/patients` and `/api/scans` routes to safeguard patient clinical data per DISHA guidelines.
+  - **In-Memory Sliding Window Rate Limiting**:
+    - Multi-tier edge limiters: General API (400 req/min), AI Inference Scans (40 req/min), Authentication (20 req/min), Care Advisor (60 req/min) with automated cleanup.
+  - **Magic Bytes & Header Signature Inspection**:
+    - Direct binary inspection for authentic JPEG (`FF D8 FF`), PNG (`89 50 4E 47`), and WebP (`RIFF ... WEBP`) fundus scans before AI vision execution.
+    - Rejects spoofed scripts or non-image payloads.
+  - **Strict Input Sanitization & Bounds Checking**:
+    - Strips script tags, HTML tags, and markup delimiters across all patient text inputs (Name, Phone, Village, Notes).
+    - Numerical bounds enforced for Age (1–125), Glucose (20–1000 mg/dL), HbA1c (3.0–25.0%), and Blood Pressure.
+  - **Role-Based Authentication & Session Safeguards**:
+    - Secure `POST /api/auth/login` endpoint issuing cryptographically random tokens.
+    - SessionStorage storage for clinical credentials (auto-clears on tab close).
+    - Failed attempt throttling and anti-bruteforce lockouts.
+  - **Security Audit Logging & Traversal Guard**:
+    - Live in-memory audit log for authentication events, scan completions, and blocked attacks (`/api/security/audit-log`).
+    - Directory traversal guard protecting `/uploads`.
+- **All Core Features Locked & 100% Preserved from v1.0.2.3**:
+  - Linear Two-Desk Clinic Workflow (Desk 1 Registration Desk, Desk 2 Diagnostic Station).
+  - Low-Light Dark Room Mode (🌙) and Outdoor High-Contrast Mode (☀️).
+  - MathWorks MATLAB-powered Personalized Explainable AI (XAI) engine, Do's & Don'ts checklist, 6-quadrant anatomical status, and printable clinical dossier.
+  - Offline edge inference, MATLAB/ONNX compatibility, and multi-device real-time SSE sync.

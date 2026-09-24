@@ -1,0 +1,530 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #F8FAFC;
+    color: #0F172A;
+    overflow-x: hidden;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+}
+
+/* ==========================================================================
+   1. CLINICAL OPHTHALMIC DARK ROOM THEME (.dark)
+   Tailored for low-light screening camps, mydriatic (dilated pupil) dark rooms.
+   Ensures sharp, high-contrast legibility without ocular glare.
+   ========================================================================== */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body,
+html.dark #root,
+html.dark .bg-\[\#F8FAFC\] {
+  background-color: #0B0F19 !important;
+  color: #E2E8F0 !important;
+}
+
+/* Header & Sidebar */
+html.dark header {
+  background-color: #111827 !important;
+  border-color: #1F2937 !important;
+  color: #F8FAFC !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4) !important;
+}
+
+html.dark aside {
+  background-color: #0F172A !important;
+  border-color: #1E293B !important;
+  color: #F8FAFC !important;
+}
+
+/* Navigation items in dark mode */
+html.dark aside button {
+  color: #94A3B8;
+}
+
+html.dark aside button:hover {
+  background-color: #1E293B !important;
+  color: #F8FAFC !important;
+}
+
+html.dark aside button.bg-sky-50 {
+  background-color: rgba(14, 165, 233, 0.18) !important;
+  color: #38BDF8 !important;
+  border: 1px solid rgba(56, 189, 248, 0.35) !important;
+}
+
+html.dark aside button.bg-sky-50 svg {
+  color: #38BDF8 !important;
+}
+
+/* Surface Cards & Containers */
+html.dark .bg-white {
+  background-color: #131D31 !important;
+  color: #F1F5F9 !important;
+  border-color: #24324D !important;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.45) !important;
+}
+
+html.dark .bg-slate-50 {
+  background-color: #0E1626 !important;
+  border-color: #1E293B !important;
+  color: #E2E8F0 !important;
+}
+
+html.dark .bg-slate-100,
+html.dark .bg-slate-100\/70,
+html.dark .bg-slate-100\/80 {
+  background-color: #1A263D !important;
+  border-color: #2E3E5B !important;
+  color: #F1F5F9 !important;
+}
+
+html.dark .bg-slate-200,
+html.dark .bg-slate-200\/60 {
+  background-color: #24324D !important;
+  color: #CBD5E1 !important;
+}
+
+/* Typography Hierarchy */
+html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6,
+html.dark .text-slate-900,
+html.dark .text-slate-800 {
+  color: #F8FAFC !important;
+}
+
+html.dark .text-slate-700,
+html.dark .text-slate-600 {
+  color: #CBD5E1 !important;
+}
+
+html.dark .text-slate-500,
+html.dark .text-slate-400 {
+  color: #94A3B8 !important;
+}
+
+/* Borders & Dividers */
+html.dark .border-slate-200,
+html.dark .border-slate-100,
+html.dark .border-slate-300,
+html.dark .border-slate-200\/80,
+html.dark .border-slate-200\/60 {
+  border-color: #223049 !important;
+}
+
+html.dark .divide-slate-200 > :not([hidden]) ~ :not([hidden]),
+html.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #223049 !important;
+}
+
+/* Form Controls & Inputs */
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: #0A0F1D !important;
+  color: #F8FAFC !important;
+  border: 1.5px solid #2B3A54 !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748B !important;
+}
+
+html.dark input:focus,
+html.dark select:focus,
+html.dark textarea:focus {
+  border-color: #38BDF8 !important;
+  outline: 2px solid rgba(56, 189, 248, 0.25) !important;
+}
+
+/* Buttons */
+html.dark button.bg-white {
+  background-color: #1A263D !important;
+  color: #F8FAFC !important;
+  border-color: #2E3E5B !important;
+}
+
+html.dark button.bg-white:hover {
+  background-color: #24324D !important;
+  border-color: #38BDF8 !important;
+}
+
+html.dark button.bg-slate-100:hover {
+  background-color: #24324D !important;
+}
+
+/* Diagnostic Status Badges in Dark Mode */
+html.dark .bg-emerald-50,
+html.dark .bg-emerald-100 {
+  background-color: rgba(6, 78, 59, 0.5) !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+html.dark .text-emerald-700,
+html.dark .text-emerald-800 {
+  color: #6EE7B7 !important;
+}
+
+html.dark .bg-sky-50,
+html.dark .bg-blue-50,
+html.dark .bg-sky-100 {
+  background-color: rgba(12, 74, 110, 0.5) !important;
+  border-color: rgba(14, 165, 233, 0.4) !important;
+}
+html.dark .text-sky-700,
+html.dark .text-sky-800,
+html.dark .text-blue-700,
+html.dark .text-blue-800 {
+  color: #7DD3FC !important;
+}
+
+html.dark .bg-amber-50,
+html.dark .bg-yellow-50,
+html.dark .bg-amber-100 {
+  background-color: rgba(120, 53, 15, 0.5) !important;
+  border-color: rgba(245, 158, 11, 0.4) !important;
+}
+html.dark .text-amber-700,
+html.dark .text-amber-800 {
+  color: #FDE68A !important;
+}
+
+html.dark .bg-rose-50,
+html.dark .bg-red-50,
+html.dark .bg-rose-100 {
+  background-color: rgba(136, 19, 55, 0.5) !important;
+  border-color: rgba(244, 63, 94, 0.4) !important;
+}
+html.dark .text-rose-700,
+html.dark .text-rose-800,
+html.dark .text-red-700,
+html.dark .text-red-800 {
+  color: #FDA4AF !important;
+}
+
+html.dark .bg-indigo-50,
+html.dark .bg-purple-50,
+html.dark .bg-indigo-100 {
+  background-color: rgba(49, 46, 129, 0.5) !important;
+  border-color: rgba(99, 102, 241, 0.4) !important;
+}
+html.dark .text-indigo-700,
+html.dark .text-indigo-800,
+html.dark .text-purple-700,
+html.dark .text-purple-800 {
+  color: #C7D2FE !important;
+}
+
+/* Tables & Grid Rows */
+html.dark table th {
+  background-color: #0E1626 !important;
+  color: #94A3B8 !important;
+  border-color: #223049 !important;
+}
+
+html.dark table td {
+  border-color: #1E293B !important;
+}
+
+html.dark tr.hover\:bg-slate-50\/80:hover,
+html.dark tr.hover\:bg-slate-50:hover,
+html.dark tr:hover {
+  background-color: #172338 !important;
+}
+
+/* Modal Backdrops & Dialogs */
+html.dark .bg-black\/50,
+html.dark .bg-slate-900\/50 {
+  background-color: rgba(3, 7, 18, 0.8) !important;
+  backdrop-filter: blur(4px);
+}
+
+/* Medical Imaging Canvas Protection */
+html.dark img,
+html.dark canvas {
+  filter: none !important;
+}
+
+/* Confidence Gauge in Dark Mode */
+html.dark .confidence-gauge-track {
+  stroke: #1E293B !important;
+}
+html.dark .confidence-gauge-threshold {
+  stroke: #2A3B54 !important;
+}
+
+/* ==========================================================================
+   2. OUTDOOR CAMP HIGH-CONTRAST MODE (.clinic-high-contrast)
+   Engineered for outdoor rural screening camps, harsh sun glare, and low-contrast
+   mobile/tablet displays. Uses solid 2px ink borders, maximum contrast, and bold text.
+   ========================================================================== */
+html.clinic-high-contrast body,
+html.clinic-high-contrast #root,
+html.clinic-high-contrast .bg-\[\#F8FAFC\] {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+}
+
+html.clinic-high-contrast {
+  font-weight: 600 !important;
+}
+
+/* High contrast ink typography */
+html.clinic-high-contrast h1,
+html.clinic-high-contrast h2,
+html.clinic-high-contrast h3,
+html.clinic-high-contrast h4,
+html.clinic-high-contrast h5,
+html.clinic-high-contrast h6,
+html.clinic-high-contrast p,
+html.clinic-high-contrast span,
+html.clinic-high-contrast label,
+html.clinic-high-contrast .text-slate-900,
+html.clinic-high-contrast .text-slate-800,
+html.clinic-high-contrast .text-slate-700,
+html.clinic-high-contrast .text-slate-600 {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+html.clinic-high-contrast .text-slate-500,
+html.clinic-high-contrast .text-slate-400 {
+  color: #1E293B !important;
+  font-weight: 600 !important;
+}
+
+/* Thick bold high-contrast borders for bright sunlight */
+html.clinic-high-contrast .bg-white,
+html.clinic-high-contrast .bg-slate-50,
+html.clinic-high-contrast aside,
+html.clinic-high-contrast .rounded-xl,
+html.clinic-high-contrast .rounded-2xl {
+  border: 2px solid #000000 !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+  background-color: #FFFFFF !important;
+}
+
+html.clinic-high-contrast header {
+  background-color: #FFFFFF !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 2px solid #000000 !important;
+  box-shadow: 0 2px 0px #000000 !important;
+}
+
+html.clinic-high-contrast .border,
+html.clinic-high-contrast .border-slate-200,
+html.clinic-high-contrast .border-slate-100,
+html.clinic-high-contrast .border-slate-300,
+html.clinic-high-contrast .border-b,
+html.clinic-high-contrast .border-r,
+html.clinic-high-contrast .border-t,
+html.clinic-high-contrast .border-l {
+  border-color: #000000 !important;
+  border-width: 2px !important;
+}
+
+html.clinic-high-contrast .divide-slate-200 > :not([hidden]) ~ :not([hidden]),
+html.clinic-high-contrast .divide-slate-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #000000 !important;
+  border-width: 2px !important;
+}
+
+/* Form Inputs in High Contrast */
+html.clinic-high-contrast input,
+html.clinic-high-contrast select,
+html.clinic-high-contrast textarea {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border: 2.5px solid #000000 !important;
+  font-weight: 700 !important;
+}
+
+html.clinic-high-contrast input:focus,
+html.clinic-high-contrast select:focus,
+html.clinic-high-contrast textarea:focus {
+  outline: 3px solid #0284C7 !important;
+  border-color: #000000 !important;
+}
+
+/* Buttons in High Contrast */
+html.clinic-high-contrast button {
+  font-weight: 800 !important;
+  letter-spacing: 0.02em !important;
+}
+
+html.clinic-high-contrast button.bg-white,
+html.clinic-high-contrast button.bg-slate-100 {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+}
+
+html.clinic-high-contrast button.bg-white:hover,
+html.clinic-high-contrast button.bg-slate-100:hover {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+html.clinic-high-contrast button.bg-sky-600,
+html.clinic-high-contrast button.bg-indigo-600,
+html.clinic-high-contrast button.bg-emerald-600 {
+  border: 2px solid #000000 !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+  font-weight: 800 !important;
+}
+
+/* High Contrast Status Badges */
+html.clinic-high-contrast .bg-emerald-50,
+html.clinic-high-contrast .bg-emerald-100 {
+  background-color: #BBF7D0 !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+  font-weight: 800 !important;
+}
+
+html.clinic-high-contrast .bg-sky-50,
+html.clinic-high-contrast .bg-blue-50,
+html.clinic-high-contrast .bg-sky-100 {
+  background-color: #BAE6FD !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+  font-weight: 800 !important;
+}
+
+html.clinic-high-contrast .bg-amber-50,
+html.clinic-high-contrast .bg-yellow-50,
+html.clinic-high-contrast .bg-amber-100 {
+  background-color: #FEF08A !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+  font-weight: 800 !important;
+}
+
+html.clinic-high-contrast .bg-rose-50,
+html.clinic-high-contrast .bg-red-50,
+html.clinic-high-contrast .bg-rose-100 {
+  background-color: #FECDD3 !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+  font-weight: 800 !important;
+}
+
+/* Navigation active item in high contrast */
+html.clinic-high-contrast aside button.bg-sky-50 {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #000000 !important;
+}
+html.clinic-high-contrast aside button.bg-sky-50 svg {
+  color: #FFFFFF !important;
+}
+
+/* Table rows in high contrast */
+html.clinic-high-contrast table th {
+  background-color: #E2E8F0 !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+  font-weight: 800 !important;
+}
+
+html.clinic-high-contrast table td {
+  border: 1.5px solid #000000 !important;
+}
+
+html.clinic-high-contrast tr:hover {
+  background-color: #F1F5F9 !important;
+}
+
+/* ==========================================================================
+   3. COMBINED DARK + HIGH CONTRAST (Night High-Contrast)
+   ========================================================================== */
+html.dark.clinic-high-contrast body,
+html.dark.clinic-high-contrast #root,
+html.dark.clinic-high-contrast .bg-\[\#F8FAFC\] {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+html.dark.clinic-high-contrast .bg-white,
+html.dark.clinic-high-contrast .bg-slate-50,
+html.dark.clinic-high-contrast aside {
+  background-color: #0A0A0A !important;
+  border: 2px solid #38BDF8 !important;
+  box-shadow: 2px 2px 0px #38BDF8 !important;
+  color: #FFFFFF !important;
+}
+
+html.dark.clinic-high-contrast header {
+  background-color: #0A0A0A !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 2px solid #38BDF8 !important;
+  box-shadow: 0 2px 0px #38BDF8 !important;
+  color: #FFFFFF !important;
+}
+
+html.dark.clinic-high-contrast h1,
+html.dark.clinic-high-contrast h2,
+html.dark.clinic-high-contrast h3,
+html.dark.clinic-high-contrast h4,
+html.dark.clinic-high-contrast p,
+html.dark.clinic-high-contrast span,
+html.dark.clinic-high-contrast .text-slate-900,
+html.dark.clinic-high-contrast .text-slate-800,
+html.dark.clinic-high-contrast .text-slate-700 {
+  color: #FFFFFF !important;
+}
+
+html.dark.clinic-high-contrast .border,
+html.dark.clinic-high-contrast .border-slate-200,
+html.dark.clinic-high-contrast .border-slate-100 {
+  border-color: #FFFFFF !important;
+}
+
+@keyframes scanBeam {
+  0% { top: 0%; opacity: 0.85; }
+  50% { top: 92%; opacity: 1; }
+  100% { top: 0%; opacity: 0.85; }
+}
+
+.retina-scan-line {
+  animation: scanBeam 2.4s ease-in-out infinite;
+}
+
+.fade-in-section {
+  animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Print styles for clinical reports */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #print-report, #print-report * {
+    visibility: visible;
+  }
+  #print-report {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  body, main {
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
