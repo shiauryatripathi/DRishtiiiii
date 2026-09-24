@@ -410,7 +410,7 @@ function saveDB() {
 loadDB();
 
 // ----------------------------------------------------
-// v1.1.2.6 SECURITY HARDENING ENGINE & SAFEGUARDS
+// v1.1.2.7 SECURITY HARDENING ENGINE & SAFEGUARDS
 // DISHA (Digital Information Security in Healthcare Act)
 // & DPDP Act 2023 Compliant Tele-Ophthalmology Security
 // ----------------------------------------------------
@@ -439,7 +439,7 @@ const securityAuditLog: SecurityAuditEvent[] = [
     timestamp: new Date().toISOString(),
     event: 'SECURITY_CHECK',
     severity: 'INFO',
-    details: 'DRishtii Security Hardening Engine v1.1.2.6 active. DISHA & DPDP rural telemedicine safeguards engaged.',
+    details: 'DRishtii Security Hardening Engine v1.1.2.7 active. DISHA & DPDP rural telemedicine safeguards engaged.',
     ip: '127.0.0.1'
   }
 ];
@@ -589,7 +589,7 @@ app.use((req, res, next) => {
     "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: http: https:; connect-src 'self' ws: wss: http: https:; font-src 'self' data: https://fonts.gstatic.com; media-src 'self' blob:; frame-ancestors 'self' https://*.google.com https://*.googleusercontent.com https://ai.studio https://*.run.app;"
   );
   // System Security & Version Markers
-  res.setHeader("X-DRishti-Version", "1.1.2.6");
+  res.setHeader("X-DRishti-Version", "1.1.2.7");
   res.setHeader("X-DRishti-Security-Standard", "DISHA-2026, DPDP-2023, ABDM-Ready");
 
   // Prevent caching of sensitive patient clinical records in public / proxy caches
@@ -921,7 +921,7 @@ app.post("/api/auth/login", authLimiter, (req, res) => {
       role: selectedRole,
       name: userDisplayName,
       expiresAt,
-      version: "1.1.2.6"
+      version: "1.1.2.7"
     });
   } else {
     logSecurityAudit({
@@ -941,7 +941,7 @@ app.post("/api/auth/login", authLimiter, (req, res) => {
 // Security Posture Status Endpoint
 app.get("/api/security/status", (req, res) => {
   res.json({
-    version: "1.1.2.6",
+    version: "1.1.2.7",
     status: "SECURE",
     framework: "DISHA & DPDP Compliant Tele-Ophthalmology Security",
     features: {
@@ -978,7 +978,7 @@ app.get("/api/security/status", (req, res) => {
 // Security Audit Log Endpoint
 app.get("/api/security/audit-log", (req, res) => {
   res.json({
-    version: "1.1.2.6",
+    version: "1.1.2.7",
     total: securityAuditLog.length,
     events: securityAuditLog.slice(0, 50)
   });
@@ -1379,6 +1379,7 @@ app.post("/api/scans/upload", aiInferenceLimiter, upload.single("fundusImage"), 
 
     const validScanIds = db.scans.map(s => Number(s.id)).filter(id => !isNaN(id) && isFinite(id));
     const newId = validScanIds.length > 0 ? Math.max(...validScanIds) + 1 : 1;
+    const cleanImagePath = `/uploads/${path.basename(imagePath)}`;
     const newScan: Scan = {
       id: newId,
       patient_id: patientId,
@@ -1386,7 +1387,7 @@ app.post("/api/scans/upload", aiInferenceLimiter, upload.single("fundusImage"), 
       patient_age: patient?.age,
       patient_gender: patient?.gender,
       scan_type: "UPLOAD",
-      image_path: imagePath,
+      image_path: cleanImagePath,
       preprocessed_path: aiResult.preprocessed_path,
       gradcam_path: aiResult.gradcam_path,
       grade: aiResult.grade,
@@ -1899,17 +1900,17 @@ app.post("/api/advisor/chat", advisorLimiter, (req, res, next) => {
 
 // Health check endpoint for Cloud Run and monitoring
 app.get("/api/health", (req, res) => {
-  res.json({ status: "ok", version: "1.1.2.6", uptime: process.uptime() });
+  res.json({ status: "ok", version: "1.1.2.7", uptime: process.uptime() });
 });
 
 app.get("/api/version", (req, res) => {
-  res.json({ version: "1.1.2.6", app: "DRishtii AI Diagnostic System" });
+  res.json({ version: "1.1.2.7", app: "DRishtii AI Diagnostic System" });
 });
 
 // System Status endpoint (shows devices, engine, offline readiness)
 app.get("/api/system/status", async (req, res) => {
   res.json({
-    version: "1.1.2.6",
+    version: "1.1.2.7",
     activeScreens: sseClients.size,
     totalPatients: db.patients.length,
     totalScans: db.scans.length,

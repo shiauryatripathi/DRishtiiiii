@@ -107,7 +107,7 @@ export function Sidebar({
               <LogOut className="w-4 h-4" />
             </button>
           )}
-          <span className="text-[9px] font-mono text-slate-400 font-medium">v1.1.2.6</span>
+          <span className="text-[9px] font-mono text-slate-400 font-medium">v1.1.2.7</span>
         </div>
       </aside>
     );
@@ -217,7 +217,7 @@ export function Sidebar({
 
         {/* On down only show the version */}
         <div className="text-center pt-0.5 flex items-center justify-center gap-1.5">
-          <span className="text-[10px] text-slate-400 font-mono">v1.1.2.6</span>
+          <span className="text-[10px] text-slate-400 font-mono">v1.1.2.7</span>
           <span className="text-[9px] font-mono text-emerald-600 font-bold bg-emerald-50 px-1 rounded border border-emerald-200/60">
             SECURE
           </span>

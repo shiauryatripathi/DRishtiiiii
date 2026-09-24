@@ -312,135 +312,93 @@ export function ExplainableAIDossier({
                 {/* Simulated / Real Retinal Display */}
                 <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-black border border-slate-700/80 flex items-center justify-center group select-none">
                   
-                  {/* Layer 1: Base Fundus (Real Photo or High-Res Anatomical Vector) */}
-                  {scan.image_path && !scan.image_path.includes('simulate') && !imgLoadError ? (
-                    <img 
-                      src={scan.image_path.startsWith('/') ? scan.image_path : `/${scan.image_path}`} 
-                      alt="Retinal Fundus" 
-                      onError={() => setImgLoadError(true)}
-                      className={cn(
-                        "w-full h-full object-cover transition-all duration-300",
-                        visualMode === 'clahe' && !scan.preprocessed_path && "filter contrast-200 saturate-50 hue-rotate-90 brightness-90"
-                      )}
-                    />
-                  ) : (
-                    <div className={cn(
-                      "w-full h-full relative transition-all duration-500",
-                      visualMode === 'clahe' ? "bg-emerald-950" : "bg-[#2b0804]"
-                    )}>
-                      {/* Fundus Globe Gradient */}
-                      <div className="absolute inset-0 bg-radial from-[#d94823]/80 via-[#8a1c0d]/90 to-[#1e0302]" />
-                      
-                      {/* Retinal Blood Vessels Architecture */}
-                      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
-                        <defs>
-                          <radialGradient id="opticDiscGrad" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stopColor="#ffebb3" />
-                            <stop offset="70%" stopColor="#f5b358" />
-                            <stop offset="100%" stopColor="#b8521a" />
-                          </radialGradient>
-                          <radialGradient id="maculaGrad" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stopColor="#4a0f07" />
-                            <stop offset="60%" stopColor="#7a1d12" />
-                            <stop offset="100%" stopColor="#a32817" />
-                          </radialGradient>
-                          <filter id="glow">
-                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                            <feMerge>
-                              <feMergeNode in="coloredBlur"/>
-                              <feMergeNode in="SourceGraphic"/>
-                            </feMerge>
-                          </filter>
-                        </defs>
+                  {/* Diagnosable Retinal Fundus & MathWorks Visual XAI Rendering */}
+                  {(() => {
+                    const rawSrc = scan.image_path || '/samples/sample_fundus_npdr.jpg';
+                    const fundusSrc = imgLoadError 
+                      ? '/samples/sample_fundus_npdr.jpg' 
+                      : (rawSrc.startsWith('/') ? rawSrc : `/${rawSrc}`);
 
-                        {/* Optic Disc (Nasal side) */}
-                        <circle cx="110" cy="200" r="32" fill="url(#opticDiscGrad)" stroke="#ffcc80" strokeWidth="1.5" />
-                        <circle cx="110" cy="200" r="12" fill="#fff5db" opacity="0.8" />
+                    const prepSrc = scan.preprocessed_path 
+                      ? (scan.preprocessed_path.startsWith('/') ? scan.preprocessed_path : `/${scan.preprocessed_path}`) 
+                      : null;
 
-                        {/* Main Arteriolar & Venular Arcades */}
-                        {/* Superior Temporal Arcade */}
-                        <path d="M 110 180 Q 150 90 240 100 T 350 140" fill="none" stroke="#e62e2e" strokeWidth="5" strokeLinecap="round" opacity="0.9" />
-                        <path d="M 112 180 Q 148 95 238 105 T 345 145" fill="none" stroke="#7a0019" strokeWidth="4" strokeLinecap="round" opacity="0.85" />
-                        
-                        {/* Inferior Temporal Arcade */}
-                        <path d="M 110 220 Q 150 310 240 300 T 350 260" fill="none" stroke="#e62e2e" strokeWidth="5" strokeLinecap="round" opacity="0.9" />
-                        <path d="M 112 220 Q 148 305 238 295 T 345 255" fill="none" stroke="#7a0019" strokeWidth="4" strokeLinecap="round" opacity="0.85" />
+                    const gradcamSrc = scan.gradcam_path 
+                      ? (scan.gradcam_path.startsWith('/') ? scan.gradcam_path : `/${scan.gradcam_path}`) 
+                      : null;
 
-                        {/* Nasal vessels */}
-                        <path d="M 90 190 Q 50 150 20 130" fill="none" stroke="#c41c1c" strokeWidth="3" strokeLinecap="round" />
-                        <path d="M 90 210 Q 50 250 20 270" fill="none" stroke="#c41c1c" strokeWidth="3" strokeLinecap="round" />
-
-                        {/* Macula & Central Fovea */}
-                        <circle cx="250" cy="200" r="42" fill="url(#maculaGrad)" opacity="0.85" />
-                        <circle cx="250" cy="200" r="6" fill="#200402" />
-                        <circle cx="250" cy="200" r="2" fill="#ffefd6" opacity="0.9" filter="url(#glow)" />
-                      </svg>
-                    </div>
-                  )}
-
-                  {/* Layer 2: MathWorks CLAHE Rayleigh Filter (when visualMode === 'clahe') */}
-                  {visualMode === 'clahe' && scan.preprocessed_path && (
-                    <img 
-                      src={scan.preprocessed_path.startsWith('/') ? scan.preprocessed_path : `/${scan.preprocessed_path}`} 
-                      alt="MathWorks MATLAB CLAHE Rayleigh Contrast Enhanced" 
-                      className="absolute inset-0 w-full h-full object-cover transition-all duration-300"
-                    />
-                  )}
-
-                  {/* Layer 3: MathWorks Grad-CAM Thermal Heatmap Layer (when visualMode === 'gradcam' or 'lesions') */}
-                  {(visualMode === 'gradcam' || visualMode === 'lesions') && (
-                    scan.gradcam_path ? (
-                      <img 
-                        src={scan.gradcam_path.startsWith('/') ? scan.gradcam_path : `/${scan.gradcam_path}`} 
-                        alt="MathWorks MATLAB Grad-CAM Heatmap" 
-                        style={{ opacity: visualMode === 'lesions' ? 0.40 : heatmapOpacity / 100 }}
-                        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-200 pointer-events-none"
-                      />
-                    ) : (
-                      <div 
-                        className="absolute inset-0 pointer-events-none transition-opacity duration-300"
-                        style={{ opacity: visualMode === 'lesions' ? 0.35 : heatmapOpacity / 100 }}
-                      >
-                        <svg className="w-full h-full" viewBox="0 0 400 400">
-                          <defs>
-                            <radialGradient id="heatHot" cx="50%" cy="50%" r="50%">
-                              <stop offset="0%" stopColor="#ff0000" stopOpacity="0.9" />
-                              <stop offset="35%" stopColor="#ff7700" stopOpacity="0.7" />
-                              <stop offset="65%" stopColor="#ffff00" stopOpacity="0.45" />
-                              <stop offset="85%" stopColor="#00ddff" stopOpacity="0.2" />
-                              <stop offset="100%" stopColor="#0000ff" stopOpacity="0" />
-                            </radialGradient>
-                            <radialGradient id="heatMild" cx="50%" cy="50%" r="50%">
-                              <stop offset="0%" stopColor="#ff5500" stopOpacity="0.75" />
-                              <stop offset="50%" stopColor="#ffcc00" stopOpacity="0.4" />
-                              <stop offset="100%" stopColor="#0088ff" stopOpacity="0" />
-                            </radialGradient>
-                          </defs>
-
-                          {/* High activation hotspots placed dynamically based on grade */}
-                          {scan.grade >= 1.0 && (
-                            <>
-                              <circle cx="220" cy="115" r="55" fill="url(#heatHot)" />
-                              <circle cx="230" cy="285" r="48" fill="url(#heatMild)" />
-                            </>
+                    return (
+                      <>
+                        {/* Layer 1: Base Uploaded Diagnosable Fundus Image */}
+                        <img 
+                          src={visualMode === 'clahe' && prepSrc ? prepSrc : fundusSrc} 
+                          alt="Uploaded Diagnosable Retinal Fundus" 
+                          onError={() => {
+                            if (!imgLoadError) setImgLoadError(true);
+                          }}
+                          className={cn(
+                            "w-full h-full object-cover transition-all duration-300",
+                            visualMode === 'clahe' && !prepSrc && "filter contrast-200 saturate-75 hue-rotate-60 brightness-95"
                           )}
-                          {scan.grade >= 2.0 && (
-                            <>
-                              <circle cx="265" cy="180" r="50" fill="url(#heatHot)" />
-                              <circle cx="170" cy="140" r="35" fill="url(#heatMild)" />
-                            </>
-                          )}
-                          {scan.grade >= 3.0 && (
-                            <>
-                              <circle cx="110" cy="200" r="45" fill="url(#heatHot)" />
-                              <circle cx="310" cy="130" r="55" fill="url(#heatHot)" />
-                              <circle cx="300" cy="270" r="50" fill="url(#heatHot)" />
-                            </>
-                          )}
-                        </svg>
-                      </div>
-                    )
-                  )}
+                        />
+
+                        {/* Layer 2: MathWorks Grad-CAM Thermal Heatmap Layer (when visualMode === 'gradcam' or 'lesions') */}
+                        {(visualMode === 'gradcam' || visualMode === 'lesions') && (
+                          gradcamSrc ? (
+                            <img 
+                              src={gradcamSrc} 
+                              alt="MathWorks MATLAB Grad-CAM Heatmap" 
+                              style={{ opacity: visualMode === 'lesions' ? 0.40 : heatmapOpacity / 100 }}
+                              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-200 pointer-events-none"
+                            />
+                          ) : (
+                            <div 
+                              className="absolute inset-0 pointer-events-none transition-opacity duration-300"
+                              style={{ opacity: visualMode === 'lesions' ? 0.35 : heatmapOpacity / 100 }}
+                            >
+                              <svg className="w-full h-full" viewBox="0 0 400 400">
+                                <defs>
+                                  <radialGradient id="heatHot" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stopColor="#ff0000" stopOpacity="0.9" />
+                                    <stop offset="35%" stopColor="#ff7700" stopOpacity="0.7" />
+                                    <stop offset="65%" stopColor="#ffff00" stopOpacity="0.45" />
+                                    <stop offset="85%" stopColor="#00ddff" stopOpacity="0.2" />
+                                    <stop offset="100%" stopColor="#0000ff" stopOpacity="0" />
+                                  </radialGradient>
+                                  <radialGradient id="heatMild" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stopColor="#ff5500" stopOpacity="0.75" />
+                                    <stop offset="50%" stopColor="#ffcc00" stopOpacity="0.4" />
+                                    <stop offset="100%" stopColor="#0088ff" stopOpacity="0" />
+                                  </radialGradient>
+                                </defs>
+
+                                {/* High activation hotspots placed dynamically based on grade */}
+                                {scan.grade >= 1.0 && (
+                                  <>
+                                    <circle cx="220" cy="115" r="55" fill="url(#heatHot)" />
+                                    <circle cx="230" cy="285" r="48" fill="url(#heatMild)" />
+                                  </>
+                                )}
+                                {scan.grade >= 2.0 && (
+                                  <>
+                                    <circle cx="265" cy="180" r="50" fill="url(#heatHot)" />
+                                    <circle cx="170" cy="140" r="35" fill="url(#heatMild)" />
+                                  </>
+                                )}
+                                {scan.grade >= 3.0 && (
+                                  <>
+                                    <circle cx="110" cy="200" r="45" fill="url(#heatHot)" />
+                                    <circle cx="310" cy="130" r="55" fill="url(#heatHot)" />
+                                    <circle cx="300" cy="270" r="50" fill="url(#heatHot)" />
+                                  </>
+                                )}
+                              </svg>
+                            </div>
+                          )
+                        )}
+                      </>
+                    );
+                  })()}
 
                   {/* Lesion Bounding Boxes / Markers Overlay */}
                   {visualMode === 'lesions' && (

@@ -256,7 +256,7 @@ export function SettingsModal({
   const exportDiagnosticsLog = () => {
     const diagnostics = {
       app: 'DRishtii AI Diagnostic System',
-      version: '1.1.2.6',
+      version: '1.1.2.7',
       timestamp: new Date().toISOString(),
       nodeId: 'PHC-UNIT-004-BILASPUR',
       settings: {
@@ -963,7 +963,7 @@ export function SettingsModal({
           <div className="flex items-center space-x-2 text-slate-500 text-xs">
             <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
             <span className="font-medium">
-              DRishtii AI Diagnostic System • <strong className="text-slate-800 font-mono">v1.1.2.6</strong> <span className="text-[10px] text-emerald-600 font-bold ml-1 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/70">SECURED</span>
+              DRishtii AI Diagnostic System • <strong className="text-slate-800 font-mono">v1.1.2.7</strong> <span className="text-[10px] text-emerald-600 font-bold ml-1 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/70">SECURED</span>
             </span>
           </div>
 
