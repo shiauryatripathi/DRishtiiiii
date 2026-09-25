@@ -13,6 +13,8 @@ import { SettingsModal } from './components/SettingsModal';
 import { ClinicalGuideModal } from './components/ClinicalGuideModal';
 import { GlobalSearchModal } from './components/GlobalSearchModal';
 import { ConfirmationModal } from './components/ConfirmationModal';
+import { LegalAndComplianceModal, LegalTabType } from './components/LegalAndComplianceModal';
+import { CookieConsentBanner } from './components/CookieConsentBanner';
 import { useKeyboardNavigation } from './lib/useKeyboardNavigation';
 import { Patient, Scan } from './types';
 
@@ -34,7 +36,14 @@ export default function App() {
   const [isClinicalGuideOpen, setIsClinicalGuideOpen] = useState(false); // Clinical Guide & FAQ modal
   const [isSearchOpen, setIsSearchOpen] = useState(false); // Global Ctrl+K Patient Search modal
   const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false); // Confirmation modal for logout
+  const [isLegalModalOpen, setIsLegalModalOpen] = useState(false); // Legal & Compliance modal
+  const [legalModalTab, setLegalModalTab] = useState<LegalTabType>('privacy');
   const [currentTime, setCurrentTime] = useState<string>('');
+
+  const handleOpenLegal = (tab: LegalTabType = 'privacy') => {
+    setLegalModalTab(tab);
+    setIsLegalModalOpen(true);
+  };
 
   // Optical Theme and Contrast States
   const [darkMode, setDarkMode] = useState<boolean>(() => {
@@ -64,7 +73,7 @@ export default function App() {
       setIsMobileDrawerOpen(false);
     },
     onToggleSidebar: handleToggleSidebar,
-    isShortcutsModalOpen: isSettingsModalOpen || isClinicalGuideOpen || isSearchOpen,
+    isShortcutsModalOpen: isSettingsModalOpen || isClinicalGuideOpen || isSearchOpen || isLegalModalOpen,
     onToggleShortcutsModal: () => setIsSettingsModalOpen(prev => !prev),
     onCloseModals: () => {
       setIsSettingsModalOpen(false);
@@ -72,6 +81,7 @@ export default function App() {
       setIsClinicalGuideOpen(false);
       setIsSearchOpen(false);
       setIsLogoutConfirmOpen(false);
+      setIsLegalModalOpen(false);
     },
     onOpenSettings: () => setIsSettingsModalOpen(true),
     enabled: isAuthenticated,
@@ -467,6 +477,10 @@ export default function App() {
               setIsMobileDrawerOpen(false);
               setIsSettingsModalOpen(true);
             }}
+            onOpenLegal={(tab) => {
+              setIsMobileDrawerOpen(false);
+              handleOpenLegal(tab);
+            }}
             isCollapsed={false}
             userRole={userRole}
           />
@@ -480,6 +494,7 @@ export default function App() {
             activeDevices={activeDevices}
             onLogout={() => setIsLogoutConfirmOpen(true)}
             onOpenSettings={() => setIsSettingsModalOpen(true)}
+            onOpenLegal={handleOpenLegal}
             isCollapsed={isSidebarCollapsed}
             userRole={userRole}
           />
@@ -563,6 +578,18 @@ export default function App() {
         onToggleDarkMode={handleToggleDarkMode}
         highContrast={highContrast}
         onToggleHighContrast={handleToggleHighContrast}
+      />
+
+      {/* Legal, Privacy, DPDP & Compliance Modal */}
+      <LegalAndComplianceModal
+        isOpen={isLegalModalOpen}
+        initialTab={legalModalTab}
+        onClose={() => setIsLegalModalOpen(false)}
+      />
+
+      {/* DPDP Act 2023 Cookie & Storage Consent Banner */}
+      <CookieConsentBanner
+        onOpenLegalModal={handleOpenLegal}
       />
 
       {/* Floating Shortcut HUD Toast */}

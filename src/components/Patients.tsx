@@ -54,6 +54,7 @@ export function Patients({ onNavigateToScan, onNavigateToAdvisor, initialPatient
   const [systolicBp, setSystolicBp] = useState('');
   const [diastolicBp, setDiastolicBp] = useState('');
   const [medicalHistory, setMedicalHistory] = useState('');
+  const [patientConsent, setPatientConsent] = useState(true);
   const [enrollError, setEnrollError] = useState<string | null>(null);
 
   // Hook for real-time multi-device sync
@@ -467,6 +468,22 @@ export function Patients({ onNavigateToScan, onNavigateToAdvisor, initialPatient
                 </div>
               </div>
 
+              {/* DPDP Act Informed Consent Checkbox */}
+              <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg flex items-start gap-2.5">
+                <input
+                  id="patient-consent-checkbox"
+                  type="checkbox"
+                  checked={patientConsent}
+                  onChange={e => setPatientConsent(e.target.checked)}
+                  className="mt-0.5 w-4 h-4 text-emerald-600 rounded cursor-pointer accent-emerald-600 focus:ring-emerald-500"
+                  required
+                />
+                <label htmlFor="patient-consent-checkbox" className="text-[11px] text-slate-600 leading-snug cursor-pointer select-none">
+                  <strong className="text-slate-800 font-bold block">Patient Informed Consent (DPDP Act 2023 &amp; DISHA Telemedicine):</strong>
+                  Patient / legal guardian has provided informed consent for non-invasive retinal photography, optical image processing, and confidential referral triage.
+                </label>
+              </div>
+
               {enrollError && (
                 <div className="bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold p-2.5 rounded-lg">
                   {enrollError}
@@ -477,14 +494,14 @@ export function Patients({ onNavigateToScan, onNavigateToAdvisor, initialPatient
                 <button
                   type="button"
                   onClick={() => setIsEnrollOpen(false)}
-                  className="px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-100 transition-colors"
+                  className="px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-100 transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  disabled={!name.trim() || !age || isSubmitting}
-                  className="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors shadow-xs"
+                  disabled={!name.trim() || !age || !patientConsent || isSubmitting}
+                  className="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors shadow-xs cursor-pointer"
                 >
                   {isSubmitting ? 'Enrolling Patient...' : 'Save & Enroll Patient'}
                 </button>

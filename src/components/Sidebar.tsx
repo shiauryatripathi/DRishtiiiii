@@ -22,6 +22,7 @@ interface SidebarProps {
   isCollapsed?: boolean;
   onCloseMobile?: () => void;
   onOpenSettings?: () => void;
+  onOpenLegal?: (tab?: 'privacy' | 'terms' | 'cookies' | 'refund' | 'dpdp' | 'business') => void;
   userRole?: 'doctor' | 'registration';
 }
 
@@ -33,6 +34,7 @@ export function Sidebar({
   isCollapsed = false,
   onCloseMobile,
   onOpenSettings,
+  onOpenLegal,
   userRole = 'doctor'
 }: SidebarProps) {
   const navItems = [
@@ -214,6 +216,35 @@ export function Sidebar({
             </button>
           )}
         </div>
+
+        {/* Legal & Compliance Quick Center */}
+        {onOpenLegal && (
+          <div className="pt-1 flex items-center justify-between text-[11px] text-slate-400 border-t border-slate-100">
+            <button
+              type="button"
+              onClick={() => onOpenLegal('privacy')}
+              className="hover:text-sky-600 hover:underline cursor-pointer"
+            >
+              Privacy
+            </button>
+            <span>•</span>
+            <button
+              type="button"
+              onClick={() => onOpenLegal('terms')}
+              className="hover:text-sky-600 hover:underline cursor-pointer"
+            >
+              Terms
+            </button>
+            <span>•</span>
+            <button
+              type="button"
+              onClick={() => onOpenLegal('dpdp')}
+              className="hover:text-sky-600 hover:underline cursor-pointer"
+            >
+              DPDP Act
+            </button>
+          </div>
+        )}
 
         {/* On down only show the version */}
         <div className="text-center pt-0.5 flex items-center justify-center gap-1.5">
