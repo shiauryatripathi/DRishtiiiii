@@ -240,8 +240,11 @@ export function Scanner({ initialPatientId }: ScannerProps = {}) {
     setStep('SCREENING');
   };
 
-  // Image optimization helper
+  // Image optimization helper (preserves exact image bytes unless >9MB to ensure 100% deterministic pixel grading)
   const optimizeImage = async (rawFile: File): Promise<File> => {
+    if (rawFile.size <= 9 * 1024 * 1024) {
+      return rawFile;
+    }
     return new Promise((resolve) => {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -274,7 +277,7 @@ export function Scanner({ initialPatientId }: ScannerProps = {}) {
                 }
               },
               'image/jpeg',
-              0.85
+              0.92
             );
           } else {
             resolve(rawFile);
@@ -336,10 +339,9 @@ export function Scanner({ initialPatientId }: ScannerProps = {}) {
     setError(null);
 
     try {
-      const uploadFile = await optimizeImage(file);
       const formData = new FormData();
       formData.append('patientId', targetPatient.id.toString());
-      formData.append('fundusImage', uploadFile);
+      formData.append('fundusImage', file);
 
       const res = await fetch('/api/scans/upload', {
         method: 'POST',

@@ -11,7 +11,11 @@ import {
   buildProceduralXAIReport, 
   type XAIReport 
 } from "./src/server/xaiEngine";
-import { executeMatlabInference } from "./src/server/matlabEngine";
+import { 
+  executeMatlabInference, 
+  getOnnxEngineStatus, 
+  resolveOnnxModelPath 
+} from "./src/server/matlabEngine";
 
 const app = express();
 app.set("trust proxy", 1);
@@ -46,7 +50,10 @@ const upload = multer({
   limits: { fileSize: 10 * 1024 * 1024 }, // 10MB maximum fundus scan size
   fileFilter: (req, file, cb) => {
     const allowedMime = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg'];
-    if (allowedMime.includes(file.mimetype.toLowerCase())) {
+    const ext = path.extname(file.originalname || '').toLowerCase();
+    const allowedExt = ['.jpg', '.jpeg', '.png', '.webp'];
+    const mime = (file.mimetype || '').toLowerCase();
+    if (allowedMime.includes(mime) || (mime === 'application/octet-stream' && allowedExt.includes(ext))) {
       cb(null, true);
     } else {
       cb(new Error('INVALID_IMAGE_TYPE'));
@@ -630,7 +637,7 @@ app.use("/models", express.static(path.join(process.cwd(), "public", "models")))
 
 // Model ONNX Export & Download API
 app.get(["/api/models/download", "/api/models/download/onnx"], (req, res) => {
-  const modelFile = path.join(process.cwd(), "public", "models", "drishti_resnet50_v1.1.2.9.onnx");
+  const modelFile = resolveOnnxModelPath();
   if (!fs.existsSync(modelFile)) {
     return res.status(404).json({ error: "ONNX model file not found." });
   }
@@ -843,9 +850,10 @@ app.get(["/download-onnx", "/download-model"], (req, res) => {
 });
 
 app.get("/api/models/info", (req, res) => {
-  const modelFile = path.join(process.cwd(), "public", "models", "drishti_resnet50_v1.1.2.9.onnx");
+  const modelFile = resolveOnnxModelPath();
   const exists = fs.existsSync(modelFile);
   const sizeBytes = exists ? fs.statSync(modelFile).size : 0;
+  const onnxStatus = getOnnxEngineStatus();
   res.json({
     version: "1.1.2.9",
     filename: "drishti_resnet50_v1.1.2.9.onnx",
@@ -854,6 +862,8 @@ app.get("/api/models/info", (req, res) => {
     fileSizeBytes: sizeBytes,
     fileSizeMB: (sizeBytes / (1024 * 1024)).toFixed(2) + " MB",
     sha256: "affbe0818dd4a8d392e7abd5831c46f365d947618d827b0548b50df4ff3c53e1",
+    onnxRuntimeActive: onnxStatus.onnxRuntimeLoaded,
+    onnxFileReady: onnxStatus.onnxFileReady,
     githubReleaseUrl: "https://github.com/shiauryatripathi/DRishtiiiii/releases/tag/v1.0.2.5",
     githubAssetUrl: "https://github.com/shiauryatripathi/DRishtiiiii/releases/download/v1.0.2.5/drishti_resnet50_v1.0.2.5.onnx",
     downloadUrl: "/api/models/download/onnx",
@@ -1256,9 +1266,11 @@ app.get("/api/patients/:id/scans", (req, res) => {
 
 // MathWorks MATLAB Engine Telemetry & Pipeline Status Endpoint
 app.get("/api/matlab/status", (req, res) => {
+  const onnxStatus = getOnnxEngineStatus();
   res.json({
     status: "ONLINE",
     activeEngine: "MathWorks MATLAB ResNet-50 & CLAHE Engine",
+    onnxRuntime: onnxStatus,
     sihProblemStatement: "#26038",
     compliance: "ICMR & DISHA 2024 Standards",
     toolboxes: [
@@ -1312,6 +1324,7 @@ async function analyzeFundusImage(imagePath: string, patient?: Patient, original
     const matlabOutput = await executeMatlabInference(imagePath, patient, originalFilename);
     return {
       isRetina: matlabOutput.isRetina,
+      error: matlabOutput.error,
       grade: matlabOutput.grade,
       confidence: matlabOutput.confidence,
       diagnosis: matlabOutput.diagnosis,

@@ -6,7 +6,8 @@
   - **100% Offline Diagnostic Pipeline**: Complete elimination of external cloud AI dependencies and Gemini APIs.
   - **MathWorks Optical Preprocessing**: Contrast-Limited Adaptive Histogram Equalization (CLAHE) with Rayleigh distribution (`clipLimit: 0.02`, 8x8 tiles), green channel isolation, and Gaussian smoothing (`sigma: 0.8`).
   - **Authentic Grad-CAM Feature Attribution**: Local generation of MathWorks `JET` thermal colormap overlays with 60% fundus / 40% heatmap blending saved to `/uploads`.
-  - **Multi-Tier Execution Hierarchy**: Auto-detection of local Python `matlab.engine` HTTP bridge, headless `matlab -batch` CLI runner, and high-fidelity native MathWorks computational engine for isolated clinic devices.
+  - **Multi-Tier Execution Hierarchy**: Auto-detection of local Python `matlab.engine` HTTP bridge, headless `matlab -batch` CLI runner, and high-fidelity native MathWorks computational engine + `onnxruntime-node` (`drishti_resnet50_v1.1.2.9.onnx` / `drishti_resnet50_v1.0.2.5.onnx` 89.82 MB SHA-256 verified) for isolated clinic devices.
+  - **100% Deterministic Image-Only Grading**: Identical retinal fundus images are guaranteed to return identical DR grades, confidence scores, and lesion metrics across all patients, filenames, and upload methods (zero patient-vitals grade drift).
   - **SIH Problem Statement #26038 Compliance**: Validated against published benchmarks (APTOS 2019, IDRiD, Messidor-2, DRIVE).
 - **Security Protections Verified in v1.0.2.5:**
   - **Comprehensive Security Response Headers**:

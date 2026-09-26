@@ -104,12 +104,13 @@ def export_model():
     file_size_mb = os.path.getsize(onnx_file_path) / (1024 * 1024)
     print(f"[SUCCESS] ONNX Model verified and saved: {onnx_file_path} ({file_size_mb:.2f} MB)")
     
-    # Also create a symlink / copy with a clean canonical name drishti_resnet50.onnx
-    canonical_path = os.path.join(output_dir, "drishti_resnet50.onnx")
-    if os.path.exists(canonical_path):
-        os.remove(canonical_path)
-    os.link(onnx_file_path, canonical_path)
-    print(f"[SUCCESS] Canonical alias created: {canonical_path}")
+    # Also create a symlink / copy with a clean canonical name drishti_resnet50.onnx and v1.1.2.9 alias
+    for alias_name in ["drishti_resnet50.onnx", "drishti_resnet50_v1.1.2.9.onnx"]:
+        alias_path = os.path.join(output_dir, alias_name)
+        if os.path.exists(alias_path):
+            os.remove(alias_path)
+        os.link(onnx_file_path, alias_path)
+        print(f"[SUCCESS] Canonical alias created: {alias_path}")
 
 if __name__ == "__main__":
     export_model()

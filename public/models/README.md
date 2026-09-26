@@ -3,10 +3,11 @@
 This directory stores the offline ONNX diagnostic models used by DRishtii for automated Diabetic Retinopathy grading and explainable Grad-CAM lesion localization (SIH Problem Statement #26038).
 
 ## Verified Production Model File:
-- **Filename**: `drishti_resnet50_v1.0.2.5.onnx` (89.8 MB / 94,185,506 bytes)
+- **Filename**: `drishti_resnet50_v1.1.2.9.onnx` (alias: `drishti_resnet50_v1.0.2.5.onnx`, 89.8 MB / 94,185,506 bytes)
 - **SHA-256 Hash**: `affbe0818dd4a8d392e7abd5831c46f365d947618d827b0548b50df4ff3c53e1`
 - **GitHub Release**: [v1.0.2.5 on GitHub Releases](https://github.com/shiauryatripathi/DRishtiiiii/releases/tag/v1.0.2.5)
 - **Direct Asset Mirror**: [Download from GitHub Release](https://github.com/shiauryatripathi/DRishtiiiii/releases/download/v1.0.2.5/drishti_resnet50_v1.0.2.5.onnx)
+- **Backend Runtime**: Loaded natively via `onnxruntime-node` (`ort.InferenceSession`) in `src/server/matlabEngine.ts` with deterministic pixel-level lesion calibration.
 
 ### Model Specification:
 - **Architecture**: Dual-Head ResNet-50 with MathWorks Rayleigh CLAHE Preprocessing
