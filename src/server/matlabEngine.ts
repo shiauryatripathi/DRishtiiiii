@@ -198,6 +198,12 @@ export interface MatlabInferenceResult {
     biomarkers: MatlabBiomarker[];
     mathworksToolbox: string;
     processingTimeMs: number;
+    onnxRuntimeExecuted?: boolean;
+    onnxModelFile?: string;
+    onnxInferenceMs?: number;
+    onnxProbabilities?: number[];
+    onnxPredictedClass?: string;
+    onnxGradCamShape?: number[];
   };
 }
 
@@ -735,6 +741,12 @@ export async function executeMatlabInference(
   // 3. Execute ONNX Runtime ResNet-50 Model (drishti_resnet50_v1.1.2.9.onnx) + Deterministic Local Contrast Lesion Extraction
   // Build [1, 3, 224, 224] Float32 tensor for ONNX input "fundus_input"
   const onnxSpatialCam = new Float32Array(7 * 7);
+  let scanOnnxExecuted = false;
+  let scanOnnxMs = 0;
+  let scanOnnxProbs: number[] = [];
+  let scanOnnxPredClass = "No DR";
+  const drClassLabels = ["No DR", "Mild NPDR", "Moderate NPDR", "Severe NPDR", "Proliferative DR"];
+
   try {
     const session = await ensureOnnxModelReady();
     if (session) {
@@ -747,9 +759,9 @@ export async function executeMatlabInference(
           const sx = Math.min(width - 1, Math.floor((tx / targetSize) * width));
           const srcIdx = sy * width + sx;
           const dstIdx = ty * targetSize + tx;
-          // Normalize using standard ImageNet mean/std on CLAHE preprocessed channels
-          tensorData[dstIdx] = (enhancedR[srcIdx] / 255.0 - 0.485) / 0.229;
-          tensorData[planeSize + dstIdx] = (denoisedG[srcIdx] / 255.0 - 0.456) / 0.224;
+          // Normalize using standard ImageNet mean/std on decoded retinal RGB channels
+          tensorData[dstIdx] = (channelR[srcIdx] / 255.0 - 0.485) / 0.229;
+          tensorData[planeSize + dstIdx] = (channelG[srcIdx] / 255.0 - 0.456) / 0.224;
           tensorData[2 * planeSize + dstIdx] = (channelB[srcIdx] / 255.0 - 0.406) / 0.225;
         }
       }
@@ -757,14 +769,21 @@ export async function executeMatlabInference(
       const feeds: Record<string, ort.Tensor> = { [session.inputNames[0] || "fundus_input"]: inputTensor };
       const onnxStart = Date.now();
       const onnxOut = await session.run(feeds);
-      onnxLastInferenceMs = Date.now() - onnxStart;
+      scanOnnxMs = Date.now() - onnxStart;
+      onnxLastInferenceMs = scanOnnxMs;
       onnxInferenceCount++;
+      scanOnnxExecuted = true;
 
       const probTensor = onnxOut["probabilities"] || onnxOut[session.outputNames[0]];
       if (probTensor && probTensor.data) {
-        onnxLastProbabilities = Array.from(probTensor.data as Float32Array).map(v =>
+        scanOnnxProbs = Array.from(probTensor.data as Float32Array).map(v =>
           parseFloat(Number(v).toFixed(4))
         );
+        onnxLastProbabilities = scanOnnxProbs;
+        const maxIdx = scanOnnxProbs.indexOf(Math.max(...scanOnnxProbs));
+        if (maxIdx >= 0 && maxIdx < drClassLabels.length) {
+          scanOnnxPredClass = drClassLabels[maxIdx];
+        }
       }
 
       const featTensor = onnxOut["gradcam_features"] || onnxOut[session.outputNames[1]];
@@ -1233,7 +1252,13 @@ export async function executeMatlabInference(
       quadrants,
       biomarkers,
       mathworksToolbox: "Deep Learning Toolbox™ & Image Processing Toolbox™ R2024b",
-      processingTimeMs: Date.now() - startTime
+      processingTimeMs: Date.now() - startTime,
+      onnxRuntimeExecuted: scanOnnxExecuted,
+      onnxModelFile: path.basename(loadedOnnxPath || resolveOnnxModelPath()),
+      onnxInferenceMs: scanOnnxMs,
+      onnxProbabilities: scanOnnxProbs,
+      onnxPredictedClass: scanOnnxPredClass,
+      onnxGradCamShape: [1, 2048, 7, 7]
     }
   };
 }

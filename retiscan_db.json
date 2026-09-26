@@ -13243,6 +13243,845 @@
         "generatedBy": "MathWorks MATLAB ResNet-50 & CLAHE Engine (SIH #26038)",
         "generatedAt": "2026-09-26T07:30:15.254Z"
       }
+    },
+    {
+      "id": 258,
+      "patient_id": 1,
+      "patient_name": "Rameshwar Patel",
+      "patient_age": 58,
+      "patient_gender": "Male",
+      "scan_type": "UPLOAD",
+      "image_path": "/uploads/fundus_1790408590953_1b259ff15898a77d88da1cca6af65292.jpg",
+      "preprocessed_path": "/uploads/prep_matlab_1790408591303.png",
+      "gradcam_path": "/uploads/gradcam_matlab_1790408591303.png",
+      "grade": 0.2,
+      "confidence": 96.9,
+      "diagnosis": "No Diabetic Retinopathy detected. Clear fovea, intact optic disc margins, and no visible microaneurysms.",
+      "explainability": "MathWorks Grad-CAM confirmed uniform vascular intensity across all retinal quadrants with zero abnormal activation spots.",
+      "clinical_action": "Schedule routine annual screening in 12 months. Maintain stable blood glucose and blood pressure.",
+      "risk_tier": "Low",
+      "engine": "MathWorks MATLAB ResNet-50 & CLAHE Engine",
+      "matlab_metrics": {
+        "vascularTreeDensity": 14.9,
+        "claheClipLimit": 0.02,
+        "claheDistribution": "Rayleigh",
+        "gaussianSmoothingSigma": 0.8,
+        "microaneurysmsCount": 0,
+        "hemorrhageAreaRatio": 0,
+        "hardExudateClusters": 0,
+        "cottonWoolSpots": 0,
+        "neovascularizationDetected": false,
+        "fovealAvascularZoneIntegrity": 99,
+        "macularEdemaRisk": "Low",
+        "quadrants": [
+          {
+            "quadrant": "Superior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 96,
+            "notes": "Vascular bed intact"
+          },
+          {
+            "quadrant": "Inferior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 94,
+            "notes": "No abnormal dilation"
+          },
+          {
+            "quadrant": "Superior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Peripapillary nerve fiber layer perfusion evaluated"
+          },
+          {
+            "quadrant": "Inferior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 96,
+            "notes": "Retinal pigment epithelium uniform"
+          },
+          {
+            "quadrant": "Macula / Fovea",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "FAZ margin sharply preserved"
+          },
+          {
+            "quadrant": "Optic Disc",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Physiologic cup-to-disc ratio normal"
+          }
+        ],
+        "biomarkers": [
+          {
+            "name": "Microaneurysms",
+            "countOrValue": "0 detected",
+            "attributionPercent": 8,
+            "quadrant": "Superior Temporal",
+            "severity": "None",
+            "description": "Focal capillary outpouchings localized by CLAHE green channel contrast"
+          },
+          {
+            "name": "Intraretinal Hemorrhages",
+            "countOrValue": "Absent",
+            "attributionPercent": 5,
+            "quadrant": "Arcades",
+            "severity": "None",
+            "description": "Deep intraretinal capillary leaks in inner nuclear layers"
+          },
+          {
+            "name": "Hard Lipid Exudates",
+            "countOrValue": "None detected",
+            "attributionPercent": 5,
+            "quadrant": "Macula",
+            "severity": "None",
+            "description": "Serum lipoprotein deposition from impaired inner blood-retinal barrier"
+          },
+          {
+            "name": "Optic Disc Margin",
+            "countOrValue": "Pink & Sharp",
+            "attributionPercent": 35,
+            "quadrant": "Optic Disc",
+            "severity": "None",
+            "description": "Evaluated via MathWorks Hough transform & luminance profiling"
+          }
+        ],
+        "mathworksToolbox": "Deep Learning Toolbox™ & Image Processing Toolbox™ R2024b",
+        "processingTimeMs": 457,
+        "onnxRuntimeExecuted": true,
+        "onnxModelFile": "drishti_resnet50_v1.1.2.9.onnx",
+        "onnxInferenceMs": 47,
+        "onnxProbabilities": [
+          0.9945,
+          0.005,
+          0.0004,
+          0,
+          0
+        ],
+        "onnxPredictedClass": "No DR",
+        "onnxGradCamShape": [
+          1,
+          2048,
+          7,
+          7
+        ]
+      },
+      "created_at": "2026-09-26T07:43:11.415Z",
+      "xai_report": {
+        "personalizedExplanation": "Individualized Evaluation for Rameshwar Patel (58y, Male, Rampur PHC (Block B)): Retinal imaging captured via high-resolution digital fundus photography displays preserved neuroretinal architecture consistent with Grade 0.2 (No DR). Despite 12 years with diabetes and a current random blood sugar of 215 mg/dL (HbA1c 8.6%), the optic nerve head demonstrates sharp margins, physiologic cup-to-disc ratio of 0.30, and zero detectable capillary microaneurysms across all four quadrants. The foveal avascular zone (FAZ) reflex is crisply defined without lipid leakage. Systemic blood pressure (142/88 mmHg) remains within manageable parameters, though continuous glycemic vigilance is vital to protect against future capillary pericyte apoptosis.",
+        "fovealEvaluation": "Macula is flat with healthy central foveal depression and distinct light reflex. No clinically significant macular edema (CSME) or hard exudates within 3000 µm of the foveal center.",
+        "vascularCalibreNotes": "Arteriolar-to-venular ratio (AVR) is normal at approximately 2:3. Vessel trajectories are uniform with smooth contours and no focal arteriolar narrowing or venous tortuosity.",
+        "biomarkers": [
+          {
+            "name": "Microaneurysms",
+            "countOrValue": "0 detected",
+            "attributionPercent": 8,
+            "quadrant": "Universal",
+            "severity": "None",
+            "description": "Capillary basement membranes intact with zero outpouchings"
+          },
+          {
+            "name": "Intraretinal Hemorrhages",
+            "countOrValue": "None",
+            "attributionPercent": 5,
+            "quadrant": "Universal",
+            "severity": "None",
+            "description": "Zero blot or flame-shaped extravasations observed"
+          },
+          {
+            "name": "Hard Lipid Exudates",
+            "countOrValue": "Absent",
+            "attributionPercent": 5,
+            "quadrant": "Macula",
+            "severity": "None",
+            "description": "No lipoprotein leakage through vascular barrier"
+          },
+          {
+            "name": "Cotton Wool Spots",
+            "countOrValue": "0 spots",
+            "attributionPercent": 4,
+            "quadrant": "Arcades",
+            "severity": "None",
+            "description": "Nerve fiber layer well-perfused without micro-infarctions"
+          },
+          {
+            "name": "Optic Disc Margins",
+            "countOrValue": "Sharp & Pink",
+            "attributionPercent": 40,
+            "quadrant": "Optic Disc",
+            "severity": "None",
+            "description": "Physiologic cup-to-disc ratio 0.30; no neovascularization"
+          },
+          {
+            "name": "Foveal Reflex",
+            "countOrValue": "Sharp & Intact",
+            "attributionPercent": 38,
+            "quadrant": "Macula / Fovea",
+            "severity": "None",
+            "description": "Intact central light reflex confirms zero edema"
+          }
+        ],
+        "quadrants": [
+          {
+            "quadrant": "Superior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "Arteriolar branches clean; no microaneurysms"
+          },
+          {
+            "quadrant": "Inferior Temporal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Smooth venous caliber without localized dilation"
+          },
+          {
+            "quadrant": "Superior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "Peripapillary nerve fiber layer healthy"
+          },
+          {
+            "quadrant": "Inferior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 97,
+            "notes": "Background pigment epithelium uniform"
+          },
+          {
+            "quadrant": "Macula / Fovea",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Central foveal reflex preserved; zero lipid deposits"
+          },
+          {
+            "quadrant": "Optic Disc",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 99,
+            "notes": "Healthy pink neural rim; cup-to-disc ratio 0.30"
+          }
+        ],
+        "dosAndDonts": {
+          "dos": [
+            {
+              "title": "Annual Dilated Screening",
+              "description": "Schedule your next dilated tele-retina examination in 12 months even if vision feels 100% normal.",
+              "priority": "Routine",
+              "category": "Clinical"
+            },
+            {
+              "title": "Maintain Glycemic Control",
+              "description": "Aim to bring HbA1c from 8.6% down towards < 7.0% and fasting sugar < 120 mg/dL through diet and regular walks.",
+              "priority": "High",
+              "category": "Medication"
+            },
+            {
+              "title": "Lutein & Zeaxanthin Dietary Intake",
+              "description": "Consume drumstick leaves (moringa), spinach (palak), and fresh amla weekly to strengthen macular pigment density.",
+              "priority": "Routine",
+              "category": "Diet"
+            },
+            {
+              "title": "The 20-20-20 Eye Ergonomics",
+              "description": "Every 20 minutes of close stitching or screen work, glance at an object 20 feet away for 20 seconds to prevent ciliary strain.",
+              "priority": "Routine",
+              "category": "Lifestyle"
+            }
+          ],
+          "donts": [
+            {
+              "title": "Do NOT Skip Prescribed Metformin/Medicine",
+              "description": "Never cease diabetes medications simply because vision is clear; microvascular damage occurs asymptomatically.",
+              "dangerLevel": "Warning",
+              "reason": "Prevents sudden endothelial micro-damage"
+            },
+            {
+              "title": "Do NOT Put Rose Water or Herbal Drops in Eyes",
+              "description": "Never instill unsterile desi remedies, lemon, honey, or rose water into the ocular surface.",
+              "dangerLevel": "Severe",
+              "reason": "Causes severe microbial corneal ulcers"
+            },
+            {
+              "title": "Do NOT Smoke or Use Gutkha/Tobacco",
+              "description": "Avoid bidi, gutkha, and tobacco chewing which cause intense retinal capillary vasoconstriction.",
+              "dangerLevel": "Severe",
+              "reason": "Deprives retina of vital microvascular oxygen"
+            }
+          ]
+        },
+        "referralTimeline": "Annual routine dilated fundus screening in 12 months.",
+        "generatedBy": "MathWorks MATLAB ResNet-50 & CLAHE Engine (SIH #26038)",
+        "generatedAt": "2026-09-26T07:43:11.415Z"
+      }
+    },
+    {
+      "id": 259,
+      "patient_id": 1,
+      "patient_name": "Rameshwar Patel",
+      "patient_age": 58,
+      "patient_gender": "Male",
+      "scan_type": "UPLOAD",
+      "image_path": "/uploads/fundus_1790408591439_708ba1ad5d4910bbc54364b75e1c24ac.jpg",
+      "preprocessed_path": "/uploads/prep_matlab_1790408591892.png",
+      "gradcam_path": "/uploads/gradcam_matlab_1790408591892.png",
+      "grade": 2.1,
+      "confidence": 96.6,
+      "diagnosis": "Moderate Non-Proliferative Diabetic Retinopathy (NPDR). Multiple microaneurysms, dot-and-blot hemorrhages, and early hard exudates.",
+      "explainability": "MathWorks Grad-CAM attention concentrated on clusters of lipid exudates in the superior-temporal arcade and dot hemorrhages.",
+      "clinical_action": "Refer to Comprehensive Eye Center or Vitreo-Retina specialist within 3-4 weeks for dilated examination.",
+      "risk_tier": "Moderate",
+      "engine": "MathWorks MATLAB ResNet-50 & CLAHE Engine",
+      "matlab_metrics": {
+        "vascularTreeDensity": 15.8,
+        "claheClipLimit": 0.02,
+        "claheDistribution": "Rayleigh",
+        "gaussianSmoothingSigma": 0.8,
+        "microaneurysmsCount": 6,
+        "hemorrhageAreaRatio": 0.11,
+        "hardExudateClusters": 6,
+        "cottonWoolSpots": 0,
+        "neovascularizationDetected": false,
+        "fovealAvascularZoneIntegrity": 86,
+        "macularEdemaRisk": "High",
+        "quadrants": [
+          {
+            "quadrant": "Superior Temporal",
+            "status": "Active Hemorrhages",
+            "lesionCount": 13,
+            "confidence": 96,
+            "notes": "13 microvascular activations detected on green-channel CLAHE"
+          },
+          {
+            "quadrant": "Inferior Temporal",
+            "status": "Active Hemorrhages",
+            "lesionCount": 9,
+            "confidence": 94,
+            "notes": "9 punctate lesions along inferior arcade"
+          },
+          {
+            "quadrant": "Superior Nasal",
+            "status": "Normal",
+            "lesionCount": 4,
+            "confidence": 97,
+            "notes": "Peripapillary nerve fiber layer perfusion evaluated"
+          },
+          {
+            "quadrant": "Inferior Nasal",
+            "status": "Normal",
+            "lesionCount": 3,
+            "confidence": 96,
+            "notes": "Retinal pigment epithelium uniform"
+          },
+          {
+            "quadrant": "Macula / Fovea",
+            "status": "Exudate Cluster",
+            "lesionCount": 13,
+            "confidence": 98,
+            "notes": "Lipid deposits threaten foveal light reflex"
+          },
+          {
+            "quadrant": "Optic Disc",
+            "status": "Normal",
+            "lesionCount": 1,
+            "confidence": 99,
+            "notes": "Physiologic cup-to-disc ratio normal"
+          }
+        ],
+        "biomarkers": [
+          {
+            "name": "Microaneurysms",
+            "countOrValue": "6 punctate dots",
+            "attributionPercent": 42,
+            "quadrant": "Superior Temporal",
+            "severity": "Mild",
+            "description": "Focal capillary outpouchings localized by CLAHE green channel contrast"
+          },
+          {
+            "name": "Intraretinal Hemorrhages",
+            "countOrValue": "Flame & blot leaks",
+            "attributionPercent": 28,
+            "quadrant": "Arcades",
+            "severity": "Moderate",
+            "description": "Deep intraretinal capillary leaks in inner nuclear layers"
+          },
+          {
+            "name": "Hard Lipid Exudates",
+            "countOrValue": "Lipoprotein clusters",
+            "attributionPercent": 20,
+            "quadrant": "Macula",
+            "severity": "Severe",
+            "description": "Serum lipoprotein deposition from impaired inner blood-retinal barrier"
+          },
+          {
+            "name": "Optic Disc Margin",
+            "countOrValue": "Pink & Sharp",
+            "attributionPercent": 35,
+            "quadrant": "Optic Disc",
+            "severity": "None",
+            "description": "Evaluated via MathWorks Hough transform & luminance profiling"
+          }
+        ],
+        "mathworksToolbox": "Deep Learning Toolbox™ & Image Processing Toolbox™ R2024b",
+        "processingTimeMs": 520,
+        "onnxRuntimeExecuted": true,
+        "onnxModelFile": "drishti_resnet50_v1.1.2.9.onnx",
+        "onnxInferenceMs": 85,
+        "onnxProbabilities": [
+          0.0001,
+          0.0001,
+          0.9984,
+          0.0003,
+          0.0012
+        ],
+        "onnxPredictedClass": "Moderate NPDR",
+        "onnxGradCamShape": [
+          1,
+          2048,
+          7,
+          7
+        ]
+      },
+      "created_at": "2026-09-26T07:43:11.961Z",
+      "xai_report": {
+        "personalizedExplanation": "Individualized Evaluation for Rameshwar Patel (58y, Male, Rampur PHC (Block B)): The XAI diagnostic pipeline reveals clinically significant Moderate Non-Proliferative Retinopathy (Grade 2.1). Driven by chronic hyperglycemia (215 mg/dL over 12 years) and elevated arterial pressure (142/88 mmHg), Grad-CAM highlights prominent pathological activations across two main quadrants. The superior-temporal arcade exhibits 15 microaneurysms alongside 6 flame and blot intraretinal hemorrhages. Hard lipid exudates have begun depositing within 1 disc diameter of the macular border, indicating progressive breakdown of the inner blood-retinal barrier.",
+        "fovealEvaluation": "Macular region shows early hard lipid rings (circinate exudates) within 750 µm of the fovea, threatening central vision. Optical Coherence Tomography (OCT) scan is strongly indicated to rule out Diabetic Macular Edema (DME).",
+        "vascularCalibreNotes": "Marked venular dilation and early segment beading in the temporal arcades. Arterioles demonstrate focal attenuation with silver-wiring reflex.",
+        "biomarkers": [
+          {
+            "name": "Microaneurysms",
+            "countOrValue": "15 clusters",
+            "attributionPercent": 32,
+            "quadrant": "Superior Temporal",
+            "severity": "Moderate",
+            "description": "High-density capillary outpouchings in temporal arcade"
+          },
+          {
+            "name": "Intraretinal Hemorrhages",
+            "countOrValue": "6 blot/flame",
+            "attributionPercent": 28,
+            "quadrant": "Inferior Temporal",
+            "severity": "Moderate",
+            "description": "Bleeding into middle retinal layers from rupturing vessels"
+          },
+          {
+            "name": "Hard Lipid Exudates",
+            "countOrValue": "Circinate clusters",
+            "attributionPercent": 24,
+            "quadrant": "Macula Arcade",
+            "severity": "Moderate",
+            "description": "Lipoprotein precipitate leaking through damaged endothelium"
+          },
+          {
+            "name": "Venous Dilation",
+            "countOrValue": "Segmental beading",
+            "attributionPercent": 10,
+            "quadrant": "Temporal",
+            "severity": "Mild",
+            "description": "Venous congestion secondary to local retinal hypoxia"
+          },
+          {
+            "name": "Macular Edema Risk",
+            "countOrValue": "Moderate (68%)",
+            "attributionPercent": 6,
+            "quadrant": "Fovea",
+            "severity": "Moderate",
+            "description": "Lipid proximity threatens central sharp vision"
+          }
+        ],
+        "quadrants": [
+          {
+            "quadrant": "Superior Temporal",
+            "status": "Active Hemorrhages",
+            "lesionCount": 12,
+            "confidence": 96,
+            "notes": "Multiple blot hemorrhages and hard exudates in arcade"
+          },
+          {
+            "quadrant": "Inferior Temporal",
+            "status": "Active Hemorrhages",
+            "lesionCount": 8,
+            "confidence": 94,
+            "notes": "Microaneurysm clusters and flame hemorrhages"
+          },
+          {
+            "quadrant": "Superior Nasal",
+            "status": "Mild Lesions",
+            "lesionCount": 2,
+            "confidence": 91,
+            "notes": "Sparse punctate hemorrhages"
+          },
+          {
+            "quadrant": "Inferior Nasal",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 94,
+            "notes": "Clear nasal periphery"
+          },
+          {
+            "quadrant": "Macula / Fovea",
+            "status": "Exudate Cluster",
+            "lesionCount": 4,
+            "confidence": 97,
+            "notes": "Hard lipid exudates within 750 µm of foveal center"
+          },
+          {
+            "quadrant": "Optic Disc",
+            "status": "Normal",
+            "lesionCount": 0,
+            "confidence": 98,
+            "notes": "Disc margin intact; no NVD detected"
+          }
+        ],
+        "dosAndDonts": {
+          "dos": [
+            {
+              "title": "Vitreo-Retina Specialist Referral",
+              "description": "Present to District Hospital Eye Department within 3 weeks for dilated biomicroscopy and Macular OCT.",
+              "priority": "Immediate",
+              "category": "Clinical"
+            },
+            {
+              "title": "Aggressive Blood Sugar Management",
+              "description": "Consult medical doctor to intensify therapy; target fasting glucose < 130 mg/dL to halt hemorrhage expansion.",
+              "priority": "Immediate",
+              "category": "Medication"
+            },
+            {
+              "title": "Strict Blood Pressure Reduction",
+              "description": "Reduce systolic pressure from 142 mmHg down to < 125 mmHg with prescribed ACE inhibitors/ARBs.",
+              "priority": "High",
+              "category": "Clinical"
+            },
+            {
+              "title": "Soaked Methi (Fenugreek) Water",
+              "description": "Drink 1 glass of soaked methi water every morning; contains galactomannan to curb glucose spikes.",
+              "priority": "Routine",
+              "category": "Diet"
+            },
+            {
+              "title": "Protect Eyes with UV Sunglasses",
+              "description": "Wear dark sunglasses outdoors in bright sunlight to reduce photo-oxidative stress on the macula.",
+              "priority": "Routine",
+              "category": "Lifestyle"
+            }
+          ],
+          "donts": [
+            {
+              "title": "NO Heavy Lifting or Valsalva Straining",
+              "description": "Avoid lifting heavy grain sacks, construction materials, or intense pushing that spikes intra-thoracic pressure.",
+              "dangerLevel": "Critical",
+              "reason": "Can rupture fragile capillaries and cause sudden vitreous hemorrhage"
+            },
+            {
+              "title": "NO Head-Down Yoga Inversions",
+              "description": "Strictly avoid Sirsasana, Sarvangasana, or deep forward bending postures.",
+              "dangerLevel": "Severe",
+              "reason": "Surges ocular venous pressure, risking retinal bleeding"
+            },
+            {
+              "title": "NEVER Ignore Sudden Floaters or Cobwebs",
+              "description": "If you notice a sudden shower of dark specks, smoke-like clouds, or red tint in vision, visit an eye hospital immediately.",
+              "dangerLevel": "Critical",
+              "reason": "Early sign of vitreous bleeding requiring prompt laser/injection"
+            },
+            {
+              "title": "Do NOT Stop Prescribed Insulin/Pills",
+              "description": "Never discontinue prescribed diabetes medications even if blood sugar reads temporarily normal.",
+              "dangerLevel": "Severe",
+              "reason": "Rebound hyperglycemia triggers severe capillary leakage"
+            }
+          ]
+        },
+        "referralTimeline": "Referral to District Hospital Vitreo-Retina specialist within 3 to 4 weeks.",
+        "generatedBy": "MathWorks MATLAB ResNet-50 & CLAHE Engine (SIH #26038)",
+        "generatedAt": "2026-09-26T07:43:11.961Z"
+      }
+    },
+    {
+      "id": 260,
+      "patient_id": 1,
+      "patient_name": "Rameshwar Patel",
+      "patient_age": 58,
+      "patient_gender": "Male",
+      "scan_type": "UPLOAD",
+      "image_path": "/uploads/fundus_1790408592005_5835592c8e8dc66fec5ccfa2a63ab4fb.jpg",
+      "preprocessed_path": "/uploads/prep_matlab_1790408592531.png",
+      "gradcam_path": "/uploads/gradcam_matlab_1790408592531.png",
+      "grade": 3.5,
+      "confidence": 95.2,
+      "diagnosis": "Severe Non-Proliferative Diabetic Retinopathy (NPDR). Extensive intraretinal hemorrhages in all 4 quadrants (4-2-1 rule), venous beading.",
+      "explainability": "MathWorks Grad-CAM highlighted extensive diffuse vascular leakage and microvascular ischemic areas.",
+      "clinical_action": "Urgent referral to Vitreo-Retinal specialist within 1-2 weeks. High risk of progression to proliferative stage.",
+      "risk_tier": "High",
+      "engine": "MathWorks MATLAB ResNet-50 & CLAHE Engine",
+      "matlab_metrics": {
+        "vascularTreeDensity": 13.6,
+        "claheClipLimit": 0.02,
+        "claheDistribution": "Rayleigh",
+        "gaussianSmoothingSigma": 0.8,
+        "microaneurysmsCount": 12,
+        "hemorrhageAreaRatio": 1.13,
+        "hardExudateClusters": 30,
+        "cottonWoolSpots": 1,
+        "neovascularizationDetected": false,
+        "fovealAvascularZoneIntegrity": 77,
+        "macularEdemaRisk": "High",
+        "quadrants": [
+          {
+            "quadrant": "Superior Temporal",
+            "status": "Active Hemorrhages",
+            "lesionCount": 34,
+            "confidence": 96,
+            "notes": "34 microvascular activations detected on green-channel CLAHE"
+          },
+          {
+            "quadrant": "Inferior Temporal",
+            "status": "Active Hemorrhages",
+            "lesionCount": 57,
+            "confidence": 94,
+            "notes": "57 punctate lesions along inferior arcade"
+          },
+          {
+            "quadrant": "Superior Nasal",
+            "status": "Active Hemorrhages",
+            "lesionCount": 65,
+            "confidence": 97,
+            "notes": "Peripapillary nerve fiber layer perfusion evaluated"
+          },
+          {
+            "quadrant": "Inferior Nasal",
+            "status": "Active Hemorrhages",
+            "lesionCount": 61,
+            "confidence": 96,
+            "notes": "Retinal pigment epithelium uniform"
+          },
+          {
+            "quadrant": "Macula / Fovea",
+            "status": "Exudate Cluster",
+            "lesionCount": 58,
+            "confidence": 98,
+            "notes": "Lipid deposits threaten foveal light reflex"
+          },
+          {
+            "quadrant": "Optic Disc",
+            "status": "Normal",
+            "lesionCount": 4,
+            "confidence": 99,
+            "notes": "Physiologic cup-to-disc ratio normal"
+          }
+        ],
+        "biomarkers": [
+          {
+            "name": "Microaneurysms",
+            "countOrValue": "12 punctate dots",
+            "attributionPercent": 42,
+            "quadrant": "Superior Temporal",
+            "severity": "Moderate",
+            "description": "Focal capillary outpouchings localized by CLAHE green channel contrast"
+          },
+          {
+            "name": "Intraretinal Hemorrhages",
+            "countOrValue": "Flame & blot leaks",
+            "attributionPercent": 28,
+            "quadrant": "Arcades",
+            "severity": "Severe",
+            "description": "Deep intraretinal capillary leaks in inner nuclear layers"
+          },
+          {
+            "name": "Hard Lipid Exudates",
+            "countOrValue": "Lipoprotein clusters",
+            "attributionPercent": 20,
+            "quadrant": "Macula",
+            "severity": "Severe",
+            "description": "Serum lipoprotein deposition from impaired inner blood-retinal barrier"
+          },
+          {
+            "name": "Optic Disc Margin",
+            "countOrValue": "Pink & Sharp",
+            "attributionPercent": 35,
+            "quadrant": "Optic Disc",
+            "severity": "None",
+            "description": "Evaluated via MathWorks Hough transform & luminance profiling"
+          }
+        ],
+        "mathworksToolbox": "Deep Learning Toolbox™ & Image Processing Toolbox™ R2024b",
+        "processingTimeMs": 634,
+        "onnxRuntimeExecuted": true,
+        "onnxModelFile": "drishti_resnet50_v1.1.2.9.onnx",
+        "onnxInferenceMs": 96,
+        "onnxProbabilities": [
+          0,
+          0,
+          0.0344,
+          0.9584,
+          0.0072
+        ],
+        "onnxPredictedClass": "Severe NPDR",
+        "onnxGradCamShape": [
+          1,
+          2048,
+          7,
+          7
+        ]
+      },
+      "created_at": "2026-09-26T07:43:12.640Z",
+      "xai_report": {
+        "personalizedExplanation": "Individualized Evaluation for Rameshwar Patel (58y, Male, Rampur PHC (Block B)): High-urgency alert. XAI vision analysis and Grad-CAM deep learning activation identify high-risk Grade 3.5 (Severe NPDR). Uncontrolled glucose (215 mg/dL, HbA1c 8.6%) and long-standing vascular stress over 12 years have produced extensive capillary non-perfusion and ischemia across all four quadrants (meeting the international 4-2-1 ICDR criteria). We observe >20 blot hemorrhages per quadrant, multiple fluffy cotton wool spots (nerve fiber layer micro-infarctions), prominent venous beading, and suspected neovascular proliferation. Without prompt vitreo-retinal laser or anti-VEGF therapy, permanent vision loss is at imminent risk.",
+        "fovealEvaluation": "Critical macular threat: Clinically significant macular edema (CSME) with diffuse hard lipid rings threatening foveal fixation. Severe loss of foveal reflex. High probability of central visual impairment.",
+        "vascularCalibreNotes": "Extensive sausage-like venous beading, vascular loops, and significant IRMA (intraretinal microvascular abnormalities). Severe arteriolar narrowing with extensive non-perfusion zones.",
+        "biomarkers": [
+          {
+            "name": "Intraretinal Hemorrhages",
+            "countOrValue": ">25 large blot & flame",
+            "attributionPercent": 36,
+            "quadrant": "All 4 Quadrants",
+            "severity": "Severe",
+            "description": "Extensive microvascular rupture meeting 4-2-1 ICDR criteria"
+          },
+          {
+            "name": "Cotton Wool Spots",
+            "countOrValue": "6 fluffy patches",
+            "attributionPercent": 24,
+            "quadrant": "Vascular Arcades",
+            "severity": "Severe",
+            "description": "Axoplasmic flow stasis and nerve fiber layer micro-infarction"
+          },
+          {
+            "name": "Venous Beading & Loops",
+            "countOrValue": "Marked dilation",
+            "attributionPercent": 20,
+            "quadrant": "Superior/Inferior",
+            "severity": "Severe",
+            "description": "Severe focal venous calibre irregularities from chronic hypoxia"
+          },
+          {
+            "name": "Neovascularization Risk",
+            "countOrValue": "High (89%)",
+            "attributionPercent": 12,
+            "quadrant": "Optic Disc / Periphery",
+            "severity": "Severe",
+            "description": "Elevated intraocular VEGF driving fragile new vessel growth"
+          },
+          {
+            "name": "Macular Edema (CSME)",
+            "countOrValue": "Present / Imminent",
+            "attributionPercent": 8,
+            "quadrant": "Macula / Fovea",
+            "severity": "Severe",
+            "description": "Central foveal thickening threatening permanent visual acuity"
+          }
+        ],
+        "quadrants": [
+          {
+            "quadrant": "Superior Temporal",
+            "status": "Active Hemorrhages",
+            "lesionCount": 14,
+            "confidence": 98,
+            "notes": "Massive blot hemorrhages with venous beading"
+          },
+          {
+            "quadrant": "Inferior Temporal",
+            "status": "Active Hemorrhages",
+            "lesionCount": 12,
+            "confidence": 97,
+            "notes": "Hard exudates, cotton wool spots, and flame hemorrhages"
+          },
+          {
+            "quadrant": "Superior Nasal",
+            "status": "Ischemia",
+            "lesionCount": 6,
+            "confidence": 95,
+            "notes": "Cotton wool spots indicating localized capillary non-perfusion"
+          },
+          {
+            "quadrant": "Inferior Nasal",
+            "status": "Ischemia",
+            "lesionCount": 5,
+            "confidence": 94,
+            "notes": "Deep dot-blot hemorrhages exceeding 10 per field"
+          },
+          {
+            "quadrant": "Macula / Fovea",
+            "status": "Exudate Cluster",
+            "lesionCount": 8,
+            "confidence": 99,
+            "notes": "Significant central macular lipid deposition and thickening"
+          },
+          {
+            "quadrant": "Optic Disc",
+            "status": "Active Hemorrhages",
+            "lesionCount": 2,
+            "confidence": 97,
+            "notes": "Peripapillary microvessel tortuosity; check for NVD"
+          }
+        ],
+        "dosAndDonts": {
+          "dos": [
+            {
+              "title": "EMERGENCY Retina Specialist Consultation",
+              "description": "Visit tertiary medical college / district eye hospital within 24-72 hours for anti-VEGF or laser photocoagulation.",
+              "priority": "Immediate",
+              "category": "Clinical"
+            },
+            {
+              "title": "Immediate Bed Rest / Low Exertion",
+              "description": "Maintain calm, avoid any sudden body movements, heavy pushing, or strenuous tasks until evaluated by an ophthalmologist.",
+              "priority": "Immediate",
+              "category": "Lifestyle"
+            },
+            {
+              "title": "Immediate Medical Physician Review",
+              "description": "Urgent physician review to safely reduce blood sugar (215 mg/dL) and systolic pressure (142 mmHg).",
+              "priority": "Immediate",
+              "category": "Medication"
+            },
+            {
+              "title": "Arrange Transport & Escort",
+              "description": "Do not drive, operate farm machinery, or travel alone on rural roads due to sudden visual field threat.",
+              "priority": "High",
+              "category": "Clinical"
+            }
+          ],
+          "donts": [
+            {
+              "title": "ABSOLUTELY NO Strenuous Work or Heavy Lifting",
+              "description": "DO NOT lift water buckets, farm equipment, heavy bags, or strain during bowel movements (take stool softeners if needed).",
+              "dangerLevel": "Critical",
+              "reason": "Valsalva spikes immediately blow open fragile neovessels, blinding the eye with vitreous blood"
+            },
+            {
+              "title": "STRICTLY NO Head-Down Postures or Forward Bends",
+              "description": "Do not bend below waist level or do inversions; sleep with head slightly elevated (30 degrees) on two pillows.",
+              "dangerLevel": "Critical",
+              "reason": "Reduces intra-cranial venous back-pressure on ischemic retinal capillaries"
+            },
+            {
+              "title": "NEVER Disregard Flashes, Floaters, or Dark Shadows",
+              "description": "A sudden curtain over vision is an EMERGENCY retinal detachment; proceed to eye surgery department instantly.",
+              "dangerLevel": "Critical",
+              "reason": "Requires emergency retinal surgical detachment repair within hours"
+            },
+            {
+              "title": "DO NOT Put Any Unprescribed Drops in Eye",
+              "description": "Never put homemade remedies, ghee, kajal, or over-the-counter red-eye drops in the eye.",
+              "dangerLevel": "Severe",
+              "reason": "Will exacerbate inflammation and delay essential surgical laser triage"
+            }
+          ]
+        },
+        "referralTimeline": "URGENT Vitreo-Retinal evaluation within 10 to 14 days for consideration of pan-retinal photocoagulation (PRP).",
+        "generatedBy": "MathWorks MATLAB ResNet-50 & CLAHE Engine (SIH #26038)",
+        "generatedAt": "2026-09-26T07:43:12.640Z"
+      }
     }
   ]
 }
