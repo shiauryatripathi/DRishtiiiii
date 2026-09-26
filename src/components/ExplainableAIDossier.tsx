@@ -126,7 +126,7 @@ Certified via DRishtii AI Diagnostic Network (SIH #26038)`;
   };
 
   return (
-    <div className={cn(
+    <div id="print-report" className={cn(
       "bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col",
       isModal ? "max-h-[92vh] w-full max-w-5xl my-auto" : "w-full"
     )}>

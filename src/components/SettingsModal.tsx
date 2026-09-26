@@ -103,7 +103,7 @@ export function SettingsModal({
     const a = document.createElement('a');
     a.style.display = 'none';
     a.href = url;
-    a.download = 'drishti_resnet50_v1.0.2.5.onnx';
+    a.download = 'drishti_resnet50_v1.1.2.9.onnx';
     document.body.appendChild(a);
     a.click();
     setTimeout(() => {
@@ -159,8 +159,13 @@ export function SettingsModal({
     } catch (err) {
       console.error('In-browser stream download error:', err);
       setDownloading(false);
-      // Fallback to top-level tab if iframe policy blocked blob or fetch
-      window.open('/download-onnx', '_blank', 'noopener,noreferrer');
+      // Fallback to direct anchor download without window.open
+      const a = document.createElement('a');
+      a.href = '/api/models/download/onnx';
+      a.download = 'drishti_resnet50_v1.1.2.9.onnx';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     }
   };
 
@@ -256,7 +261,7 @@ export function SettingsModal({
   const exportDiagnosticsLog = () => {
     const diagnostics = {
       app: 'DRishtii AI Diagnostic System',
-      version: '1.1.2.8',
+      version: '1.1.2.9',
       timestamp: new Date().toISOString(),
       nodeId: 'PHC-UNIT-004-BILASPUR',
       settings: {
@@ -280,7 +285,7 @@ export function SettingsModal({
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `drishti_system_diagnostics_v1.0.2.3_${Date.now()}.json`;
+    a.download = `drishti_system_diagnostics_v1.1.2.9_${Date.now()}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -301,7 +306,8 @@ export function SettingsModal({
     { key: '2', alt: 'Alt + 2', letter: 'P', action: 'Patient Database', desc: 'Aadhaar registry, health records & CSV export' },
     { key: '3', alt: 'Alt + 3', letter: 'S', action: 'New AI Scan', desc: 'Retinal screening via Adaptive Lens or upload' },
     { key: '4', alt: 'Alt + 4', letter: 'A', action: 'AI Care Advisor', desc: 'Offline clinical intelligence & dietary counseling' },
-    { key: '5', alt: 'Alt + 5', letter: ',', action: 'System Settings', desc: 'This configuration & diagnostic control center' },
+    { key: '5', alt: 'Alt + 5', letter: '5', action: 'MathWorks SIH 26038', desc: 'MATLAB & Simulink telemedicine pipeline & benchmarks' },
+    { key: '6', alt: 'Alt + 6', letter: ',', action: 'System Settings', desc: 'This configuration & diagnostic control center' },
     { key: 'M', alt: 'Alt + B', letter: '[', action: 'Toggle Sidebar', desc: 'Switch YouTube expanded/mini sidebar or mobile drawer' },
     { key: '?', alt: 'Shift + /', letter: '', action: 'Keyboard Help', desc: 'Quick access to navigation shortcuts' },
     { key: 'Esc', alt: '', letter: '', action: 'Close Dialogs', desc: 'Dismiss active modals, overlays, or settings' },
@@ -678,7 +684,7 @@ export function SettingsModal({
                   </div>
                 </div>
 
-                {/* ONNX Model Export & Multi-Method Downloader (v1.0.2.5) */}
+                {/* ONNX Model Export & Multi-Method Downloader (v-1.1.2.9) */}
                 <div className="mt-4 p-5 rounded-2xl bg-slate-900 text-white border border-slate-800 shadow-xl space-y-4">
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                     <div className="space-y-1.5">
@@ -687,7 +693,7 @@ export function SettingsModal({
                           Exported Model Artifact
                         </span>
                         <span className="text-[10px] bg-emerald-500/20 text-emerald-300 font-mono px-1.5 py-0.5 rounded border border-emerald-500/30">
-                          v1.0.2.5
+                          v-1.1.2.9
                         </span>
                         <span className="text-[10px] bg-sky-500/20 text-sky-300 font-mono px-1.5 py-0.5 rounded border border-sky-500/30">
                           ONNX v18
@@ -700,7 +706,7 @@ export function SettingsModal({
                         </span>
                       </div>
                       <h4 className="text-base font-semibold text-white flex items-center gap-2">
-                        <span>drishti_resnet50_v1.0.2.5.onnx</span>
+                        <span>drishti_resnet50_v1.1.2.9.onnx</span>
                       </h4>
                       <p className="text-xs text-slate-300 leading-relaxed max-w-xl">
                         Full ResNet-50 dual-head architecture: 5-class softmax distribution and layer4 bottleneck feature maps for authentic real-time Grad-CAM.
@@ -963,7 +969,7 @@ export function SettingsModal({
           <div className="flex items-center space-x-2 text-slate-500 text-xs">
             <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
             <span className="font-medium">
-              DRishtii AI Diagnostic System • <strong className="text-slate-800 font-mono">v1.1.2.8</strong> <span className="text-[10px] text-emerald-600 font-bold ml-1 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/70">SECURED</span>
+              DRishtii AI Diagnostic System • <strong className="text-slate-800 font-mono">v1.1.2.9</strong> <span className="text-[10px] text-emerald-600 font-bold ml-1 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/70">SECURED</span>
             </span>
           </div>
 

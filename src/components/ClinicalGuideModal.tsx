@@ -207,7 +207,7 @@ export function ClinicalGuideModal({ isOpen, onClose }: ClinicalGuideModalProps)
               <h2 id="clinical-guide-title" className="text-base font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
                 Clinical Knowledge Base &amp; FAQ
                 <span className="text-[10px] font-mono font-semibold bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 px-2 py-0.5 rounded-full">
-                  v1.1.2.8
+                  v-1.1.2.9
                 </span>
               </h2>
               <p className="text-xs text-slate-500 dark:text-slate-400">

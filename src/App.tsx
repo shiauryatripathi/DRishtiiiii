@@ -235,7 +235,7 @@ export default function App() {
   useEffect(() => {
     if (!isAuthenticated) return;
 
-    // Basic fetch to pass to Advisor
+    // Fetch latest patients and scans whenever view changes or user authenticates
     fetch('/api/patients')
       .then(r => r.json())
       .then(data => {
@@ -249,13 +249,13 @@ export default function App() {
         if (Array.isArray(data)) setBackendScans(data);
       })
       .catch(() => {});
-  }, [isAuthenticated]);
+  }, [isAuthenticated, currentView]);
 
   const handleLogin = (role: 'doctor' | 'registration') => {
     setIsAuthenticated(true);
     setUserRole(role);
     setSessionExpiredMsg(null);
-    setCurrentView(role === 'doctor' ? 'dashboard' : 'new_scan');
+    setCurrentView(role === 'doctor' ? 'dashboard' : 'patients');
     
     // Save session data
     localStorage.setItem('drishti_auth', 'true');
@@ -545,7 +545,9 @@ export default function App() {
         onClose={() => setIsSearchOpen(false)}
         onSelectPatient={(id, targetView) => {
           setActivePatientId(id);
-          if (targetView) setCurrentView(targetView);
+          if (targetView) {
+            setCurrentView((targetView as string) === 'scanner' ? 'new_scan' : targetView);
+          }
         }}
       />
 

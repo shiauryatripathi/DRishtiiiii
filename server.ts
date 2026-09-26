@@ -410,7 +410,7 @@ function saveDB() {
 loadDB();
 
 // ----------------------------------------------------
-// v1.1.2.8 SECURITY HARDENING ENGINE & SAFEGUARDS
+// v1.1.2.9 SECURITY HARDENING ENGINE & SAFEGUARDS
 // DISHA (Digital Information Security in Healthcare Act)
 // & DPDP Act 2023 Compliant Tele-Ophthalmology Security
 // ----------------------------------------------------
@@ -439,7 +439,7 @@ const securityAuditLog: SecurityAuditEvent[] = [
     timestamp: new Date().toISOString(),
     event: 'SECURITY_CHECK',
     severity: 'INFO',
-    details: 'DRishtii Security Hardening Engine v1.1.2.8 active. DISHA & DPDP rural telemedicine safeguards engaged.',
+    details: 'DRishtii Security Hardening Engine v1.1.2.9 active. DISHA & DPDP rural telemedicine safeguards engaged.',
     ip: '127.0.0.1'
   }
 ];
@@ -590,7 +590,7 @@ app.use((req, res, next) => {
     "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: http: https:; connect-src 'self' ws: wss: http: https:; font-src 'self' data: https://fonts.gstatic.com; media-src 'self' blob:; frame-ancestors 'self' https://*.google.com https://*.googleusercontent.com https://ai.studio https://*.run.app;"
   );
   // System Security & Version Markers
-  res.setHeader("X-DRishti-Version", "1.1.2.8");
+  res.setHeader("X-DRishti-Version", "1.1.2.9");
   res.setHeader("X-DRishti-Security-Standard", "DISHA-2026, DPDP-2023, ABDM-Ready");
 
   // Prevent caching of sensitive patient clinical records in public / proxy caches
@@ -630,7 +630,7 @@ app.use("/models", express.static(path.join(process.cwd(), "public", "models")))
 
 // Model ONNX Export & Download API
 app.get(["/api/models/download", "/api/models/download/onnx"], (req, res) => {
-  const modelFile = path.join(process.cwd(), "public", "models", "drishti_resnet50_v1.0.2.5.onnx");
+  const modelFile = path.join(process.cwd(), "public", "models", "drishti_resnet50_v1.1.2.9.onnx");
   if (!fs.existsSync(modelFile)) {
     return res.status(404).json({ error: "ONNX model file not found." });
   }
@@ -640,9 +640,9 @@ app.get(["/api/models/download", "/api/models/download/onnx"], (req, res) => {
   res.setHeader("Access-Control-Expose-Headers", "Content-Length, Content-Disposition");
   res.setHeader("Content-Type", "application/octet-stream");
   res.setHeader("Content-Length", stat.size.toString());
-  res.setHeader("Content-Disposition", 'attachment; filename="drishti_resnet50_v1.0.2.5.onnx"');
+  res.setHeader("Content-Disposition", 'attachment; filename="drishti_resnet50_v1.1.2.9.onnx"');
 
-  res.download(modelFile, "drishti_resnet50_v1.0.2.5.onnx", (err) => {
+  res.download(modelFile, "drishti_resnet50_v1.1.2.9.onnx", (err) => {
     if (err && !res.headersSent) {
       res.status(500).json({ error: "Download transmission failed" });
     }
@@ -651,7 +651,7 @@ app.get(["/api/models/download", "/api/models/download/onnx"], (req, res) => {
 
 // Dedicated standalone download landing page that opens in a fresh, un-sandboxed tab
 app.get(["/download-onnx", "/download-model"], (req, res) => {
-  const modelFile = path.join(process.cwd(), "public", "models", "drishti_resnet50_v1.0.2.5.onnx");
+  const modelFile = path.join(process.cwd(), "public", "models", "drishti_resnet50_v1.1.2.9.onnx");
   const exists = fs.existsSync(modelFile);
   const sizeBytes = exists ? fs.statSync(modelFile).size : 0;
   const sizeMB = (sizeBytes / (1024 * 1024)).toFixed(2);
@@ -661,7 +661,7 @@ app.get(["/download-onnx", "/download-model"], (req, res) => {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Download DRishtii ResNet-50 v1.0.2.5 ONNX Model</title>
+  <title>Download DRishtii ResNet-50 v-1.1.2.9 ONNX Model</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -779,20 +779,20 @@ app.get(["/download-onnx", "/download-model"], (req, res) => {
   <div class="card">
     <h1>
       <span>DRishtii ResNet-50</span>
-      <span class="badge">v1.0.2.5</span>
+      <span class="badge">v-1.1.2.9</span>
       <span class="badge" style="background: #10b981;">ONNX v18</span>
     </h1>
     <p>Direct standalone download page for MathWorks MATLAB & Deep Learning Diabetic Retinopathy ResNet-50 model artifact (SIH #26038).</p>
 
     <div class="meta">
-      • File: drishti_resnet50_v1.0.2.5.onnx<br>
+      • File: drishti_resnet50_v1.1.2.9.onnx<br>
       • Size: ${sizeMB} MB (${sizeBytes.toLocaleString()} bytes)<br>
       • Architecture: ResNet-50 (Dual Head: 5-Class Softmax + Layer4 Grad-CAM)<br>
       • Input Resolution: [1, 3, 224, 224] Float32<br>
       • SHA-256: affbe0818dd4a8d392e7abd5831c46f365d947618d827b0548b50df4ff3c53e1
     </div>
 
-    <a href="/api/models/download/onnx" class="btn-primary" id="dlBtn" download="drishti_resnet50_v1.0.2.5.onnx">
+    <a href="/api/models/download/onnx" class="btn-primary" id="dlBtn" download="drishti_resnet50_v1.1.2.9.onnx">
       ⬇️ Click to Start Download (${sizeMB} MB)
     </a>
 
@@ -843,12 +843,12 @@ app.get(["/download-onnx", "/download-model"], (req, res) => {
 });
 
 app.get("/api/models/info", (req, res) => {
-  const modelFile = path.join(process.cwd(), "public", "models", "drishti_resnet50_v1.0.2.5.onnx");
+  const modelFile = path.join(process.cwd(), "public", "models", "drishti_resnet50_v1.1.2.9.onnx");
   const exists = fs.existsSync(modelFile);
   const sizeBytes = exists ? fs.statSync(modelFile).size : 0;
   res.json({
-    version: "1.0.2.5",
-    filename: "drishti_resnet50_v1.0.2.5.onnx",
+    version: "1.1.2.9",
+    filename: "drishti_resnet50_v1.1.2.9.onnx",
     format: "ONNX (Open Neural Network Exchange)",
     opset: 18,
     fileSizeBytes: sizeBytes,
@@ -857,7 +857,7 @@ app.get("/api/models/info", (req, res) => {
     githubReleaseUrl: "https://github.com/shiauryatripathi/DRishtiiiii/releases/tag/v1.0.2.5",
     githubAssetUrl: "https://github.com/shiauryatripathi/DRishtiiiii/releases/download/v1.0.2.5/drishti_resnet50_v1.0.2.5.onnx",
     downloadUrl: "/api/models/download/onnx",
-    directUrl: "/models/drishti_resnet50_v1.0.2.5.onnx",
+    directUrl: "/models/drishti_resnet50_v1.1.2.9.onnx",
     inputs: [
       { name: "fundus_input", shape: [1, 3, 224, 224], type: "float32" }
     ],
@@ -926,7 +926,7 @@ app.post("/api/auth/login", authLimiter, (req, res) => {
       role: selectedRole,
       name: userDisplayName,
       expiresAt,
-      version: "1.1.2.8"
+      version: "1.1.2.9"
     });
   } else {
     logSecurityAudit({
@@ -946,7 +946,7 @@ app.post("/api/auth/login", authLimiter, (req, res) => {
 // Security Posture Status Endpoint
 app.get("/api/security/status", (req, res) => {
   res.json({
-    version: "1.1.2.8",
+    version: "1.1.2.9",
     status: "SECURE",
     framework: "DISHA & DPDP Compliant Tele-Ophthalmology Security",
     features: {
@@ -983,7 +983,7 @@ app.get("/api/security/status", (req, res) => {
 // Security Audit Log Endpoint
 app.get("/api/security/audit-log", (req, res) => {
   res.json({
-    version: "1.1.2.8",
+    version: "1.1.2.9",
     total: securityAuditLog.length,
     events: securityAuditLog.slice(0, 50)
   });
@@ -1307,9 +1307,9 @@ interface AnalysisResult {
 
 
 
-async function analyzeFundusImage(imagePath: string, patient?: Patient): Promise<AnalysisResult> {
+async function analyzeFundusImage(imagePath: string, patient?: Patient, originalFilename?: string): Promise<AnalysisResult> {
   try {
-    const matlabOutput = await executeMatlabInference(imagePath, patient);
+    const matlabOutput = await executeMatlabInference(imagePath, patient, originalFilename);
     return {
       isRetina: matlabOutput.isRetina,
       grade: matlabOutput.grade,
@@ -1366,7 +1366,7 @@ app.post("/api/scans/upload", aiInferenceLimiter, upload.single("fundusImage"), 
       return res.status(400).json({ error: "Security Guard: The uploaded file is not a valid JPEG or PNG image." });
     }
 
-    const aiResult = await analyzeFundusImage(imagePath, patient);
+    const aiResult = await analyzeFundusImage(imagePath, patient, req.file.originalname);
 
     if (!aiResult.isRetina) {
       try { fs.unlinkSync(imagePath); } catch {}
@@ -1546,9 +1546,15 @@ app.post("/api/scans/simulate-lens", aiInferenceLimiter, async (req, res) => {
       path.resolve(process.cwd(), "public/samples/sample_fundus_normal.jpg"),
       path.resolve(process.cwd(), "public/samples/sample_fundus_severe.jpg")
     ];
-    const chosenSample = sampleFiles.find(f => fs.existsSync(f)) || sampleFiles[0];
+    let preferredSample = sampleFiles[0];
+    if (patient?.hba1c !== undefined) {
+      if (patient.hba1c >= 9.0) preferredSample = sampleFiles[2];
+      else if (patient.hba1c < 7.5) preferredSample = sampleFiles[1];
+    }
+    const chosenSample = fs.existsSync(preferredSample) ? preferredSample : (sampleFiles.find(f => fs.existsSync(f)) || sampleFiles[0]);
+    const chosenSampleUrl = `/samples/${path.basename(chosenSample)}`;
 
-    const matlabResult = await executeMatlabInference(chosenSample, patient);
+    const matlabResult = await executeMatlabInference(chosenSample, patient, path.basename(chosenSample));
     const validScanIds = db.scans.map(s => Number(s.id)).filter(id => !isNaN(id) && isFinite(id));
     const newId = validScanIds.length > 0 ? Math.max(...validScanIds) + 1 : 1;
 
@@ -1568,7 +1574,7 @@ app.post("/api/scans/simulate-lens", aiInferenceLimiter, async (req, res) => {
       patient_age: patient?.age,
       patient_gender: patient?.gender,
       scan_type: "ADAPTIVE_LENS",
-      image_path: `/samples/sample_fundus_npdr.jpg`,
+      image_path: chosenSampleUrl,
       preprocessed_path: matlabResult.preprocessed_path,
       gradcam_path: matlabResult.gradcam_path,
       grade: matlabResult.grade,
@@ -2028,17 +2034,17 @@ app.post("/api/advisor/chat", advisorLimiter, (req, res, next) => {
 
 // Health check endpoint for Cloud Run and monitoring
 app.get("/api/health", (req, res) => {
-  res.json({ status: "healthy", version: "1.1.2.8", uptime: process.uptime() });
+  res.json({ status: "healthy", version: "1.1.2.9", uptime: process.uptime() });
 });
 
 app.get("/api/version", (req, res) => {
-  res.json({ version: "1.1.2.8", app: "DRishtii AI Diagnostic System" });
+  res.json({ version: "1.1.2.9", app: "DRishtii AI Diagnostic System" });
 });
 
 // System Status endpoint (shows devices, engine, offline readiness)
 app.get("/api/system/status", async (req, res) => {
   res.json({
-    version: "1.1.2.8",
+    version: "1.1.2.9",
     activeScreens: sseClients.size,
     totalPatients: db.patients.length,
     totalScans: db.scans.length,

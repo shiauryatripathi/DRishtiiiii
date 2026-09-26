@@ -28,6 +28,8 @@ export function KeyboardShortcutsModal({ isOpen, onClose }: KeyboardShortcutsMod
     { key: '2', altKey: 'Alt + 2', letter: 'P', action: 'Patient Database', desc: 'Aadhaar registry, health records & clinical histories' },
     { key: '3', altKey: 'Alt + 3', letter: 'S', action: 'New AI Scan', desc: 'Retinal screening via Adaptive Lens burst or fundus upload' },
     { key: '4', altKey: 'Alt + 4', letter: 'A', action: 'AI Care Advisor', desc: 'Offline clinical intelligence & dietary care advisor' },
+    { key: '5', altKey: 'Alt + 5', letter: '5', action: 'MathWorks SIH 26038', desc: 'MATLAB & Simulink telemedicine pipeline & benchmark validation' },
+    { key: '6', altKey: 'Alt + 6', letter: ',', action: 'System Settings', desc: 'System configuration, optical themes & diagnostics center' },
   ];
 
   const controlShortcuts = [

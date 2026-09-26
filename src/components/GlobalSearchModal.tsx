@@ -18,7 +18,7 @@ import { cn } from '../lib/utils';
 interface GlobalSearchModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSelectPatient: (patientId: number, targetView?: 'patients' | 'scanner') => void;
+  onSelectPatient: (patientId: number, targetView?: 'patients' | 'new_scan') => void;
 }
 
 export function GlobalSearchModal({ isOpen, onClose, onSelectPatient }: GlobalSearchModalProps) {
@@ -73,7 +73,7 @@ export function GlobalSearchModal({ isOpen, onClose, onSelectPatient }: GlobalSe
       setSelectedIndex(prev => (prev - 1 + filteredPatients.length) % Math.max(1, filteredPatients.length));
     } else if (e.key === 'Enter' && filteredPatients[selectedIndex]) {
       e.preventDefault();
-      onSelectPatient(filteredPatients[selectedIndex].id, 'scanner');
+      onSelectPatient(filteredPatients[selectedIndex].id, 'new_scan');
       onClose();
     } else if (e.key === 'Escape') {
       onClose();
@@ -139,7 +139,7 @@ export function GlobalSearchModal({ isOpen, onClose, onSelectPatient }: GlobalSe
                 <div
                   key={patient.id}
                   onClick={() => {
-                    onSelectPatient(patient.id, isDiagnosed ? 'patients' : 'scanner');
+                    onSelectPatient(patient.id, isDiagnosed ? 'patients' : 'new_scan');
                     onClose();
                   }}
                   onMouseEnter={() => setSelectedIndex(idx)}

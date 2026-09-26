@@ -510,21 +510,26 @@ html.dark.clinic-high-contrast .border-slate-100 {
 
 /* Print styles for clinical reports */
 @media print {
-  body * {
-    visibility: hidden;
+  header,
+  aside,
+  .print\:hidden {
+    display: none !important;
   }
-  #print-report, #print-report * {
-    visibility: visible;
-  }
-  #print-report {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-  }
-  body, main {
+  body,
+  main,
+  #root {
     background: #ffffff !important;
+    color: #000000 !important;
     padding: 0 !important;
     margin: 0 !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+  #print-report {
+    max-height: none !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    border: none !important;
+    width: 100% !important;
   }
 }

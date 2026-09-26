@@ -39,7 +39,7 @@ export function CookieConsentBanner({ onOpenLegalModal }: CookieConsentBannerPro
       analytics: true,
       preferences: true,
       timestamp: new Date().toISOString(),
-      version: '1.1.2.8',
+      version: '1.1.2.9',
       standard: 'DPDP-2023-DISHA-Compliant'
     };
     localStorage.setItem('drishti_cookie_consent_v1', JSON.stringify(consentData));
@@ -52,7 +52,7 @@ export function CookieConsentBanner({ onOpenLegalModal }: CookieConsentBannerPro
       analytics: false,
       preferences: false,
       timestamp: new Date().toISOString(),
-      version: '1.1.2.8',
+      version: '1.1.2.9',
       standard: 'DPDP-2023-Strict-Minimal'
     };
     localStorage.setItem('drishti_cookie_consent_v1', JSON.stringify(consentData));
@@ -65,7 +65,7 @@ export function CookieConsentBanner({ onOpenLegalModal }: CookieConsentBannerPro
       analytics: preferences.analytics,
       preferences: preferences.preferences,
       timestamp: new Date().toISOString(),
-      version: '1.1.2.8',
+      version: '1.1.2.9',
       standard: 'DPDP-2023-Custom-Choice'
     };
     localStorage.setItem('drishti_cookie_consent_v1', JSON.stringify(consentData));
